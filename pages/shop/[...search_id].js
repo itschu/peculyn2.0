@@ -4,6 +4,7 @@ import Newsletter from "../../components/newsletter";
 import { useCart } from "../../context/cart";
 import HtmlHead from "../../components/head";
 import Cart from "../../components/cart";
+import SearchAll from "../../components/search-all";
 
 const Search = () => {
 	const { cartState } = useCart();
@@ -12,7 +13,7 @@ const Search = () => {
 		<div className="font-body text-gray-600">
 			<HtmlHead currentPage={`Search Products`} />
 			<Nav />
-			{/* <SearchAll /> */}
+			<SearchAll />
 			<Newsletter />
 			<Footer />
 			{cartState.visible && <Cart />}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Description from "../description";
 import { useSelectedProduct } from "../../context/selectedProduct";
@@ -14,13 +14,13 @@ import HtmlHead from "../head";
 
 const SingleProduct = ({ id }) => {
 	const { selectedProduct } = useSelectedProduct();
-	const { cartState, setCartState } = useCart();
 
 	const [singleProd, setSingleProd] = useState(
 		selectedProduct?.stale ? selectedProduct : staleData
 	);
 
 	const [qty, setQty] = useState(1);
+	const { addToCart } = useCart();
 
 	let showDiscount = false;
 	let discount = 0;
@@ -28,6 +28,7 @@ const SingleProduct = ({ id }) => {
 	useEffect(() => {
 		if (Object.keys(selectedProduct).length === 0) return;
 		setSingleProd(selectedProduct);
+		setQty(1);
 	}, [selectedProduct]);
 
 	if (parseInt(singleProd?.old_price) <= parseInt(singleProd?.price)) {
@@ -65,38 +66,8 @@ const SingleProduct = ({ id }) => {
 		maximumFractionDigits: currencyFractionDigits,
 	});
 
-	const addToCart = async () => {
-		const prodDetails = {
-			id: singleProd.unique_key,
-			price: singleProd.price,
-			total_price: qty * singleProd.price,
-			in_stock: singleProd.in_stock,
-			img_1: singleProd.img_1,
-			purchases: singleProd.purchases,
-			owner: singleProd.owner,
-			name: singleProd.name,
-			category: singleProd.category,
-			qty,
-		};
-		const exists = cartState.items.filter(
-			(itm) => itm.id == singleProd.unique_key
-		);
-
-		if (exists.length) {
-			setCartState({
-				...cartState,
-				visible: true,
-			});
-		} else {
-			setCartState({
-				visible: true,
-				items: [...cartState.items, prodDetails],
-			});
-		}
-	};
-
 	return (
-		<div className="p-4 py-8 md:py-5 md:px-32 mt-5 mb-10">
+		<div className="section">
 			<HtmlHead currentPage={`${singleProd.name}`} order="reverse" />
 
 			<span className="flex items-center">
@@ -133,7 +104,11 @@ const SingleProduct = ({ id }) => {
 						>
 							<Image
 								src={mainPic}
-								alt="Picture of the author"
+								blurDataURL={
+									"/images/design/placeholder-image.png"
+								}
+								placeholder="blur"
+								alt={singleProd.name}
 								layout="fill"
 							/>
 							{showDiscount && (
@@ -150,10 +125,69 @@ const SingleProduct = ({ id }) => {
 					)}
 
 					<div className="w-full h-full flex gap-3">
-						<span className="w-20 h-20 bg-neutral-400 skeleton-box"></span>
-						<span className="w-20 h-20 bg-neutral-400 skeleton-box"></span>
-						<span className="w-20 h-20 bg-neutral-400 skeleton-box"></span>
-						<span className="w-20 h-20 bg-neutral-400 skeleton-box"></span>
+						{!singleProd.stale ? (
+							<>
+								<span className="w-20 h-20 bg-neutral-400 relative">
+									<Image
+										src={`https://peculyn.com/assets/images/${
+											singleProd?.category
+										}/${fileName(singleProd?.img_1)}`}
+										blurDataURL={
+											"/images/design/placeholder-image.png"
+										}
+										placeholder="blur"
+										alt={singleProd?.name}
+										layout="fill"
+									/>
+								</span>
+								<span className="w-20 h-20 bg-neutral-400 relative">
+									<Image
+										src={`https://peculyn.com/assets/images/${
+											singleProd?.category
+										}/${fileName(singleProd?.img_2)}`}
+										blurDataURL={
+											"/images/design/placeholder-image.png"
+										}
+										placeholder="blur"
+										alt={singleProd?.name}
+										layout="fill"
+									/>
+								</span>
+								<span className="w-20 h-20 bg-neutral-400 relative">
+									<Image
+										src={`https://peculyn.com/assets/images/${
+											singleProd?.category
+										}/${fileName(singleProd?.img_3)}`}
+										blurDataURL={
+											"/images/design/placeholder-image.png"
+										}
+										placeholder="blur"
+										alt={singleProd?.name}
+										layout="fill"
+									/>
+								</span>
+								<span className="w-20 h-20 bg-neutral-400 relative">
+									<Image
+										src={`https://peculyn.com/assets/images/${
+											singleProd?.category
+										}/${fileName(singleProd?.img_4)}`}
+										blurDataURL={
+											"/images/design/placeholder-image.png"
+										}
+										placeholder="blur"
+										alt={singleProd?.name}
+										layout="fill"
+									/>
+								</span>
+							</>
+						) : (
+							<>
+								<span className="w-20 h-20 bg-neutral-400 skeleton-box"></span>
+								<span className="w-20 h-20 bg-neutral-400 skeleton-box"></span>
+								<span className="w-20 h-20 bg-neutral-400 skeleton-box"></span>
+								<span className="w-20 h-20 bg-neutral-400 skeleton-box"></span>
+							</>
+						)}
 					</div>
 				</div>
 
@@ -251,7 +285,7 @@ const SingleProduct = ({ id }) => {
 						</div>
 
 						<div
-							onClick={() => addToCart()}
+							onClick={() => addToCart(singleProd, qty)}
 							className="p-1 px-6 cursor-pointer flex items-center bg-primary-600 duration-500 transition-all hover:bg-slate-900 hover:text-white ml-5"
 						>
 							<span className="flex items-center text-lg">

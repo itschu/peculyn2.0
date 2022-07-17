@@ -6,7 +6,6 @@ import ProductsRow from "../../components/products-row";
 import { useRouter } from "next/router";
 import Cart from "../../components/cart";
 import { useCart } from "../../context/cart";
-import HtmlHead from "../../components/head";
 
 const Product = () => {
 	const router = useRouter();
@@ -15,13 +14,17 @@ const Product = () => {
 	const { cartState } = useCart();
 
 	return (
-		<div className="font-body text-gray-600">
+		<div
+			className={`font-body text-gray-600 ${
+				cartState.visible === true && "overflow-hidden"
+			}`}
+		>
 			<Nav />
 			<SingleProduct id={prod_id} />
 			<ProductsRow title={"Related Products"} max={5} showView={false} />
 			<Newsletter />
 			<Footer />
-			{cartState.visible && <Cart />}
+			<Cart />
 		</div>
 	);
 };

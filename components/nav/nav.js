@@ -1,7 +1,11 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useCart } from "../../context/cart";
 
 const nav = () => {
+	const router = useRouter();
+	const path = router.pathname.replace("/", "");
+
 	const { cartState, setCartState } = useCart();
 	let total = 0;
 	for (let i = 0; i < cartState.items.length; i++) {
@@ -38,25 +42,41 @@ const nav = () => {
 				</div>
 
 				<ul className="hidden md:flex items-center text-black font-medium">
-					<li className="nav-category">
+					<li className={`nav-category ${path === "" && "active"}`}>
 						<Link href={"/"}>home</Link>
 					</li>
-					<li className="nav-category">
-						<Link href={"#"}>products</Link>
+					<li
+						className={`nav-category ${
+							path === "shop" && "active"
+						}`}
+					>
+						<Link href={"/shop"}>shop</Link>
 					</li>
-					<li className="nav-category">
+					<li
+						className={`nav-category ${
+							path === "home" && "active"
+						}`}
+					>
 						<Link href={"/categories"}>categories</Link>
 					</li>
-					<li className="nav-category">
+					<li
+						className={`nav-category ${
+							path === "home" && "active"
+						}`}
+					>
 						<Link href={"#"}>about us</Link>
 					</li>
-					<li className="nav-category">
+					<li
+						className={`nav-category ${
+							path === "home" && "active"
+						}`}
+					>
 						<Link href={"#"}>contact</Link>
 					</li>
 				</ul>
 
 				<div className="hidden md:block">
-					<Link href={"/search"}>
+					<Link href={"/shop/search/"}>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							className="h-6 w-6 account"
