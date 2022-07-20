@@ -20,7 +20,7 @@ const AllProductsContext = ({ children }) => {
 			);
 			products = await res.json();
 		} catch (e) {
-			// console.log(e);
+			alert("please check your network connection");
 		}
 		setAllProducts(products);
 	};

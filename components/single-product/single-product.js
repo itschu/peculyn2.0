@@ -7,6 +7,7 @@ import {
 	fileName,
 	capitalizeFirstLetter,
 	staleData,
+	decodeHtml,
 } from "../../data";
 import Image from "next/image";
 import { useCart } from "../../context/cart";
@@ -58,9 +59,10 @@ const SingleProduct = ({ id }) => {
 		getData();
 	}
 
-	const mainPic = `https://peculyn.com/assets/images/${
-		singleProd?.category
-	}/${fileName(singleProd?.img_1)}`;
+	const mainPic = `https://peculyn.com/assets/images/${singleProd?.img_1.replace(
+		"../assets/images/",
+		""
+	)}`;
 
 	const oldPrice = singleProd.old_price.toLocaleString("en-US", {
 		maximumFractionDigits: currencyFractionDigits,
@@ -68,7 +70,12 @@ const SingleProduct = ({ id }) => {
 
 	return (
 		<div className="section">
-			<HtmlHead currentPage={`${singleProd.name}`} order="reverse" />
+			<HtmlHead
+				currentPage={`${
+					singleProd.stale ? "loading" : decodeHtml(singleProd.name)
+				}`}
+				order="reverse"
+			/>
 
 			<span className="flex items-center">
 				<Link href="/">
@@ -84,7 +91,7 @@ const SingleProduct = ({ id }) => {
 				)}
 				&nbsp;/&nbsp;
 				{!singleProd.stale ? (
-					singleProd.name
+					decodeHtml(singleProd.name)
 				) : (
 					<span className="h-3 w-28 bg-slate-300 inline-block skeleton-box"></span>
 				)}
@@ -94,12 +101,9 @@ const SingleProduct = ({ id }) => {
 				<div>
 					{!singleProd.stale ? (
 						<div
-							className="bg-neutral-400 mb-5 relative"
+							className="border bg-neutral-400 mb-5 relative"
 							style={{
 								height: 650,
-								// backgroundImage: `url(${mainPic})`,
-								// backgroundPosition: "top",
-								// backgroundSize: "cover",
 							}}
 						>
 							<Image
@@ -108,7 +112,7 @@ const SingleProduct = ({ id }) => {
 									"/images/design/placeholder-image.png"
 								}
 								placeholder="blur"
-								alt={singleProd.name}
+								alt={decodeHtml(singleProd.name)}
 								layout="fill"
 							/>
 							{showDiscount && (
@@ -129,9 +133,10 @@ const SingleProduct = ({ id }) => {
 							<>
 								<span className="w-20 h-20 bg-neutral-400 relative">
 									<Image
-										src={`https://peculyn.com/assets/images/${
-											singleProd?.category
-										}/${fileName(singleProd?.img_1)}`}
+										src={`https://peculyn.com/assets/images/${singleProd?.img_1.replace(
+											"../assets/images/",
+											""
+										)}`}
 										blurDataURL={
 											"/images/design/placeholder-image.png"
 										}
@@ -142,9 +147,10 @@ const SingleProduct = ({ id }) => {
 								</span>
 								<span className="w-20 h-20 bg-neutral-400 relative">
 									<Image
-										src={`https://peculyn.com/assets/images/${
-											singleProd?.category
-										}/${fileName(singleProd?.img_2)}`}
+										src={`https://peculyn.com/assets/images/${singleProd?.img_2.replace(
+											"../assets/images/",
+											""
+										)}`}
 										blurDataURL={
 											"/images/design/placeholder-image.png"
 										}
@@ -155,9 +161,10 @@ const SingleProduct = ({ id }) => {
 								</span>
 								<span className="w-20 h-20 bg-neutral-400 relative">
 									<Image
-										src={`https://peculyn.com/assets/images/${
-											singleProd?.category
-										}/${fileName(singleProd?.img_3)}`}
+										src={`https://peculyn.com/assets/images/${singleProd?.img_3.replace(
+											"../assets/images",
+											""
+										)}`}
 										blurDataURL={
 											"/images/design/placeholder-image.png"
 										}
@@ -168,9 +175,10 @@ const SingleProduct = ({ id }) => {
 								</span>
 								<span className="w-20 h-20 bg-neutral-400 relative">
 									<Image
-										src={`https://peculyn.com/assets/images/${
-											singleProd?.category
-										}/${fileName(singleProd?.img_4)}`}
+										src={`https://peculyn.com/assets/images/${singleProd?.img_4.replace(
+											"../assets/images/",
+											""
+										)}`}
 										blurDataURL={
 											"/images/design/placeholder-image.png"
 										}
@@ -194,7 +202,7 @@ const SingleProduct = ({ id }) => {
 				<div>
 					{!singleProd.stale ? (
 						<h2 className="text-3xl text-black">
-							{singleProd.name}
+							{decodeHtml(singleProd.name)}
 						</h2>
 					) : (
 						<span className="h-6 w-72 bg-slate-300 skeleton-box"></span>

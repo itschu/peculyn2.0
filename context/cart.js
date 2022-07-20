@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
+import { decodeHtml } from "../data";
 
 const Cart = createContext();
 
@@ -36,7 +37,7 @@ const CartProvider = ({ children }) => {
 			purchases: el.purchases,
 			owner: el.owner,
 			old_price: el.old_price,
-			name: el.name,
+			name: decodeHtml(el.name),
 			category: el.category,
 			qty,
 		};

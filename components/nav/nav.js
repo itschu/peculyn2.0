@@ -75,7 +75,7 @@ const nav = () => {
 					</li>
 				</ul>
 
-				<div className="hidden md:block">
+				<div className="hidden md:flex items-center">
 					<Link href={"/shop/search/"}>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -93,20 +93,22 @@ const nav = () => {
 						</svg>
 					</Link>
 
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						className="h-6 w-6 account"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor"
-						strokeWidth={2}
-					>
-						<path
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-						/>
-					</svg>
+					<Link href={"/account"}>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							className="h-6 w-6 account"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+							strokeWidth={2}
+						>
+							<path
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+							/>
+						</svg>
+					</Link>
 
 					<div
 						className="inline-block relative"
@@ -125,10 +127,10 @@ const nav = () => {
 							<path
 								strokeLinecap="round"
 								strokeLinejoin="round"
-								d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+								d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
 							/>
 						</svg>
-						<div className="bg-primary-600 w-5   h-5 absolute left-5 z-0 bottom-3 rounded-full overflow-hidden text-white inline-flex justify-center items-center cursor-pointer">
+						<div className="bg-primary-600 w-5 h-5 absolute left-5 z-0 bottom-3 rounded-full overflow-hidden text-white inline-flex justify-center items-center cursor-pointer">
 							<span className="font-semibold text-xs">
 								{total || cartState.items.length}
 							</span>

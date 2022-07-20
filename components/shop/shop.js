@@ -38,7 +38,7 @@ const Shop = () => {
 							{max + productSeen < allProducts.length
 								? max + productSeen
 								: allProducts.length}{" "}
-							of {allProducts.length || "..."} results
+							of {allProducts.length || "0"} results
 						</p>
 
 						<div>

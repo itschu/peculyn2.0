@@ -3,11 +3,13 @@ import Link from "next/link";
 
 const date = new Date();
 
-const Footer = () => {
+const Footer = ({ border = false }) => {
 	return (
 		<>
 			<div
-				className="p-4 py-8 md:py-5 md:px-32 flex flex-col md:flex-row md:gap-40 border-b border-b-slate-300"
+				className={`p-4 py-8 md:py-5 md:px-32 flex flex-col md:flex-row md:gap-40 border-b border-b-slate-300 ${
+					border && "border-t"
+				}`}
 				style={{ fontSize: 15 }}
 			>
 				<div className="flex flex-col sm:flex-row sm:items-center sm:gap-10 mb-5">
@@ -127,13 +129,13 @@ const Footer = () => {
 
 				<div>
 					<h3 className=" footer-header">Shop</h3>
-					<Link href={""}>
+					<Link href={"/account"}>
 						<p className="link footer-link">My Account</p>
 					</Link>
-					<Link href={""}>
+					<Link href={"/account/orders"}>
 						<p className="link footer-link">Orders</p>
 					</Link>
-					<Link href={""}>
+					<Link href={"/account/wishlist"}>
 						<p className="link footer-link">WishList</p>
 					</Link>
 				</div>
