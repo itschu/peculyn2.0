@@ -42,6 +42,6 @@ export async function getServerSideProps(context) {
 	const orders = await all.json();
 
 	return {
-		props: { orders }, // Will be passed to the page component as props
+		props: { orders },
 	};
 }
