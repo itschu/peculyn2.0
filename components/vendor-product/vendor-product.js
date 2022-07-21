@@ -13,7 +13,7 @@ const VendorProduct = ({ allVendorProducts, setLoading, setUploadStatus }) => {
 	const { setSelectedProduct } = useSelectedProduct();
 	const router = useRouter();
 
-	const found = true;
+	const found = allVendorProducts.length > 0;
 
 	let max = 5;
 
@@ -51,7 +51,7 @@ const VendorProduct = ({ allVendorProducts, setLoading, setUploadStatus }) => {
 
 		try {
 			const res = await fetch(
-				`https://peculyn.com/api/products/?key=${process.env.NEXT_PUBLIC_HOME_API}&id=${id}`,
+				`https://peculyn.com/api/v1/products/?key=${process.env.NEXT_PUBLIC_HOME_API}&id=${id}`,
 				{
 					method: "Delete",
 					headers: {
@@ -105,31 +105,28 @@ const VendorProduct = ({ allVendorProducts, setLoading, setUploadStatus }) => {
 
 					<div className="md:border-l md:pl-12 sm:col-span-5 sm:ml-10 w-full ">
 						<h3 className="accountHeading">
-							All Products ({products.length})
+							All Products ({found ? products.length : 0})
 						</h3>
 
-						<p>
-							Showing {productSeen + 1} -{" "}
-							{max + productSeen < products.length
-								? max + productSeen
-								: products.length}{" "}
-							of {products.length || "0"} results
-						</p>
+						{found && (
+							<p>
+								Showing {productSeen + 1} -{" "}
+								{max + productSeen < products.length
+									? max + productSeen
+									: products.length}{" "}
+								of {products.length || "0"} results
+							</p>
+						)}
+
 						{found && (
 							<div className="w-full overflow-x-auto table-overflow">
 								<div className="inline-block min-w-full shadow-md rounded-lg overflow-hidden mt-5">
 									<table className="min-w-full leading-normal">
 										<thead>
 											<tr>
-												<th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100  text-xs font-semibold text-gray-700 uppercase tracking-wider">
-													Product
-												</th>
-												<th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100  text-xs font-semibold text-gray-700 uppercase tracking-wider">
-													Price
-												</th>
-												<th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100  text-xs font-semibold text-gray-700 uppercase tracking-wider">
-													Categoory
-												</th>
+												<th className="th">Product</th>
+												<th className="th">Price</th>
+												<th className="th">Category</th>
 												<th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-xs font-semibold text-gray-700 uppercase tracking-wider">
 													Added
 												</th>
@@ -138,17 +135,11 @@ const VendorProduct = ({ allVendorProducts, setLoading, setUploadStatus }) => {
 													Approved
 												</th>
 
-												<th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100  text-xs font-semibold text-gray-700 uppercase tracking-wider">
-													View
-												</th>
+												<th className="th">View</th>
 
-												<th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100  text-xs font-semibold text-gray-700 uppercase tracking-wider">
-													Edit
-												</th>
+												<th className="th">Edit</th>
 
-												<th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100  text-xs font-semibold text-gray-700 uppercase tracking-wider">
-													Delete
-												</th>
+												<th className="th">Delete</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -161,14 +152,13 @@ const VendorProduct = ({ allVendorProducts, setLoading, setUploadStatus }) => {
 													)
 													.map((el, i) => (
 														<tr key={i}>
-															<td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
+															<td className="table-td">
 																<div className="flex items-center">
 																	<div className="flex-shrink-0 w-10 h-10 relative bg-neutral-200">
 																		<Image
-																			src={`https://peculyn.com/assets/images/${
-																				el?.category
-																			}/${fileName(
-																				el?.img_1
+																			src={`https://peculyn.com/assets/images/${el?.img_1.replace(
+																				"../assets/images/",
+																				""
 																			)}`}
 																			layout="fill"
 																			alt=""
@@ -184,7 +174,7 @@ const VendorProduct = ({ allVendorProducts, setLoading, setUploadStatus }) => {
 																	</div>
 																</div>
 															</td>
-															<td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
+															<td className="table-td">
 																<p className="text-gray-900 whitespace-no-wrap">
 																	₦
 																	{el.price.toLocaleString(
@@ -196,21 +186,21 @@ const VendorProduct = ({ allVendorProducts, setLoading, setUploadStatus }) => {
 																	)}
 																</p>
 															</td>
-															<td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
+															<td className="table-td">
 																<p className="text-gray-900 whitespace-no-wrap">
 																	{
 																		el.category
 																	}
 																</p>
 															</td>
-															<td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
+															<td className="table-td">
 																<p className="text-gray-900 whitespace-no-wrap">
 																	{
 																		el.date_added
 																	}
 																</p>
 															</td>
-															<td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center ">
+															<td className="table-td ">
 																<button
 																	type="button"
 																	className="inline-block text-gray-500 hover:text-gray-700 cursor-default"
@@ -233,7 +223,7 @@ const VendorProduct = ({ allVendorProducts, setLoading, setUploadStatus }) => {
 																	</svg>
 																</button>
 															</td>
-															<td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center ">
+															<td className="table-td ">
 																<button
 																	type="button"
 																	className="inline-block text-gray-500 hover:text-gray-700"
@@ -266,7 +256,7 @@ const VendorProduct = ({ allVendorProducts, setLoading, setUploadStatus }) => {
 																	</svg>
 																</button>
 															</td>
-															<td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
+															<td className="table-td">
 																<button
 																	type="button"
 																	className="inline-block text-gray-500 hover:text-gray-700"
@@ -285,7 +275,7 @@ const VendorProduct = ({ allVendorProducts, setLoading, setUploadStatus }) => {
 																	</svg>
 																</button>
 															</td>
-															<td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
+															<td className="table-td">
 																<button
 																	type="button"
 																	className="inline-block text-red-500 hover:text-red-700"
@@ -364,17 +354,20 @@ const VendorProduct = ({ allVendorProducts, setLoading, setUploadStatus }) => {
 								</Link>
 							</div>
 						)}
-						<ReactPaginate
-							previousLabel={"Previous"}
-							nextLabel={"Next"}
-							pageCount={pageCount}
-							onPageChange={changePage}
-							containerClassName={"pagination"}
-							previousLinkClassName={"prevBtn"}
-							nextLinkClassName={"nextBtn"}
-							disabledClassName={"paginationDisabled"}
-							activeClassName={"paginationActive"}
-						/>
+
+						{found && products.length > max && (
+							<ReactPaginate
+								previousLabel={"Previous"}
+								nextLabel={"Next"}
+								pageCount={pageCount}
+								onPageChange={changePage}
+								containerClassName={"pagination"}
+								previousLinkClassName={"prevBtn"}
+								nextLinkClassName={"nextBtn"}
+								disabledClassName={"paginationDisabled"}
+								activeClassName={"paginationActive"}
+							/>
+						)}
 					</div>
 				</div>
 			</div>

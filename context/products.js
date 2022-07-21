@@ -10,7 +10,7 @@ const AllProductsContext = ({ children }) => {
 
 		try {
 			const res = await fetch(
-				`https://peculyn.com/api/products/?key=${process.env.NEXT_PUBLIC_HOME_API}&amount=100`,
+				`https://peculyn.com/api/v1/products/?key=${process.env.NEXT_PUBLIC_HOME_API}&amount=100`,
 				{
 					method: "Get",
 					headers: {

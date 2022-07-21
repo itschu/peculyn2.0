@@ -97,13 +97,15 @@ const Upload = ({ newProduct, setNewProduct }) => {
 								: "Upload Image"}
 						</p>
 						<span className="text-sm">
-							{newProduct.mainPicture ||
-								(newProduct.img_1 &&
-									`( ${truncate(
-										newProduct.mainPicture?.name ||
-											fileName(newProduct.img_1),
+							{newProduct.mainPicture
+								? `( ${truncate(
+										newProduct.mainPicture?.name,
 										12
-									)} )`)}
+								  )} )`
+								: `( ${truncate(
+										fileName(newProduct.img_1),
+										12
+								  )} )`}
 						</span>
 					</div>
 				</div>

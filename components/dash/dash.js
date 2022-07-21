@@ -1,8 +1,23 @@
 import Link from "next/link";
+import { currencyFractionDigits } from "../../data";
 import AccountMenu from "../account-menu";
 import VendorMenu from "../vendor-menu";
 
-const Dash = ({ user = "account" }) => {
+const Dash = ({
+	user,
+	products,
+	pendingOrders,
+	completeOrders,
+	declinedOrders,
+}) => {
+	let totalOrders = 0;
+
+	if (completeOrders?.length > 0) {
+		for (let i = 0; i < completeOrders.length; i++) {
+			const el = completeOrders[i];
+			totalOrders += parseFloat(el.amount);
+		}
+	}
 	return (
 		<div className="section">
 			<div
@@ -17,17 +32,37 @@ const Dash = ({ user = "account" }) => {
 					<div className="flex flex-col md:flex-row gap-3 w-full">
 						<div className="dash-item bg-green-300">
 							{user == "vendor" ? (
-								<h2>Total Sales</h2>
+								<>
+									<h2>Total Sales</h2>
+									<p>
+										₦
+										{totalOrders.toLocaleString("en-US", {
+											maximumFractionDigits:
+												currencyFractionDigits,
+										})}
+									</p>
+								</>
 							) : (
-								<h2>Total Purchases</h2>
+								<>
+									<h2>Total Purchases</h2>
+									<p>
+										₦
+										{totalOrders.toLocaleString("en-US", {
+											maximumFractionDigits:
+												currencyFractionDigits,
+										})}
+									</p>
+								</>
 							)}
-
-							<p>₦109,000</p>
 						</div>
 
 						<div className="dash-item bg-blue-300">
 							<h2>Completed Orders</h2>
-							<p>10</p>
+							<p>
+								{completeOrders?.length
+									? completeOrders.length
+									: 0}
+							</p>
 						</div>
 
 						<div
@@ -38,19 +73,31 @@ const Dash = ({ user = "account" }) => {
 							}`}
 						>
 							{user == "vendor" ? (
-								<h2>All Products</h2>
+								<>
+									<h2>All Products</h2>
+									<p>{products?.length || products}</p>
+								</>
 							) : (
-								<h2>Declined Orders</h2>
+								<>
+									<h2>Declined Orders</h2>
+									<p>
+										{declinedOrders?.length ||
+											declinedOrders}
+									</p>
+								</>
 							)}
-							<p>32</p>
 						</div>
 
 						<div
-							className="dash-item"
-							style={{ background: "#FDD9B5" }}
+							className="dash-item bg-yellow-200"
+							// style={{ background: "#FDD9B5" }}
 						>
 							<h2>Pending Orders</h2>
-							<p>2</p>
+							<p>
+								{pendingOrders?.length
+									? pendingOrders.length
+									: 0}
+							</p>
 						</div>
 					</div>
 

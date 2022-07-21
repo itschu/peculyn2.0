@@ -5,7 +5,7 @@ import Cart from "../../components/cart";
 import HtmlHead from "../../components/head";
 import History from "../../components/history";
 
-const AllHistory = () => {
+const AllHistory = ({ history }) => {
 	const { cartState } = useCart();
 
 	return (
@@ -16,7 +16,7 @@ const AllHistory = () => {
 		>
 			<HtmlHead currentPage={`History`} />
 			<Nav />
-			<History />
+			<History vendorHistory={history} />
 			<Footer border={true} />
 			<Cart />
 		</div>
@@ -26,7 +26,21 @@ const AllHistory = () => {
 export default AllHistory;
 
 export async function getServerSideProps(context) {
+	const email = "chucreates@gmail.com";
+	const hist = await fetch(
+		`https://peculyn.com/api/v1/history/?key=${process.env.NEXT_PUBLIC_HOME_API}&email=${email}`,
+		{
+			method: "Get",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
+		}
+	);
+	const history = await hist.json();
 	return {
-		props: {}, // Will be passed to the page component as props
+		props: {
+			history,
+		}, // Will be passed to the page component as props
 	};
 }

@@ -5,7 +5,7 @@ import Cart from "../../../components/cart";
 import HtmlHead from "../../../components/head";
 import VendorOrders from "../../../components/vendor-orders/vendor-orders";
 
-const Orders = () => {
+const Orders = ({ orders }) => {
 	const { cartState } = useCart();
 
 	return (
@@ -16,7 +16,7 @@ const Orders = () => {
 		>
 			<HtmlHead currentPage={`Orders`} />
 			<Nav />
-			<VendorOrders />
+			<VendorOrders allOrders={orders} />
 			<Footer border={true} />
 			<Cart />
 		</div>
@@ -26,7 +26,22 @@ const Orders = () => {
 export default Orders;
 
 export async function getServerSideProps(context) {
+	const email = "chucreates@gmail.com";
+
+	const all = await fetch(
+		`https://peculyn.com/api/v1/orders/?key=${process.env.NEXT_PUBLIC_HOME_API}&vendor=${email}&type=all`,
+		{
+			method: "Get",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
+		}
+	);
+
+	const orders = await all.json();
+
 	return {
-		props: {}, // Will be passed to the page component as props
+		props: { orders }, // Will be passed to the page component as props
 	};
 }

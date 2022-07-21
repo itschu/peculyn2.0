@@ -1,16 +1,13 @@
-import Nav from "../../components/nav";
-import Footer from "../../components/footer";
-import { useCart } from "../../context/cart";
-import Cart from "../../components/cart";
-import HtmlHead from "../../components/head";
-import Settings from "../../components/settings";
-import Loading from "../../components/loading";
-import { useState } from "react";
+import Nav from "../components/nav";
+import Footer from "../components/footer";
+import Newsletter from "../components/newsletter";
+import { useCart } from "../context/cart";
+import Cart from "../components/cart";
+import HtmlHead from "../components/head";
+import Checkout from "../components/checkout/";
 
-const UserSettings = ({ user, states }) => {
+const CheckoutNow = ({ user, states }) => {
 	const { cartState } = useCart();
-	const [loading, setLoading] = useState(false);
-	const [uploadStatus, setUploadStatus] = useState("");
 
 	return (
 		<div
@@ -18,22 +15,17 @@ const UserSettings = ({ user, states }) => {
 				cartState.visible === true && "overflow-hidden "
 			}`}
 		>
-			<HtmlHead currentPage={`Settings`} />
+			<HtmlHead currentPage={`Checkout`} />
 			<Nav />
-			<Settings
-				user={user}
-				states={states}
-				setLoading={setLoading}
-				setUploadStatus={setUploadStatus}
-			/>
-			<Footer border={true} />
+			<Checkout user={user} states={states} />
+			<Newsletter />
+			<Footer />
 			<Cart />
-			{loading && <Loading uploadStatus={uploadStatus} />}
 		</div>
 	);
 };
 
-export default UserSettings;
+export default CheckoutNow;
 
 export async function getServerSideProps(context) {
 	const email = "chucreates@gmail.com";

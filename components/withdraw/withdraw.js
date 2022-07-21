@@ -1,8 +1,15 @@
+import { currencyFractionDigits } from "../../data";
 import VendorMenu from "../vendor-menu";
 
-const Withdraw = () => {
-	const found = true;
+const Withdraw = ({ completeOrders }) => {
+	let totalOrders = 0;
 
+	if (completeOrders.length > 0) {
+		for (let i = 0; i < completeOrders.length; i++) {
+			const el = completeOrders[i];
+			totalOrders += parseFloat(el.amount);
+		}
+	}
 	return (
 		<div>
 			<div className="section">
@@ -37,7 +44,11 @@ const Withdraw = () => {
 									</p>
 
 									<p className="text-4xl font-bold mt-2">
-										₦0
+										₦
+										{totalOrders.toLocaleString("en-US", {
+											maximumFractionDigits:
+												currencyFractionDigits,
+										})}
 									</p>
 								</div>
 

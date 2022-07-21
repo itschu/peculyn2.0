@@ -232,7 +232,10 @@ const cart = () => {
 
 					<div
 						id="buy-now"
-						onClick={(e) => e.preventDefault()}
+						onClick={() => {
+							setCartState({ ...cartState, visible: false });
+							router.push(`/checkout`);
+						}}
 						className="py-3 cursor-pointer flex font-bold justify-center bg-primary-600 duration-500 transition-all hover:bg-slate-900 hover:text-white mt-2"
 					>
 						<span className="flex items-center text-base">

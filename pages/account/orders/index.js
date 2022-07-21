@@ -3,9 +3,9 @@ import Footer from "../../../components/footer";
 import { useCart } from "../../../context/cart";
 import Cart from "../../../components/cart";
 import HtmlHead from "../../../components/head";
-import Orders from "../../../components/orders";
+import VendorOrders from "../../../components/vendor-orders/";
 
-const Order = () => {
+const Order = ({ orders }) => {
 	const { cartState } = useCart();
 
 	return (
@@ -16,7 +16,7 @@ const Order = () => {
 		>
 			<HtmlHead currentPage={`Orders`} />
 			<Nav />
-			<Orders />
+			<VendorOrders allOrders={orders} user="account" />
 			<Footer border={true} />
 			<Cart />
 		</div>
@@ -26,7 +26,22 @@ const Order = () => {
 export default Order;
 
 export async function getServerSideProps(context) {
+	const email = "chucreates@gmail.com";
+
+	const all = await fetch(
+		`https://peculyn.com/api/v1/orders/?key=${process.env.NEXT_PUBLIC_HOME_API}&vendor=${email}&type=all&for=user`,
+		{
+			method: "Get",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
+		}
+	);
+
+	const orders = await all.json();
+
 	return {
-		props: {}, // Will be passed to the page component as props
+		props: { orders }, // Will be passed to the page component as props
 	};
 }

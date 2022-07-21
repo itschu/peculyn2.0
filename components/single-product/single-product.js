@@ -43,7 +43,7 @@ const SingleProduct = ({ id }) => {
 
 	const getData = async () => {
 		const prod = await fetch(
-			`https://peculyn.com/api/products/?key=${process.env.NEXT_PUBLIC_HOME_API}&id=${id}`,
+			`https://peculyn.com/api/v1/products/?key=${process.env.NEXT_PUBLIC_HOME_API}&id=${id}`,
 			{
 				method: "Get",
 				headers: {

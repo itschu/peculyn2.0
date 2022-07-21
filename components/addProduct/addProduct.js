@@ -26,7 +26,7 @@ const AddProduct = ({
 	edit = false,
 }) => {
 	const { selectedProduct } = useSelectedProduct();
-	const email = "chuchu@gmail.com";
+	const email = "chucreates@gmail.com";
 	const [newProduct, setNewProduct] = useState(
 		edit ? selectedProduct : empty
 	);
@@ -140,7 +140,7 @@ const AddProduct = ({
 			);
 			if (newProduct?.mainPicture instanceof Blob) {
 				img_res = await fetch(
-					`https://peculyn.com/api/products/upload/?key=${process.env.NEXT_PUBLIC_HOME_API}&category=${cate}`,
+					`https://peculyn.com/api/v1/products/upload/?key=${process.env.NEXT_PUBLIC_HOME_API}&category=${cate}`,
 					{
 						method: "POST",
 						headers: {
@@ -158,7 +158,7 @@ const AddProduct = ({
 			);
 			if (newProduct?.img_2 instanceof Blob) {
 				img_res2 = await fetch(
-					`https://peculyn.com/api/products/upload/?key=${process.env.NEXT_PUBLIC_HOME_API}&category=${cate}`,
+					`https://peculyn.com/api/v1/products/upload/?key=${process.env.NEXT_PUBLIC_HOME_API}&category=${cate}`,
 					{
 						method: "POST",
 						headers: {
@@ -176,7 +176,7 @@ const AddProduct = ({
 			);
 			if (newProduct?.img_3 instanceof Blob) {
 				img_res3 = await fetch(
-					`https://peculyn.com/api/products/upload/?key=${process.env.NEXT_PUBLIC_HOME_API}&category=${cate}`,
+					`https://peculyn.com/api/v1/products/upload/?key=${process.env.NEXT_PUBLIC_HOME_API}&category=${cate}`,
 					{
 						method: "POST",
 						headers: {
@@ -194,7 +194,7 @@ const AddProduct = ({
 			);
 			if (newProduct?.img_4 instanceof Blob) {
 				img_res4 = await fetch(
-					`https://peculyn.com/api/products/upload/?key=${process.env.NEXT_PUBLIC_HOME_API}&category=${cate}`,
+					`https://peculyn.com/api/v1/products/upload/?key=${process.env.NEXT_PUBLIC_HOME_API}&category=${cate}`,
 					{
 						method: "POST",
 						headers: {
@@ -234,7 +234,7 @@ const AddProduct = ({
 				};
 
 				const res = await fetch(
-					`https://peculyn.com/api/products/?key=${process.env.NEXT_PUBLIC_HOME_API}`,
+					`https://peculyn.com/api/v1/products/?key=${process.env.NEXT_PUBLIC_HOME_API}`,
 					{
 						method: edit ? "PUT" : "POST",
 						headers: {

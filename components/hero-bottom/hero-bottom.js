@@ -3,9 +3,9 @@ import React from "react";
 
 const HeroBottom = () => {
 	return (
-		<div className="flex flex-col md:flex-row gap-5 items-center justify-center mt-14 mx-10">
+		<div className="flex flex-col md:flex-row gap-5 items-center justify-center mt-14 mx-4 md:mx-20">
 			<div
-				className="h-56 w-96 flex flex-col justify-center pl-8"
+				className="h-56 grow flex flex-col justify-center pl-8 w-full"
 				style={{
 					backgroundImage: `url(/images/design/lady.jpg)`,
 					...bgStyle,
@@ -39,7 +39,7 @@ const HeroBottom = () => {
 			</div>
 
 			<div
-				className="h-56 w-96 flex flex-col justify-center pl-8"
+				className="h-56 grow flex flex-col justify-center pl-8 w-full"
 				style={{
 					backgroundImage: `url(/images/design/new.jpg)`,
 					...bgStyle,
@@ -73,7 +73,7 @@ const HeroBottom = () => {
 			</div>
 
 			<div
-				className="h-56 w-96 flex flex-col justify-center pl-10"
+				className="h-56 grow flex flex-col justify-center pl-8 w-full"
 				style={{
 					backgroundImage: `url(/images/design/dude.jpg)`,
 					...bgStyle,

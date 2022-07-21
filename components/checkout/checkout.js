@@ -1,112 +1,28 @@
 import { useState } from "react";
-import AccountMenu from "../account-menu";
-import ErrorMsg from "../errorMsg";
+import { useCart } from "../../context/cart";
+import { currencyFractionDigits } from "../../data";
 import NigStates from "../nig-states";
-import SuccessMsg from "../successMsg";
 
-const BillingInfo = ({ user, states, setLoading, setUploadStatus }) => {
+const Checkout = ({ user, states, setLoading, setUploadStatus }) => {
 	const [userDetails, setUserDetails] = useState(user);
-	const [error, setError] = useState({ show: false, message: "" });
-	const [success, setSuccess] = useState({ show: false, message: "" });
-
-	const updateRecord = async () => {
-		setLoading(true);
-		setError({ show: false, message: "" });
-		setSuccess({ show: false, message: "" });
-
-		if (
-			userDetails.firstName == "" ||
-			userDetails.lastName == "" ||
-			userDetails.address == "" ||
-			userDetails.town == "" ||
-			userDetails.state == "" ||
-			userDetails.number == "" ||
-			userDetails.email == ""
-		) {
-			setError({
-				show: true,
-				message: `Required field cannot be left empty`,
-			});
-
-			window.scrollTo({
-				top: 0,
-				behavior: "smooth",
-			});
-
-			return setLoading(false);
-		}
-		try {
-			setUploadStatus("updating your record");
-			const compiledData = {
-				firstName: userDetails.firstName,
-				lastName: userDetails.lastName,
-				email: userDetails.email,
-				address2: userDetails.address2,
-				address: userDetails.address,
-				apartment: userDetails.apartment,
-				number: userDetails.number,
-				state: userDetails.state,
-				town: userDetails.town,
-			};
-
-			const res = await fetch(
-				`https://peculyn.com/api/v1/users/?key=${process.env.NEXT_PUBLIC_HOME_API}&user=${userDetails.unique_id}&billing=true`,
-				{
-					method: "PUT",
-					headers: {
-						Accept: "application/json",
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify(compiledData),
-				}
-			);
-			const response = await res.json();
-
-			if (response == true) {
-				setSuccess({
-					show: true,
-					message: `Your record was updated successfully`,
-				});
-			} else {
-				setError({
-					show: true,
-					message: `Sorry an error occured when updating your record, please try again later or contact support`,
-				});
-			}
-			setLoading(false);
-		} catch (e) {
-			setLoading(false);
-			alert("please check your network connection");
-			console.log(e);
-		}
-
-		window.scrollTo({
-			top: 0,
-			behavior: "smooth",
-		});
-
-		setUploadStatus("");
-	};
+	const { cartState } = useCart();
 
 	return (
 		<div className="section">
-			<ErrorMsg error={error} setError={setError} />
-
-			<SuccessMsg success={success} setSuccess={setSuccess} />
 			<div
 				id="main-content"
-				className="md:mt-10 grid sm:grid-cols-6 gap-10 md:gap-0"
+				className="md:mt-10 grid sm:grid-cols-6 gap-10"
 			>
-				<AccountMenu />
-
 				<form
-					className="md:border-l md:pl-12 sm:col-span-5 sm:ml-10 overflow-x-auto"
+					className="md:pl-12 sm:col-span-4 sm:ml-10 overflow-x-auto"
 					onSubmit={(e) => {
 						e.preventDefault();
 						updateRecord();
 					}}
 				>
-					<h3 className="accountHeading">Billing Information</h3>
+					<h3 className="accountHeading">
+						Your Shipping Information
+					</h3>
 
 					<div className="flex gap-7">
 						<div className="w-full">
@@ -243,17 +159,51 @@ const BillingInfo = ({ user, states, setLoading, setUploadStatus }) => {
 							disabled
 						/>
 					</div>
+				</form>
+
+				<div className="sm:col-span-2 flex flex-col gap-8 bg-gray-100 p-6 md:p-8 h-fit rounded-lg md:rounded-2xl">
+					<p className="flex justify-between font-bold text-lg border-b pb-2">
+						<span>Product</span>
+						<span>Price</span>
+					</p>
+
+					{cartState.items.map((el, i) => (
+						<span
+							className="border-b pb-3 flex justify-between text-sm md:text-base"
+							key={i}
+						>
+							<span>
+								{el.name} x {el.qty}
+							</span>
+							<span>₦{el.total_price}</span>
+						</span>
+					))}
+
+					<p className="flex justify-between font-semibold text-lg border-b pb-2">
+						<span>Total</span>
+						<span>
+							₦
+							{cartState.items
+								.reduce((acc, el) => acc + el?.total_price, 0)
+								.toLocaleString("en-US", {
+									maximumFractionDigits:
+										currencyFractionDigits,
+								})}
+						</span>
+					</p>
 
 					<button
-						type="submit"
-						className="mt-7 px-6 py-2 bg-slate-700 text-white rounded-full"
+						id="buy-now"
+						className="py-3 cursor-pointer flex font-bold justify-center bg-primary-600 duration-500 transition-all hover:bg-slate-900 hover:text-white mt-2"
 					>
-						Submit
+						<span className="flex items-center text-base">
+							Pay Now
+						</span>
 					</button>
-				</form>
+				</div>
 			</div>
 		</div>
 	);
 };
 
-export default BillingInfo;
+export default Checkout;

@@ -35,10 +35,10 @@ const AllProducts = ({ products }) => {
 export default AllProducts;
 
 export async function getServerSideProps(context) {
-	const email = "chuchu@gmail.com";
+	const email = "chucreates@gmail.com";
 
 	const res = await fetch(
-		`https://peculyn.com/api/products/?key=${process.env.NEXT_PUBLIC_HOME_API}&vendor=${email}`,
+		`https://peculyn.com/api/v1/products/?key=${process.env.NEXT_PUBLIC_HOME_API}&vendor=${email}`,
 		{
 			method: "Get",
 			headers: {

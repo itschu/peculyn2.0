@@ -36,7 +36,7 @@ export default AddNewProduct;
 
 export const getServerSideProps = async (context) => {
 	const res = await fetch(
-		`https://peculyn.com/api/categories/?key=${process.env.NEXT_PUBLIC_HOME_API}`,
+		`https://peculyn.com/api/v1/categories/?key=${process.env.NEXT_PUBLIC_HOME_API}`,
 		{
 			method: "Get",
 			headers: {

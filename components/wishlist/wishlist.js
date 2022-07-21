@@ -16,18 +16,10 @@ const Wishlist = () => {
 						<table className="min-w-full leading-normal ">
 							<thead>
 								<tr>
-									<th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-										Product
-									</th>
-									<th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-										Price
-									</th>
-									<th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-										Added
-									</th>
-									<th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-										Status
-									</th>
+									<th className="th">Product</th>
+									<th className="th">Price</th>
+									<th className="th">Added</th>
+									<th className="th">Status</th>
 									<th className="  px-5 py-3 border-b-2 border-gray-200 bg-gray-100"></th>
 									<th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100"></th>
 								</tr>

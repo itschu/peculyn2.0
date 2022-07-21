@@ -4,10 +4,10 @@ import { useCart } from "../../../context/cart";
 import Cart from "../../../components/cart";
 import HtmlHead from "../../../components/head";
 import { useState } from "react";
-import AddProduct from "../../../components/addProduct";
 import Loading from "../../../components/loading";
+import SingleOrder from "../../../components/single-order";
 
-const Edit = ({ category }) => {
+const Order = ({ order, account }) => {
 	const { cartState } = useCart();
 	const [loading, setLoading] = useState(false);
 	const [uploadStatus, setUploadStatus] = useState("");
@@ -18,14 +18,9 @@ const Edit = ({ category }) => {
 				cartState.visible === true && "overflow-hidden "
 			}`}
 		>
-			<HtmlHead currentPage={`Edit Products`} />
+			<HtmlHead currentPage={`Order Details`} />
 			<Nav />
-			<AddProduct
-				category={category}
-				setLoading={setLoading}
-				setUploadStatus={setUploadStatus}
-				edit={true}
-			/>
+			<SingleOrder order={order} account={account} />
 			<Footer border={true} />
 			<Cart />
 			{loading && <Loading uploadStatus={uploadStatus} />}
@@ -33,11 +28,15 @@ const Edit = ({ category }) => {
 	);
 };
 
-export default Edit;
+export default Order;
 
 export async function getServerSideProps(context) {
-	const res = await fetch(
-		`https://peculyn.com/api/v1/categories/?key=${process.env.NEXT_PUBLIC_HOME_API}`,
+	const email = "chucreates@gmail.com";
+	const { order_id } = context.query;
+	const account = order_id[1] || "";
+
+	const ord = await fetch(
+		`https://peculyn.com/api/v1/orders/?key=${process.env.NEXT_PUBLIC_HOME_API}&vendor=${email}&type=single&order_id=${order_id[0]}`,
 		{
 			method: "Get",
 			headers: {
@@ -47,9 +46,9 @@ export async function getServerSideProps(context) {
 		}
 	);
 
-	const category = await res.json();
+	const order = await ord.json();
 
 	return {
-		props: { category },
+		props: { order, account }, // Will be passed to the page component as props
 	};
 }

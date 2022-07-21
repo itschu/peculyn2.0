@@ -8,7 +8,7 @@ const Newsletter = () => {
 				<div className="flex items-end">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
-						className="h-24 w-24 mr-10"
+						className="h-24 w-24 mr-10 hidden md:block"
 						fill="none"
 						viewBox="0 0 24 24"
 						stroke="currentColor"
@@ -36,7 +36,7 @@ const Newsletter = () => {
 
 				<div className="mt-7 md:mt-0">
 					<input
-						className="bg-white border px-6 py-3 border-neutral-200 w-96"
+						className="bg-white border px-6 py-3 border-neutral-200 md:w-96"
 						placeholder="Enter your email..."
 					/>
 					&nbsp;
