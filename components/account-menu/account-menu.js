@@ -3,6 +3,12 @@ import { useRouter } from "next/router";
 
 const AccountMenu = () => {
 	const router = useRouter();
+
+	const logout = async () => {
+		await fetch("/api/auth/logout");
+		router.push("/login");
+	};
+
 	return (
 		<div
 			className="sm:col-span-1 flex flex-col gap-8"
@@ -147,7 +153,7 @@ const AccountMenu = () => {
 			</div>
 
 			<div className="link">
-				<Link href={""}>
+				<a onClick={logout}>
 					<span className="flex items-center gap-2">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -165,7 +171,7 @@ const AccountMenu = () => {
 						</svg>
 						Logout
 					</span>
-				</Link>
+				</a>
 			</div>
 		</div>
 	);

@@ -4,6 +4,7 @@ import { useCart } from "../../context/cart";
 import Cart from "../../components/cart";
 import HtmlHead from "../../components/head";
 import Dash from "../../components/dash";
+import getData from "../../components/get-data";
 
 const Dashboard = ({
 	products,
@@ -16,7 +17,7 @@ const Dashboard = ({
 
 	return (
 		<div
-			className={`font-body text-gray-600 ${
+			className={`font-body text-gray-700 ${
 				cartState.visible === true && "overflow-hidden "
 			}`}
 		>
@@ -38,37 +39,40 @@ const Dashboard = ({
 export default Dashboard;
 
 export async function getServerSideProps(context) {
-	const email = "chucreates@gmail.com";
+	const { email, account, status, domain } = getData(context);
 
 	const declined = await fetch(
-		`https://peculyn.com/api/v1/orders/?key=${process.env.NEXT_PUBLIC_HOME_API}&vendor=${email}&type=declined&for=user`,
+		`https://peculyn.com/api/v1/orders/?vendor=${email}&type=declined&for=user`,
 		{
 			method: "Get",
 			headers: {
 				Accept: "application/json",
 				"Content-Type": "application/json",
+				Authorization: process.env.NEXT_PUBLIC_HOME_API,
 			},
 		}
 	);
 
 	const complete = await fetch(
-		`https://peculyn.com/api/v1/orders/?key=${process.env.NEXT_PUBLIC_HOME_API}&vendor=${email}&type=completed&for=user`,
+		`https://peculyn.com/api/v1/orders/?vendor=${email}&type=completed&for=user`,
 		{
 			method: "Get",
 			headers: {
 				Accept: "application/json",
 				"Content-Type": "application/json",
+				Authorization: process.env.NEXT_PUBLIC_HOME_API,
 			},
 		}
 	);
 
 	const pending = await fetch(
-		`https://peculyn.com/api/v1/orders/?key=${process.env.NEXT_PUBLIC_HOME_API}&vendor=${email}&type=pending&for=user`,
+		`https://peculyn.com/api/v1/orders/?vendor=${email}&type=pending&for=user`,
 		{
 			method: "Get",
 			headers: {
 				Accept: "application/json",
 				"Content-Type": "application/json",
+				Authorization: process.env.NEXT_PUBLIC_HOME_API,
 			},
 		}
 	);

@@ -31,7 +31,9 @@ const ErrorMsg = ({ error, setError }) => {
 					viewBox="0 0 24 24"
 					stroke="currentColor"
 					strokeWidth={2}
-					onClick={() => setError({ show: false, message: "" })}
+					onClick={() =>
+						setError({ ...error, show: false, message: "" })
+					}
 				>
 					<path
 						strokeLinecap="round"

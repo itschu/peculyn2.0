@@ -6,8 +6,14 @@ import { useSelectedProduct } from "../../context/selectedProduct";
 import { currencyFractionDigits, fileName } from "../../data";
 
 const cart = () => {
-	const { cartState, setCartState, increaseProducts, reduceProducts } =
-		useCart();
+	const {
+		cartState,
+		setCartState,
+		increaseProducts,
+		reduceProducts,
+		removeProduct,
+	} = useCart();
+
 	const [totalPrice, setTotalPrice] = useState(0);
 
 	//total items in the cart
@@ -184,16 +190,7 @@ const cart = () => {
 										viewBox="0 0 24 24"
 										stroke="#ff6b6b"
 										strokeWidth={2}
-										onClick={() => {
-											const newCart =
-												cartState.items.filter(
-													(itm) => itm.id !== el.id
-												);
-											setCartState({
-												...cartState,
-												items: [...newCart],
-											});
-										}}
+										onClick={() => removeProduct(el.id)}
 									>
 										<path
 											strokeLinecap="round"

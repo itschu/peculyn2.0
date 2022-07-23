@@ -48,19 +48,16 @@ const Settings = ({ user, states, setLoading, setUploadStatus }) => {
 				number: userDetails.number,
 			};
 
-			const res = await fetch(
-				`https://peculyn.com/api/v1/users/?key=${process.env.NEXT_PUBLIC_HOME_API}`,
-				{
-					method: "PUT",
-					headers: {
-						Accept: "application/json",
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify(compiledData),
-				}
-			);
+			const res = await fetch(`https://peculyn.com/api/v1/users/`, {
+				method: "PUT",
+				headers: {
+					Accept: "application/json",
+					"Content-Type": "application/json",
+					Authorization: process.env.NEXT_PUBLIC_HOME_API,
+				},
+				body: JSON.stringify(compiledData),
+			});
 			const response = await res.json();
-			// console.log(response);
 			if (response == 1) {
 				setSuccess({
 					show: true,

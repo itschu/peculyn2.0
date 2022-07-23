@@ -14,7 +14,7 @@ const Pagination = ({
 	productPerPage,
 }) => {
 	const { allProducts } = useAllProducts();
-	const { cartState, setCartState } = useCart();
+	const { addToCart } = useCart();
 
 	const router = useRouter();
 	const { setSelectedProduct } = useSelectedProduct();
@@ -22,45 +22,6 @@ const Pagination = ({
 	const navigate = (obj) => {
 		setSelectedProduct(obj);
 		router.push(`/product/${obj.unique_key}`);
-	};
-
-	const addToCart = async (el) => {
-		const qty = 1;
-		const prodDetails = {
-			id: el.unique_key,
-			price: el.price,
-			total_price: qty * el.price,
-			in_stock: el.in_stock,
-			img_1: el.img_1,
-			purchases: el.purchases,
-			owner: el.owner,
-			name: el.name,
-			category: el.category,
-			old_price: el.old_price,
-			qty,
-		};
-		const exists = cartState.items.filter((itm) => itm.id == el.unique_key);
-
-		if (exists.length) {
-			let index = 0;
-			for (let i = 0; i < cartState.items.length; i++) {
-				if (cartState.items[i].id === el.unique_key) index = i;
-			}
-
-			const newQty = parseInt(exists[0].qty) + 1;
-			const newItm = {
-				...exists[0],
-				qty: newQty,
-				total_price: el.price * newQty,
-			};
-			cartState.items.splice(index, 1, newItm);
-			setCartState({ visible: true, items: [...cartState.items] });
-		} else {
-			setCartState({
-				visible: true,
-				items: [...cartState.items, prodDetails],
-			});
-		}
 	};
 
 	const changePage = ({ selected }) => {

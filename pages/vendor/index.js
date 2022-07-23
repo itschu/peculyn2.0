@@ -1,4 +1,5 @@
 import Dashboard from "../account/dashboard";
+import getData from "../../components/get-data";
 
 const Index = ({ products, pendingOrders, completeOrders }) => {
 	return (
@@ -14,37 +15,40 @@ const Index = ({ products, pendingOrders, completeOrders }) => {
 export default Index;
 
 export async function getServerSideProps(context) {
-	const email = "chucreates@gmail.com";
+	const { email, account, status, domain } = getData(context);
 
 	const res = await fetch(
-		`https://peculyn.com/api/v1/products/?key=${process.env.NEXT_PUBLIC_HOME_API}&vendor=${email}`,
+		`https://peculyn.com/api/v1/products/?vendor=${email}`,
 		{
 			method: "Get",
 			headers: {
 				Accept: "application/json",
 				"Content-Type": "application/json",
+				Authorization: process.env.NEXT_PUBLIC_HOME_API,
 			},
 		}
 	);
 
 	const complete = await fetch(
-		`https://peculyn.com/api/v1/orders/?key=${process.env.NEXT_PUBLIC_HOME_API}&vendor=${email}&type=completed`,
+		`https://peculyn.com/api/v1/orders/?vendor=${email}&type=completed`,
 		{
 			method: "Get",
 			headers: {
 				Accept: "application/json",
 				"Content-Type": "application/json",
+				Authorization: process.env.NEXT_PUBLIC_HOME_API,
 			},
 		}
 	);
 
 	const pending = await fetch(
-		`https://peculyn.com/api/v1/orders/?key=${process.env.NEXT_PUBLIC_HOME_API}&vendor=${email}&type=pending`,
+		`https://peculyn.com/api/v1/orders/?vendor=${email}&type=pending`,
 		{
 			method: "Get",
 			headers: {
 				Accept: "application/json",
 				"Content-Type": "application/json",
+				Authorization: process.env.NEXT_PUBLIC_HOME_API,
 			},
 		}
 	);

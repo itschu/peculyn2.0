@@ -15,7 +15,7 @@ const Product = () => {
 
 	return (
 		<div
-			className={`font-body text-gray-600 ${
+			className={`font-body text-gray-700 ${
 				cartState.visible === true && "overflow-hidden"
 			}`}
 		>
@@ -37,6 +37,7 @@ export default Product;
 // 		headers: {
 // 			Accept: "application/json",
 // 			"Content-Type": "application/json",
+//  Authorization: process.env.NEXT_PUBLIC_HOME_API
 // 		},
 // 	});
 // 	const products = await res.json();

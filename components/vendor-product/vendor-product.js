@@ -51,11 +51,12 @@ const VendorProduct = ({ allVendorProducts, setLoading, setUploadStatus }) => {
 
 		try {
 			const res = await fetch(
-				`https://peculyn.com/api/v1/products/?key=${process.env.NEXT_PUBLIC_HOME_API}&id=${id}`,
+				`https://peculyn.com/api/v1/products/?id=${id}`,
 				{
 					method: "Delete",
 					headers: {
 						Accept: "application/json",
+						Authorization: process.env.NEXT_PUBLIC_HOME_API,
 					},
 				}
 			);

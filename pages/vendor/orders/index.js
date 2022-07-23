@@ -4,13 +4,14 @@ import { useCart } from "../../../context/cart";
 import Cart from "../../../components/cart";
 import HtmlHead from "../../../components/head";
 import VendorOrders from "../../../components/vendor-orders/vendor-orders";
+import getData from "../../components/get-data";
 
 const Orders = ({ orders }) => {
 	const { cartState } = useCart();
 
 	return (
 		<div
-			className={`font-body text-gray-600 ${
+			className={`font-body text-gray-700 ${
 				cartState.visible === true && "overflow-hidden "
 			}`}
 		>
@@ -26,15 +27,16 @@ const Orders = ({ orders }) => {
 export default Orders;
 
 export async function getServerSideProps(context) {
-	const email = "chucreates@gmail.com";
+	const { email, account, status, domain } = getData(context);
 
 	const all = await fetch(
-		`https://peculyn.com/api/v1/orders/?key=${process.env.NEXT_PUBLIC_HOME_API}&vendor=${email}&type=all`,
+		`https://peculyn.com/api/v1/orders/?vendor=${email}&type=all`,
 		{
 			method: "Get",
 			headers: {
 				Accept: "application/json",
 				"Content-Type": "application/json",
+				Authorization: process.env.NEXT_PUBLIC_HOME_API,
 			},
 		}
 	);

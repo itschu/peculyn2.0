@@ -31,7 +31,9 @@ const SuccessMsg = ({ success, setSuccess }) => {
 					viewBox="0 0 24 24"
 					stroke="currentColor"
 					strokeWidth={2}
-					onClick={() => setSuccess({ show: false, message: "" })}
+					onClick={() =>
+						setSuccess({ ...success, show: false, message: "" })
+					}
 				>
 					<path
 						strokeLinecap="round"

@@ -17,7 +17,6 @@ const Product = ({ el, navigate, addToCart, discount, pic, showDiscount }) => {
 					layout="fill"
 					className="object-left-top object-cover"
 					onError={() => {
-						console.log("pic");
 						return "/images/design/placeholder-image.png";
 					}}
 					placeholder="blur"

@@ -4,13 +4,14 @@ import { useCart } from "../../context/cart";
 import Cart from "../../components/cart";
 import HtmlHead from "../../components/head";
 import Withdraw from "../../components/withdraw";
+import getData from "../../components/get-data";
 
 const WithdrawFunds = ({ completeOrders }) => {
 	const { cartState } = useCart();
 
 	return (
 		<div
-			className={`font-body text-gray-600 no-scroll ${
+			className={`font-body text-gray-700 no-scroll ${
 				cartState.visible === true && "overflow-hidden "
 			}`}
 		>
@@ -26,15 +27,16 @@ const WithdrawFunds = ({ completeOrders }) => {
 export default WithdrawFunds;
 
 export async function getServerSideProps(context) {
-	const email = "chucreates@gmail.com";
+	const { email, account, status, domain } = getData(context);
 
 	const complete = await fetch(
-		`https://peculyn.com/api/v1/orders/?key=${process.env.NEXT_PUBLIC_HOME_API}&vendor=${email}&type=completed`,
+		`https://peculyn.com/api/v1/orders/?vendor=${email}&type=completed`,
 		{
 			method: "Get",
 			headers: {
 				Accept: "application/json",
 				"Content-Type": "application/json",
+				Authorization: process.env.NEXT_PUBLIC_HOME_API,
 			},
 		}
 	);

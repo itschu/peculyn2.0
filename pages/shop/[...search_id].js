@@ -10,7 +10,7 @@ const Search = () => {
 	const { cartState } = useCart();
 
 	return (
-		<div className="font-body text-gray-600">
+		<div className="font-body text-gray-700">
 			<HtmlHead currentPage={`Search Products`} />
 			<Nav />
 			<SearchAll />

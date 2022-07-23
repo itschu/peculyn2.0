@@ -1,15 +1,25 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { decodeHtml } from "../data";
 
 const Cart = createContext();
 
 const CartProvider = ({ children }) => {
-	const [cartState, setCartState] = useState({ visible: false, items: [] });
+	let foundStorage = [];
+
+	const [cartState, setCartState] = useState({
+		visible: false,
+		items: foundStorage,
+	});
 
 	const increaseProducts = (i, el, addQty = 1) => {
 		const newQty = parseInt(el.qty) + addQty;
 		const newItm = { ...el, qty: newQty, total_price: el.price * newQty };
 		cartState.items.splice(i, 1, newItm);
+
+		const storageReady = JSON.stringify([...cartState.items]);
+
+		localStorage.setItem("cart-array", storageReady);
+
 		setCartState({ vissible: true, items: [...cartState.items] });
 	};
 
@@ -23,6 +33,11 @@ const CartProvider = ({ children }) => {
 			};
 
 			cartState.items.splice(i, 1, newItm);
+
+			const storageReady = JSON.stringify([...cartState.items]);
+
+			localStorage.setItem("cart-array", storageReady);
+
 			setCartState({ ...cartState, items: [...cartState.items] });
 		}
 	};
@@ -51,12 +66,46 @@ const CartProvider = ({ children }) => {
 
 			increaseProducts(index, exists[0], qty);
 		} else {
+			const storageReady = JSON.stringify([
+				...cartState.items,
+				prodDetails,
+			]);
+
+			localStorage.setItem("cart-array", storageReady);
+
 			setCartState({
 				visible: true,
 				items: [...cartState.items, prodDetails],
 			});
 		}
 	};
+
+	const removeProduct = (id) => {
+		const newCart = cartState.items.filter((itm) => itm.id !== id);
+
+		const storageReady = JSON.stringify([...newCart]);
+
+		localStorage.setItem("cart-array", storageReady);
+
+		setCartState({
+			...cartState,
+			items: [...newCart],
+		});
+	};
+
+	useEffect(() => {
+		if (
+			typeof Storage !== "undefined" &&
+			localStorage.getItem("cart-array")
+		) {
+			foundStorage = localStorage.getItem("cart-array");
+			foundStorage = JSON.parse(foundStorage);
+			setCartState({
+				visible: false,
+				items: [...foundStorage],
+			});
+		}
+	}, []);
 
 	return (
 		<Cart.Provider
@@ -66,6 +115,7 @@ const CartProvider = ({ children }) => {
 				addToCart,
 				increaseProducts,
 				reduceProducts,
+				removeProduct,
 			}}
 		>
 			{children}

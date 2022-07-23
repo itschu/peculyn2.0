@@ -15,8 +15,6 @@ const BillingInfo = ({ user, states, setLoading, setUploadStatus }) => {
 		setSuccess({ show: false, message: "" });
 
 		if (
-			userDetails.firstName == "" ||
-			userDetails.lastName == "" ||
 			userDetails.address == "" ||
 			userDetails.town == "" ||
 			userDetails.state == "" ||
@@ -38,8 +36,6 @@ const BillingInfo = ({ user, states, setLoading, setUploadStatus }) => {
 		try {
 			setUploadStatus("updating your record");
 			const compiledData = {
-				firstName: userDetails.firstName,
-				lastName: userDetails.lastName,
 				email: userDetails.email,
 				address2: userDetails.address2,
 				address: userDetails.address,
@@ -50,12 +46,13 @@ const BillingInfo = ({ user, states, setLoading, setUploadStatus }) => {
 			};
 
 			const res = await fetch(
-				`https://peculyn.com/api/v1/users/?key=${process.env.NEXT_PUBLIC_HOME_API}&user=${userDetails.unique_id}&billing=true`,
+				`https://peculyn.com/api/v1/users/?user=${userDetails.unique_id}&billing=true`,
 				{
 					method: "PUT",
 					headers: {
 						Accept: "application/json",
 						"Content-Type": "application/json",
+						Authorization: process.env.NEXT_PUBLIC_HOME_API,
 					},
 					body: JSON.stringify(compiledData),
 				}

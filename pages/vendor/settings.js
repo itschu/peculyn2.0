@@ -6,6 +6,7 @@ import HtmlHead from "../../components/head";
 import Settings from "../../components/settings";
 import Loading from "../../components/loading";
 import { useState } from "react";
+import getData from "../../components/get-data";
 
 const UserSettings = ({ user, states }) => {
 	const { cartState } = useCart();
@@ -14,7 +15,7 @@ const UserSettings = ({ user, states }) => {
 
 	return (
 		<div
-			className={`font-body text-gray-600 ${
+			className={`font-body text-gray-700 ${
 				cartState.visible === true && "overflow-hidden "
 			}`}
 		>
@@ -28,7 +29,7 @@ const UserSettings = ({ user, states }) => {
 			/>
 			<Footer border={true} />
 			<Cart />
-			{loading && <Loading uploadStatus={uploadStatus} />}
+			<Loading uploadStatus={uploadStatus} loading={loading} />
 		</div>
 	);
 };
@@ -36,28 +37,27 @@ const UserSettings = ({ user, states }) => {
 export default UserSettings;
 
 export async function getServerSideProps(context) {
-	const email = "chucreates@gmail.com";
+	const { email, account, status, domain } = getData(context);
 	const res = await fetch(
-		`https://peculyn.com/api/v1/users/?key=${process.env.NEXT_PUBLIC_HOME_API}&email=${email}`,
+		`https://peculyn.com/api/v1/users/?email=${email}`,
 		{
 			method: "Get",
 			headers: {
 				Accept: "application/json",
 				"Content-Type": "application/json",
+				Authorization: process.env.NEXT_PUBLIC_HOME_API,
 			},
 		}
 	);
 
-	const state_req = await fetch(
-		`https://peculyn.com/api/v1/states/?key=${process.env.NEXT_PUBLIC_HOME_API}`,
-		{
-			method: "Get",
-			headers: {
-				Accept: "application/json",
-				"Content-Type": "application/json",
-			},
-		}
-	);
+	const state_req = await fetch(`https://peculyn.com/api/v1/states/`, {
+		method: "Get",
+		headers: {
+			Accept: "application/json",
+			"Content-Type": "application/json",
+			Authorization: process.env.NEXT_PUBLIC_HOME_API,
+		},
+	});
 	const user = await res.json();
 	const states = await state_req.json();
 	return {

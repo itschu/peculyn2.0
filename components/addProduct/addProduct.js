@@ -24,9 +24,10 @@ const AddProduct = ({
 	setLoading,
 	setUploadStatus,
 	edit = false,
+	email,
 }) => {
 	const { selectedProduct } = useSelectedProduct();
-	const email = "chucreates@gmail.com";
+
 	const [newProduct, setNewProduct] = useState(
 		edit ? selectedProduct : empty
 	);
@@ -140,11 +141,12 @@ const AddProduct = ({
 			);
 			if (newProduct?.mainPicture instanceof Blob) {
 				img_res = await fetch(
-					`https://peculyn.com/api/v1/products/upload/?key=${process.env.NEXT_PUBLIC_HOME_API}&category=${cate}`,
+					`https://peculyn.com/api/v1/products/upload/?category=${cate}`,
 					{
 						method: "POST",
 						headers: {
 							Accept: "application/json",
+							Authorization: process.env.NEXT_PUBLIC_HOME_API,
 						},
 						body: formData,
 					}
@@ -158,11 +160,12 @@ const AddProduct = ({
 			);
 			if (newProduct?.img_2 instanceof Blob) {
 				img_res2 = await fetch(
-					`https://peculyn.com/api/v1/products/upload/?key=${process.env.NEXT_PUBLIC_HOME_API}&category=${cate}`,
+					`https://peculyn.com/api/v1/products/upload/?category=${cate}`,
 					{
 						method: "POST",
 						headers: {
 							Accept: "application/json",
+							Authorization: process.env.NEXT_PUBLIC_HOME_API,
 						},
 						body: formData2,
 					}
@@ -176,11 +179,12 @@ const AddProduct = ({
 			);
 			if (newProduct?.img_3 instanceof Blob) {
 				img_res3 = await fetch(
-					`https://peculyn.com/api/v1/products/upload/?key=${process.env.NEXT_PUBLIC_HOME_API}&category=${cate}`,
+					`https://peculyn.com/api/v1/products/upload/?category=${cate}`,
 					{
 						method: "POST",
 						headers: {
 							Accept: "application/json",
+							Authorization: process.env.NEXT_PUBLIC_HOME_API,
 						},
 						body: formData3,
 					}
@@ -194,11 +198,12 @@ const AddProduct = ({
 			);
 			if (newProduct?.img_4 instanceof Blob) {
 				img_res4 = await fetch(
-					`https://peculyn.com/api/v1/products/upload/?key=${process.env.NEXT_PUBLIC_HOME_API}&category=${cate}`,
+					`https://peculyn.com/api/v1/products/upload/?category=${cate}`,
 					{
 						method: "POST",
 						headers: {
 							Accept: "application/json",
+							Authorization: process.env.NEXT_PUBLIC_HOME_API,
 						},
 						body: formData4,
 					}
@@ -234,12 +239,13 @@ const AddProduct = ({
 				};
 
 				const res = await fetch(
-					`https://peculyn.com/api/v1/products/?key=${process.env.NEXT_PUBLIC_HOME_API}`,
+					`https://peculyn.com/api/v1/products/`,
 					{
 						method: edit ? "PUT" : "POST",
 						headers: {
 							Accept: "application/json",
 							"Content-Type": "application/json",
+							Authorization: process.env.NEXT_PUBLIC_HOME_API,
 						},
 						body: JSON.stringify(compiledData),
 					}

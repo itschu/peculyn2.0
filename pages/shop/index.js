@@ -11,7 +11,7 @@ const Search = () => {
 
 	return (
 		<div
-			className={`font-body text-gray-600 ${
+			className={`font-body text-gray-700 ${
 				cartState.visible === true && "overflow-hidden "
 			}`}
 		>

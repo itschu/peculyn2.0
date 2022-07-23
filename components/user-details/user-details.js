@@ -39,12 +39,13 @@ const UserDetails = ({ user, setLoading, setUploadStatus }) => {
 			};
 
 			const res = await fetch(
-				`https://peculyn.com/api/v1/users/?key=${process.env.NEXT_PUBLIC_HOME_API}&user=${userDetails.unique_id}`,
+				`https://peculyn.com/api/v1/users/?user=${userDetails.unique_id}`,
 				{
 					method: "PUT",
 					headers: {
 						Accept: "application/json",
 						"Content-Type": "application/json",
+						Authorization: process.env.NEXT_PUBLIC_HOME_API,
 					},
 					body: JSON.stringify(compiledData),
 				}

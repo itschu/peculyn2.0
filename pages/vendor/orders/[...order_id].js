@@ -6,6 +6,7 @@ import HtmlHead from "../../../components/head";
 import { useState } from "react";
 import Loading from "../../../components/loading";
 import SingleOrder from "../../../components/single-order";
+import getData from "../../components/get-data";
 
 const Order = ({ order, account }) => {
 	const { cartState } = useCart();
@@ -14,7 +15,7 @@ const Order = ({ order, account }) => {
 
 	return (
 		<div
-			className={`font-body text-gray-600 ${
+			className={`font-body text-gray-700 ${
 				cartState.visible === true && "overflow-hidden "
 			}`}
 		>
@@ -23,7 +24,7 @@ const Order = ({ order, account }) => {
 			<SingleOrder order={order} account={account} />
 			<Footer border={true} />
 			<Cart />
-			{loading && <Loading uploadStatus={uploadStatus} />}
+			<Loading uploadStatus={uploadStatus} loading={loading} />
 		</div>
 	);
 };
@@ -31,17 +32,18 @@ const Order = ({ order, account }) => {
 export default Order;
 
 export async function getServerSideProps(context) {
-	const email = "chucreates@gmail.com";
+	const { email, account, status, domain } = getData(context);
 	const { order_id } = context.query;
 	const account = order_id[1] || "";
 
 	const ord = await fetch(
-		`https://peculyn.com/api/v1/orders/?key=${process.env.NEXT_PUBLIC_HOME_API}&vendor=${email}&type=single&order_id=${order_id[0]}`,
+		`https://peculyn.com/api/v1/orders/?vendor=${email}&type=single&order_id=${order_id[0]}`,
 		{
 			method: "Get",
 			headers: {
 				Accept: "application/json",
 				"Content-Type": "application/json",
+				Authorization: process.env.NEXT_PUBLIC_HOME_API,
 			},
 		}
 	);

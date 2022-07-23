@@ -6,6 +6,7 @@ import HtmlHead from "../../../components/head";
 import VendorProduct from "../../../components/vendor-product";
 import { useState } from "react";
 import Loading from "../../../components/loading";
+import getData from "../../components/get-data";
 
 const AllProducts = ({ products }) => {
 	const { cartState } = useCart();
@@ -14,7 +15,7 @@ const AllProducts = ({ products }) => {
 
 	return (
 		<div
-			className={`font-body text-gray-600 ${
+			className={`font-body text-gray-700 ${
 				cartState.visible === true && "overflow-hidden "
 			}`}
 		>
@@ -27,7 +28,7 @@ const AllProducts = ({ products }) => {
 			/>
 			<Footer border={true} />
 			<Cart />
-			{loading && <Loading uploadStatus={uploadStatus} />}
+			<Loading uploadStatus={uploadStatus} loading={loading} />
 		</div>
 	);
 };
@@ -35,15 +36,16 @@ const AllProducts = ({ products }) => {
 export default AllProducts;
 
 export async function getServerSideProps(context) {
-	const email = "chucreates@gmail.com";
+	const { email, account, status, domain } = getData(context);
 
 	const res = await fetch(
-		`https://peculyn.com/api/v1/products/?key=${process.env.NEXT_PUBLIC_HOME_API}&vendor=${email}`,
+		`https://peculyn.com/api/v1/products/?vendor=${email}`,
 		{
 			method: "Get",
 			headers: {
 				Accept: "application/json",
 				"Content-Type": "application/json",
+				Authorization: process.env.NEXT_PUBLIC_HOME_API,
 			},
 		}
 	);
