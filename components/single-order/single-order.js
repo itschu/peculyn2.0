@@ -13,7 +13,7 @@ const SingleOrder = ({ order, account }) => {
 					id="main-content"
 					className="md:mt-10 grid sm:grid-cols-6 gap-10 md:gap-0"
 				>
-					{account === "search" ? <AccountMenu /> : <VendorMenu />}
+					{account === "user" ? <AccountMenu /> : <VendorMenu />}
 
 					<div className="md:border-l md:pl-12 sm:col-span-5 sm:ml-10 ">
 						<h3 className="accountHeading">
@@ -122,7 +122,7 @@ const SingleOrder = ({ order, account }) => {
 									</svg>
 									Delivery Type :{" "}
 									<span className="font-normal">
-										{order.date_init}
+										{order.delivery_option}
 									</span>
 								</p>
 
@@ -163,6 +163,9 @@ const SingleOrder = ({ order, account }) => {
 												<th className="th text-left">
 													Quantity
 												</th>
+												<th className="th text-left">
+													Amount
+												</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -176,7 +179,7 @@ const SingleOrder = ({ order, account }) => {
 													<td className="table-td">
 														<p className="text-gray-900 whitespace-no-wrap text-left">
 															₦
-															{el.itemAmt.toLocaleString(
+															{el.itmPrice.toLocaleString(
 																"en-US",
 																{
 																	maximumFractionDigits:
@@ -188,6 +191,18 @@ const SingleOrder = ({ order, account }) => {
 													<td className="table-td ">
 														<p className="text-gray-900 whitespace-no-wrap text-left">
 															{el.itemQty}
+														</p>
+													</td>
+													<td className="table-td ">
+														<p className="text-gray-900 whitespace-no-wrap text-left">
+															₦
+															{el.itemAmt.toLocaleString(
+																"en-US",
+																{
+																	maximumFractionDigits:
+																		currencyFractionDigits,
+																}
+															)}
 														</p>
 													</td>
 												</tr>

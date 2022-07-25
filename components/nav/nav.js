@@ -33,7 +33,7 @@ const nav = () => {
 			<div
 				id="bottom-nav"
 				className="flex justify-between p-4 px-6 md:p-4 bg-white sticky top-0 border-t-2 border-slate-900 shadow"
-				style={{ zIndex: 10 }}
+				style={{ zIndex: 11 }}
 			>
 				<div>
 					<h1 className="font-bold font-mono text-xl">

@@ -1,14 +1,96 @@
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { useCart } from "../../context/cart";
-import { currencyFractionDigits } from "../../data";
+import {
+	currencyFractionDigits,
+	emptyBillingInfo,
+	validateInput,
+} from "../../data";
 import NigStates from "../nig-states";
+import ButtonLoader from "../button-loader/";
+import ErrorMsg from "../errorMsg";
 
 const Checkout = ({ user, states, setLoading, setUploadStatus }) => {
 	const [userDetails, setUserDetails] = useState(user);
+	const [load, setLoad] = useState(false);
+	const [error, setError] = useState({ show: false, message: "" });
+	const [useInfo, setUseInfo] = useState(true);
+
 	const { cartState } = useCart();
+	const router = useRouter();
+
+	const total = cartState.items.reduce((acc, el) => acc + el?.total_price, 0);
+
+	const paynow = async () => {
+		setLoad(true);
+		setError({ show: false, message: "" });
+
+		const validatedInput = validateInput(
+			userDetails.address,
+			userDetails.town,
+			userDetails.state,
+			userDetails.number,
+			userDetails.email,
+			userDetails.firstName,
+			userDetails.lastName,
+			userDetails.delivery_option
+		);
+
+		if (!validatedInput) {
+			setError({
+				show: true,
+				message: `Required field cannot be left empty`,
+			});
+
+			window.scrollTo({
+				top: 0,
+				behavior: "smooth",
+			});
+
+			return setLoad(false);
+		}
+
+		const params = {
+			email: user.email,
+			amount: total,
+			userData: userDetails,
+			cartState,
+		};
+
+		const transaction = await fetch(`/api/pay`, {
+			method: "Post",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(params),
+		});
+
+		const { data } = await transaction.json();
+
+		if (data?.status) {
+			const {
+				data: { authorization_url, access_code, reference },
+			} = data;
+			router.push(authorization_url);
+		} else {
+			setError({
+				show: true,
+				message: data.message,
+			});
+
+			window.scrollTo({
+				top: 0,
+				behavior: "smooth",
+			});
+			setLoad(false);
+		}
+	};
 
 	return (
 		<div className="section">
+			<ErrorMsg error={error} setError={setError} />
+
 			<div
 				id="main-content"
 				className="md:mt-10 grid sm:grid-cols-6 gap-10"
@@ -17,12 +99,30 @@ const Checkout = ({ user, states, setLoading, setUploadStatus }) => {
 					className="md:pl-12 sm:col-span-4 sm:ml-10 overflow-x-auto"
 					onSubmit={(e) => {
 						e.preventDefault();
-						updateRecord();
 					}}
 				>
 					<h3 className="accountHeading">
 						Your Shipping Information
 					</h3>
+					<div className="mb-10">
+						<input
+							type={"checkbox"}
+							checked={useInfo}
+							onChange={() => {
+								setUseInfo(!useInfo);
+								useInfo
+									? setUserDetails({
+											...emptyBillingInfo,
+											email: user.email,
+											unique_id: user.unique_id,
+									  })
+									: setUserDetails(user);
+							}}
+						/>
+						<label className="ml-2">
+							Use my billing information
+						</label>
+					</div>
 
 					<div className="flex gap-7">
 						<div className="w-full">
@@ -31,10 +131,14 @@ const Checkout = ({ user, states, setLoading, setUploadStatus }) => {
 							</label>
 							<input
 								type={"text"}
-								disabled
 								className="input md:w-full"
 								value={userDetails.firstName}
-								readOnly
+								onChange={(e) =>
+									setUserDetails({
+										...userDetails,
+										firstName: e.target.value,
+									})
+								}
 								required
 							/>
 						</div>
@@ -45,10 +149,14 @@ const Checkout = ({ user, states, setLoading, setUploadStatus }) => {
 							</label>
 							<input
 								type={"text"}
-								disabled
 								className="input md:w-full"
 								value={userDetails.lastName}
-								readOnly
+								onChange={(e) =>
+									setUserDetails({
+										...userDetails,
+										lastName: e.target.value,
+									})
+								}
 								required
 							/>
 						</div>
@@ -129,22 +237,50 @@ const Checkout = ({ user, states, setLoading, setUploadStatus }) => {
 						states={states}
 					/>
 
-					<div className="flex flex-col mt-5">
-						<label>
-							Phone <span className="important">*</span>
-						</label>
-						<input
-							type={"text"}
-							className="input md:w-full"
-							value={userDetails.number}
-							onChange={(e) =>
-								setUserDetails({
-									...userDetails,
-									number: e.target.value,
-								})
-							}
-							required
-						/>
+					<div className="flex gap-7 mt-5">
+						<div className="w-full">
+							<label>
+								Phone <span className="important">*</span>
+							</label>
+							<input
+								type={"text"}
+								className="input md:w-full"
+								value={userDetails.number}
+								onChange={(e) =>
+									setUserDetails({
+										...userDetails,
+										number: e.target.value,
+									})
+								}
+								required
+							/>
+						</div>
+
+						<div className="w-full">
+							<label>
+								Delivery Option
+								<span className="important">*</span>
+							</label>
+							<select
+								className="input md:w-full pr-2"
+								value={userDetails.delivery_option || ""}
+								onChange={(e) =>
+									setUserDetails({
+										...userDetails,
+										delivery_option: e.target.value,
+									})
+								}
+								required
+							>
+								<option value={""} disabled>
+									Choose...
+								</option>
+								<option value={"Pick Up"}>Pick Up</option>
+								<option value={"Home Delivery"}>
+									Home Delivery
+								</option>
+							</select>
+						</div>
 					</div>
 
 					<div className="flex flex-col mt-5">
@@ -179,26 +315,32 @@ const Checkout = ({ user, states, setLoading, setUploadStatus }) => {
 						</span>
 					))}
 
-					<p className="flex justify-between font-semibold text-lg border-b pb-2">
+					<p className="flex justify-between font-bold text-base border-b pb-2">
 						<span>Total</span>
 						<span>
 							₦
-							{cartState.items
-								.reduce((acc, el) => acc + el?.total_price, 0)
-								.toLocaleString("en-US", {
-									maximumFractionDigits:
-										currencyFractionDigits,
-								})}
+							{total.toLocaleString("en-US", {
+								maximumFractionDigits: currencyFractionDigits,
+							})}
 						</span>
 					</p>
 
 					<button
 						id="buy-now"
-						className="py-3 cursor-pointer flex font-bold justify-center bg-primary-600 duration-500 transition-all hover:bg-slate-900 hover:text-white mt-2"
+						onClick={() => {
+							if (load === true) return;
+							paynow();
+						}}
+						className={`group py-3 cursor-pointer flex font-bold justify-center bg-primary-600 duration-500 transition-all hover:bg-slate-900 hover:text-white mt-2 ${
+							load && "opacity-60 cursor-auto"
+						}`}
 					>
-						<span className="flex items-center text-base">
-							Pay Now
-						</span>
+						<div
+							className={`flex items-center text-base w-full justify-center gap-16 `}
+						>
+							{load && <ButtonLoader />}
+							<span>{load ? "Processing" : "Pay Now"}</span>
+						</div>
 					</button>
 				</div>
 			</div>

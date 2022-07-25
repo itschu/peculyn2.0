@@ -4,7 +4,7 @@ import { useCart } from "../../../context/cart";
 import Cart from "../../../components/cart";
 import HtmlHead from "../../../components/head";
 import VendorOrders from "../../../components/vendor-orders/vendor-orders";
-import getData from "../../components/get-data";
+import getData from "../../../components/get-data";
 
 const Orders = ({ orders }) => {
 	const { cartState } = useCart();

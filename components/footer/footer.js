@@ -14,7 +14,11 @@ const Footer = ({ border = false }) => {
 			>
 				<div className="flex flex-col sm:flex-row sm:items-center sm:gap-10 mb-5">
 					<div id="logo" className="h-16 w-12 mb-3 relative mr-10">
-						<Image src={`/images/design/logo.png`} layout="fill" />
+						<Image
+							src={`/images/design/logo.png`}
+							layout="fill"
+							alt="site logo"
+						/>
 					</div>
 					<div>
 						<p
@@ -107,6 +111,7 @@ const Footer = ({ border = false }) => {
 										src={`/images/design/facebook.png`}
 										height={14}
 										width={14}
+										alt="facebook logo"
 									/>
 								</div>
 							</Link>
@@ -120,6 +125,7 @@ const Footer = ({ border = false }) => {
 										src={`/images/design/instagram.png`}
 										height={14}
 										width={14}
+										alt="instagram logo"
 									/>
 								</div>
 							</Link>
@@ -179,6 +185,7 @@ const Footer = ({ border = false }) => {
 						src={`/images/design/payment.png`}
 						width={271}
 						height={24}
+						alt="payment options"
 					/>
 				</div>
 			</div>

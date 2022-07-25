@@ -6,7 +6,7 @@ import HtmlHead from "../../../components/head";
 import { useState } from "react";
 import Loading from "../../../components/loading";
 import SingleOrder from "../../../components/single-order";
-import getData from "../../components/get-data";
+import getData from "../../../components/get-data";
 
 const Order = ({ order, account }) => {
 	const { cartState } = useCart();
@@ -34,7 +34,7 @@ export default Order;
 export async function getServerSideProps(context) {
 	const { email, account, status, domain } = getData(context);
 	const { order_id } = context.query;
-	const account = order_id[1] || "";
+	// const account = order_id[1] || "";
 
 	const ord = await fetch(
 		`https://peculyn.com/api/v1/orders/?vendor=${email}&type=single&order_id=${order_id[0]}`,

@@ -6,7 +6,7 @@ import HtmlHead from "../../../components/head";
 import VendorProduct from "../../../components/vendor-product";
 import { useState } from "react";
 import Loading from "../../../components/loading";
-import getData from "../../components/get-data";
+import getData from "../../../components/get-data";
 
 const AllProducts = ({ products }) => {
 	const { cartState } = useCart();

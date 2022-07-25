@@ -2,7 +2,7 @@ const Newsletter = () => {
 	return (
 		<div
 			className="p-4 py-8 md:py-20 md:px-32 mt-10 my-10"
-			style={{ backgroundColor: "#f4f4f4" }}
+			style={{ backgroundColor: "#f4f4f4b3" }}
 		>
 			<div className="flex flex-col md:flex-row items-center justify-around">
 				<div className="flex items-end">
@@ -26,7 +26,7 @@ const Newsletter = () => {
 						</h2>
 						<p
 							style={{ maxWidth: "40ch" }}
-							className="text-neutral-500 text-base"
+							className="text-neutral-800 text-base"
 						>
 							Subscribe to our newsletter to get information about
 							products and discount

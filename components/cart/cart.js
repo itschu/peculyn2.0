@@ -202,6 +202,12 @@ const cart = () => {
 							</div>
 						))}
 					</div>
+
+					{cartState.items.length === 0 && (
+						<p className="text-gray-500 text-center mt-8 text-lg">
+							Your cart is empty
+						</p>
+					)}
 				</div>
 
 				<div id="bottom" className="border-t pt-5 font-extrabold">
@@ -230,6 +236,7 @@ const cart = () => {
 					<div
 						id="buy-now"
 						onClick={() => {
+							if (cartState.items.length === 0) return;
 							setCartState({ ...cartState, visible: false });
 							router.push(`/checkout`);
 						}}

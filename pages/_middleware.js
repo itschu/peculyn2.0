@@ -28,6 +28,23 @@ export default function middleware(request) {
 		}
 	}
 
+	if (request.nextUrl.pathname.startsWith("/vendor/orders")) {
+		if (jwt === undefined) {
+			return NextResponse.redirect(new URL("/login", request.url));
+		}
+
+		try {
+			verify(jwt, seceret);
+			return NextResponse.next();
+		} catch (error) {
+			return NextResponse.redirect(new URL("/login", request.url));
+		}
+	}
+
+	if (request.nextUrl.pathname.startsWith("/account/orders")) {
+		return NextResponse.next();
+	}
+
 	if (request.nextUrl.pathname.startsWith("/account")) {
 		if (jwt === undefined) {
 			return NextResponse.redirect(new URL("/login", request.url));

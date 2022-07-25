@@ -12,13 +12,13 @@ const getData = (context) => {
 		const user = verify(jwt, seceret);
 
 		return {
-			status: false,
+			status: true,
 			email: user.email,
 			account: user.account,
 			domain,
 		};
 	} catch (error) {
-		console.log(error);
+		// console.log(error);
 		return {
 			status: false,
 			domain,

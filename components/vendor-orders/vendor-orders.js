@@ -5,10 +5,18 @@ import ReactPaginate from "react-paginate";
 import { currencyFractionDigits } from "../../data";
 import AccountMenu from "../account-menu";
 import VendorMenu from "../vendor-menu";
+import SuccessMsg from "../../components/successMsg";
 
-const VendorOrders = ({ allOrders, user = "vendor" }) => {
+const VendorOrders = ({ allOrders, user = "vendor", seen }) => {
 	const found = allOrders.length > 0;
 	const router = useRouter();
+	const [success, setSuccess] = useState({
+		show: seen === "no" ? true : false,
+		message:
+			seen === "no"
+				? "The payment for your order has been received. You will receive a mail with more information about the transaction and delivery"
+				: "",
+	});
 
 	let max = 5;
 
@@ -36,6 +44,7 @@ const VendorOrders = ({ allOrders, user = "vendor" }) => {
 	return (
 		<div>
 			<div className="section">
+				<SuccessMsg success={success} setSuccess={setSuccess} />
 				<div
 					id="main-content"
 					className="md:mt-10 grid sm:grid-cols-6 gap-10 md:gap-0"

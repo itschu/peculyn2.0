@@ -6,7 +6,7 @@ import HtmlHead from "../../../components/head";
 import { useState } from "react";
 import AddProduct from "../../../components/addProduct";
 import Loading from "../../../components/loading";
-import getData from "../../components/get-data";
+import getData from "../../../components/get-data";
 
 const Edit = ({ category, email }) => {
 	const { cartState } = useCart();

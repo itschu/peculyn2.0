@@ -27,6 +27,7 @@ const hero = () => {
 									src={`/images/p${i + 6}.jpeg`}
 									layout="fill"
 									className="object-left-top object-cover"
+									alt={`${el.title} category image`}
 								/>
 							</div>
 							<div className=" h-16 w-full md:h-full flex items-center justify-between mx-4 text-base sm:text-sm">

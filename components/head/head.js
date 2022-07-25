@@ -15,6 +15,15 @@ const HtmlHead = ({ currentPage, order = "normal" }) => {
 				href="/images/design/logo.png"
 				type="image/x-icon"
 			/>
+			<meta
+				name="viewport"
+				content="width=device-width, initial-scale=1"
+			/>
+			<meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+			<meta
+				name="keyword"
+				content="peculyn, peculyn super stores, peculyn superstores, peculyn international super stores, 'super store', online shopping, peculyn international superstores, peculyn stores, international super stores, 'international store', 'Shop online', 'Nigeria shopping', 'sell products',buy online, 'top online store', 'buy on peculyn'"
+			/>
 		</Head>
 	);
 };
