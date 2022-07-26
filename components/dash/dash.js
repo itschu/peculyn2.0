@@ -15,9 +15,10 @@ const Dash = ({
 	if (completeOrders?.length > 0) {
 		for (let i = 0; i < completeOrders.length; i++) {
 			const el = completeOrders[i];
-			totalOrders += parseFloat(el.amount);
+			totalOrders += parseFloat(el.amount || el.price);
 		}
 	}
+
 	return (
 		<div className="section">
 			<div
@@ -104,24 +105,24 @@ const Dash = ({
 					{user == "vendor" ? (
 						<p className="mt-10">
 							From your account dashboard you can{" "}
-							<Link href={"#"}>
+							<Link href={"#"} passHref>
 								<span className="link text-black font-semibold">
 									add new products
 								</span>
 							</Link>
 							, manage your and track your{" "}
-							<Link href={"#"}>
+							<Link href={"#"} passHref>
 								<span className="link text-black font-semibold">
 									orders
 								</span>
 							</Link>
 							, and edit your{" "}
-							<Link href={"#"}>
+							<Link href={"#"} passHref>
 								<span className="link text-black font-semibold">
 									products,
 								</span>
 							</Link>{" "}
-							<Link href={"#"}>
+							<Link href={"#"} passHref>
 								<span className="link text-black font-semibold">
 									withdraw funds
 								</span>
@@ -131,19 +132,19 @@ const Dash = ({
 					) : (
 						<p className="mt-10">
 							From your account dashboard you can view your recent{" "}
-							<Link href={"#"}>
+							<Link href={"#"} passHref>
 								<span className="link text-black font-semibold">
 									orders
 								</span>
 							</Link>
 							, manage your{" "}
-							<Link href={"#"}>
+							<Link href={"#"} passHref>
 								<span className="link text-black font-semibold">
 									shipping and billing addresses
 								</span>
 							</Link>
 							, and edit your{" "}
-							<Link href={"#"}>
+							<Link href={"#"} passHref>
 								<span className="link text-black font-semibold">
 									password and account details.
 								</span>

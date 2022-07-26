@@ -1,3 +1,3 @@
-import catSetion from "./cat-setion";
+import CatSetion from "./cat-setion";
 
-export default catSetion;
+export default CatSetion;

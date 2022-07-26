@@ -30,7 +30,7 @@ export async function getServerSideProps(context) {
 	);
 
 	const complete = await fetch(
-		`https://peculyn.com/api/v1/orders/?vendor=${email}&type=completed`,
+		`https://peculyn.com/api/v1/orders/vendors/?email=${email}&type=paid`,
 		{
 			method: "Get",
 			headers: {
@@ -42,7 +42,7 @@ export async function getServerSideProps(context) {
 	);
 
 	const pending = await fetch(
-		`https://peculyn.com/api/v1/orders/?vendor=${email}&type=pending`,
+		`https://peculyn.com/api/v1/orders/vendors/?email=${email}&type=pending`,
 		{
 			method: "Get",
 			headers: {
@@ -58,6 +58,6 @@ export async function getServerSideProps(context) {
 	const completeOrders = await complete.json();
 
 	return {
-		props: { products, pendingOrders, completeOrders }, // Will be passed to the page component as props
+		props: { products, pendingOrders, completeOrders },
 	};
 }

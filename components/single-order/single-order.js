@@ -1,14 +1,61 @@
+import { useState } from "react";
 import { currencyFractionDigits } from "../../data";
 import AccountMenu from "../account-menu";
+import ButtonLoader from "../button-loader";
 import VendorMenu from "../vendor-menu";
+import SuccessMsg from "../successMsg";
+import ErrorMsg from "../errorMsg";
 
 const SingleOrder = ({ order, account }) => {
-	const found = order?.sn !== undefined;
-	const items = JSON.parse(order.items || "[]");
+	const [load, setLoad] = useState(false);
+	const [error, setError] = useState({ show: false, message: "" });
+	const [success, setSuccess] = useState({ show: false, message: "" });
+	const [thisOrder, setThisOrder] = useState(order);
+
+	const found = thisOrder?.sn !== undefined;
+	const items = JSON.parse(thisOrder.items || "[]");
+
+	const verify_info = async () => {
+		setLoad(true);
+		setError({ show: false, message: "" });
+
+		const bodyData = {
+			reference: thisOrder.tran_id,
+			email: thisOrder.email,
+			seen: thisOrder.seen,
+			order_id: thisOrder.order_id,
+		};
+
+		const verify_req = await fetch(`/api/verify`, {
+			method: "POST",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(bodyData),
+		});
+
+		const {
+			data: { pay_stat, message },
+		} = await verify_req.json();
+
+		if (pay_stat) {
+			setThisOrder({ ...order, payment_status: "paid" });
+			setSuccess({ show: true, message });
+		} else {
+			setError({ show: true, message });
+		}
+
+		setLoad(false);
+	};
 
 	return (
 		<div>
 			<div className="section">
+				<ErrorMsg error={error} setError={setError} />
+
+				<SuccessMsg success={success} setSuccess={setSuccess} />
+
 				<div
 					id="main-content"
 					className="md:mt-10 grid sm:grid-cols-6 gap-10 md:gap-0"
@@ -17,12 +64,12 @@ const SingleOrder = ({ order, account }) => {
 
 					<div className="md:border-l md:pl-12 sm:col-span-5 sm:ml-10 ">
 						<h3 className="accountHeading">
-							Oder Details ({order.tran_id})
+							Oder Details ({thisOrder.tran_id})
 						</h3>
 
 						<div className="flex flex-col md:flex-row gap-5">
 							<div
-								className={`w-full ${order.payment_status} flex flex-col py-14 pl-10`}
+								className={`w-full ${thisOrder.payment_status} flex flex-col py-16 pl-10`}
 							>
 								<p className="text-lg font-semibold flex items-center gap-2">
 									<svg
@@ -44,14 +91,14 @@ const SingleOrder = ({ order, account }) => {
 
 								<p className="text-4xl font-bold mt-2">
 									₦{" "}
-									{order.amount.toLocaleString("en-US", {
+									{thisOrder.amount.toLocaleString("en-US", {
 										maximumFractionDigits:
 											currencyFractionDigits,
 									})}
 								</p>
 							</div>
 
-							<div className="w-full flex flex-col py-4 pl-5 justify-around">
+							<div className="w-full flex flex-col py-4 pl-5 gap-3 justify-around">
 								<p className="text-base font-semibold flex items-center gap-2">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
@@ -69,7 +116,7 @@ const SingleOrder = ({ order, account }) => {
 									</svg>
 									Order Date :{" "}
 									<span className="font-normal">
-										{order.date_init}
+										{thisOrder.date_init}
 									</span>
 								</p>
 
@@ -90,14 +137,16 @@ const SingleOrder = ({ order, account }) => {
 									</svg>
 									Delivery Date :{" "}
 									<span className="font-normal">
-										{order.date_finished === "" &&
-										order.payment_status === "pending" ? (
+										{thisOrder.date_finished === "" &&
+										thisOrder.payment_status ===
+											"pending" ? (
 											<i>Awaiting payment</i>
-										) : order.date_finished === "" &&
-										  order.payment_status === "paid" ? (
+										) : thisOrder.date_finished === "" &&
+										  thisOrder.payment_status ===
+												"paid" ? (
 											<i>Awaiting delivery</i>
-										) : order.date_finished !== "" ? (
-											order.date_finished
+										) : thisOrder.date_finished !== "" ? (
+											thisOrder.date_finished
 										) : (
 											"-"
 										)}
@@ -122,7 +171,7 @@ const SingleOrder = ({ order, account }) => {
 									</svg>
 									Delivery Type :{" "}
 									<span className="font-normal">
-										{order.delivery_option}
+										{thisOrder.delivery_option}
 									</span>
 								</p>
 
@@ -143,9 +192,37 @@ const SingleOrder = ({ order, account }) => {
 									</svg>
 									Payment Status :{" "}
 									<span className="font-normal">
-										{order.payment_status}
+										{thisOrder.payment_status}
 									</span>
 								</p>
+
+								{thisOrder.payment_status == "pending" && (
+									<button
+										className={` bg-blue-500 text-white p-3 rounded-lg ${
+											load && "opacity-60 cursor-auto"
+										}`}
+										onClick={() => {
+											if (load === true) return;
+											verify_info();
+										}}
+									>
+										<div
+											className={`flex items-center text-base w-full justify-center gap-16 font-bold`}
+										>
+											{load && (
+												<ButtonLoader
+													color={"bg-white"}
+													active={"bg-white"}
+												/>
+											)}
+											<span>
+												{load
+													? "Confirming payment"
+													: "I have made payment"}
+											</span>{" "}
+										</div>
+									</button>
+								)}
 							</div>
 						</div>
 						{found && (

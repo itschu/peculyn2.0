@@ -1,3 +1,3 @@
-import topCat from "./top-cat";
+import TopCategory from "./top-cat";
 
-export default topCat;
+export default TopCategory;

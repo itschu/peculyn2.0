@@ -7,7 +7,7 @@ const arr = [
 	"design/watch.jpg",
 	"design/laptop.jpg",
 ];
-const topCategory = () => {
+const TopCategory = () => {
 	return (
 		<div
 			className="p-4 py-10 md:py-20 md:px-32 mt-10 my-10"
@@ -30,19 +30,19 @@ const topCategory = () => {
 							Interior &amp; Furniture
 						</h3>
 
-						<Link href="#">
+						<Link href={""} passHref>
 							<p className="linkText">Home Theater</p>
 						</Link>
-						<Link href="#">
+						<Link href={""} passHref>
 							<p className="linkText">Chairs</p>
 						</Link>
-						<Link href="#">
+						<Link href={""} passHref>
 							<p className="linkText">Television</p>
 						</Link>
-						<Link href="#">
+						<Link href={""} passHref>
 							<p className="linkText">Speakers</p>
 						</Link>
-						<Link href="#">
+						<Link href={""} passHref>
 							<p className="linkText">Tables</p>
 						</Link>
 					</div>
@@ -59,19 +59,19 @@ const topCategory = () => {
 							Fashion &amp; Clothing
 						</h3>
 
-						<Link href="#">
-							<p className="linkText">Men's Wear</p>
+						<Link href={""} passHref>
+							<p className="linkText">Men&apos;s Wear</p>
 						</Link>
-						<Link href="#">
-							<p className="linkText">Women's Wear</p>
+						<Link href={""} passHref>
+							<p className="linkText">Women&apos;s Wear</p>
 						</Link>
-						<Link href="#">
+						<Link href={""} passHref>
 							<p className="linkText">Bags</p>
 						</Link>
-						<Link href="#">
+						<Link href={""} passHref>
 							<p className="linkText">Childrens Wear</p>
 						</Link>
-						<Link href="#">
+						<Link href={""} passHref>
 							<p className="linkText">Shoes</p>
 						</Link>
 					</div>
@@ -86,19 +86,19 @@ const topCategory = () => {
 					>
 						<h3 className="trend-heading">Jewelry &amp; Watch</h3>
 
-						<Link href="#">
+						<Link href={""} passHref>
 							<p className="linkText">Accessories</p>
 						</Link>
-						<Link href="#">
+						<Link href={""} passHref>
 							<p className="linkText">Designer Watch</p>
 						</Link>
-						<Link href="#">
+						<Link href={""} passHref>
 							<p className="linkText">Smart Watch</p>
 						</Link>
-						<Link href="#">
+						<Link href={""} passHref>
 							<p className="linkText">Jewelry</p>
 						</Link>
-						<Link href="#">
+						<Link href={""} passHref>
 							<p className="linkText">Belts</p>
 						</Link>
 					</div>
@@ -113,19 +113,19 @@ const topCategory = () => {
 					>
 						<h3 className="trend-heading">Tech &amp; Gadgets</h3>
 
-						<Link href="#">
+						<Link href={""} passHref>
 							<p className="linkText">Phones</p>
 						</Link>
-						<Link href="#">
+						<Link href={""} passHref>
 							<p className="linkText">Laptops</p>
 						</Link>
-						<Link href="#">
+						<Link href={""} passHref>
 							<p className="linkText">Accessories</p>
 						</Link>
-						<Link href="#">
+						<Link href={""} passHref>
 							<p className="linkText">Tablets</p>
 						</Link>
-						<Link href="#">
+						<Link href={""} passHref>
 							<p className="linkText">Desktop</p>
 						</Link>
 					</div>
@@ -135,4 +135,4 @@ const topCategory = () => {
 	);
 };
 
-export default topCategory;
+export default TopCategory;

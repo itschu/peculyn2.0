@@ -1,6 +1,6 @@
 import { serialize } from "cookie";
 
-export default async (req, res) => {
+const logout_api = async (req, res) => {
 	const { cookies } = req;
 	const jwt = cookies.peculynCom;
 
@@ -19,3 +19,5 @@ export default async (req, res) => {
 	res.setHeader("Set-Cookie", serialized);
 	res.status(200).json({ message: "logged out", status: "ok" });
 };
+
+export default logout_api;

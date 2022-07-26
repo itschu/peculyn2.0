@@ -93,6 +93,15 @@ const CartProvider = ({ children }) => {
 		});
 	};
 
+	const emptyCart = () => {
+		localStorage.setItem("cart-array", []);
+
+		setCartState({
+			...cartState,
+			items: [],
+		});
+	};
+
 	useEffect(() => {
 		if (
 			typeof Storage !== "undefined" &&
@@ -116,6 +125,7 @@ const CartProvider = ({ children }) => {
 				increaseProducts,
 				reduceProducts,
 				removeProduct,
+				emptyCart,
 			}}
 		>
 			{children}

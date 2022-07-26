@@ -3,7 +3,7 @@ import TopCategory from "../top-cat";
 import { LoadingProduct } from "../products-row";
 import { useAllProducts } from "../../context/products";
 
-const catSetion = () => {
+const CatSetion = () => {
 	const { allProducts } = useAllProducts();
 
 	return (
@@ -24,4 +24,4 @@ const catSetion = () => {
 	);
 };
 
-export default catSetion;
+export default CatSetion;

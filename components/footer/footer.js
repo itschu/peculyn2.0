@@ -102,7 +102,7 @@ const Footer = ({ border = false }) => {
 						</p>
 
 						<div className="flex gap-2 mt-5">
-							<Link href={""}>
+							<Link href={""} passHref>
 								<div
 									id="facebook-logo"
 									className="border p-2 flex justify-center items-center rounded-full link border-neutral-400"
@@ -116,7 +116,7 @@ const Footer = ({ border = false }) => {
 								</div>
 							</Link>
 
-							<Link href={""}>
+							<Link href={""} passHref>
 								<div
 									id="instagram-logo"
 									className="border p-2 flex justify-center items-center rounded-full link border-neutral-400"
@@ -135,29 +135,29 @@ const Footer = ({ border = false }) => {
 
 				<div>
 					<h3 className=" footer-header">Shop</h3>
-					<Link href={"/account"}>
+					<Link passHref href={"/account"}>
 						<p className="link footer-link">My Account</p>
 					</Link>
-					<Link href={"/account/orders"}>
+					<Link passHref href={"/account/orders"}>
 						<p className="link footer-link">Orders</p>
 					</Link>
-					<Link href={"/account/wishlist"}>
+					<Link passHref href={"/account/wishlist"}>
 						<p className="link footer-link">WishList</p>
 					</Link>
 				</div>
 
 				<div>
 					<h3 className=" footer-header">Information</h3>
-					<Link href={""}>
+					<Link href={""} passHref>
 						<p className="link footer-link">About Us</p>
 					</Link>
-					<Link href={""}>
+					<Link href={""} passHref>
 						<p className="link footer-link">Contact Us</p>
 					</Link>
-					<Link href={""}>
+					<Link href={""} passHref>
 						<p className="link footer-link">Privacy Policy</p>
 					</Link>
-					<Link href={""}>
+					<Link href={""} passHref>
 						<p className="link footer-link">
 							Terms &amp; Conditions
 						</p>
@@ -166,19 +166,19 @@ const Footer = ({ border = false }) => {
 
 				<div>
 					<h3 className=" footer-header">Customer Service</h3>
-					<Link href={""}>
+					<Link href={""} passHref>
 						<p className="link footer-link ">Shop</p>
 					</Link>
-					<Link href={""}>
+					<Link href={""} passHref>
 						<p className="link footer-link ">Help Center</p>
 					</Link>
-					<Link href={""}>
-						<p className="link footer-link ">FAQ's</p>
+					<Link href={""} passHref>
+						<p className="link footer-link ">FAQ&apos;s</p>
 					</Link>
-					<Link href={""}>
+					<Link href={""} passHref>
 						<p className="link footer-link ">Submit a Dispute</p>
 					</Link>
-					<Link href={""}>
+					<Link href={""} passHref>
 						<p className="link footer-link ">Track Order</p>
 					</Link>
 					<Image

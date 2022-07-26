@@ -1,4 +1,4 @@
-export default async (req, res) => {
+const users_api = async (req, res) => {
 	const { cookies } = req;
 
 	const jwt = cookies.peculynCom;
@@ -9,3 +9,5 @@ export default async (req, res) => {
 
 	return res.json({ message: "valid token" });
 };
+
+export default users_api;

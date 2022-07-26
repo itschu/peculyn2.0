@@ -79,12 +79,12 @@ const SingleProduct = ({ id }) => {
 			/>
 
 			<span className="flex items-center">
-				<Link href="/">
+				<Link href="/" passHref>
 					<span className="link">Home</span>
 				</Link>
 				&nbsp;/&nbsp;
 				{!singleProd.stale ? (
-					<Link href="/">
+					<Link href="/" passHref>
 						<span className="link"> {singleProd.category} </span>
 					</Link>
 				) : (

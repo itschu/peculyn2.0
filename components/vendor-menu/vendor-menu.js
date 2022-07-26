@@ -14,7 +14,7 @@ const VendorMenu = () => {
 			style={{ fontSize: 16 }}
 		>
 			<div className="link">
-				<Link href={"/vendor/"}>
+				<Link passHref href={"/vendor/"}>
 					<span
 						className={`flex items-center gap-2 ${
 							(router.pathname == "/vendor" &&
@@ -43,7 +43,7 @@ const VendorMenu = () => {
 			</div>
 
 			<div className="link">
-				<Link href={"/vendor/add"}>
+				<Link passHref href={"/vendor/add"}>
 					<span
 						className={`flex items-center gap-2 ${
 							router.pathname == "/vendor/add" && "activeMenuItem"
@@ -69,7 +69,7 @@ const VendorMenu = () => {
 			</div>
 
 			<div className="link">
-				<Link href={"/vendor/all-products"}>
+				<Link passHref href={"/vendor/all-products"}>
 					<span
 						className={`flex items-center gap-2 ${
 							router.pathname == "/vendor/all-products" &&
@@ -96,7 +96,7 @@ const VendorMenu = () => {
 			</div>
 
 			<div className="link">
-				<Link href={"/vendor/orders"}>
+				<Link passHref href={"/vendor/orders"}>
 					<span
 						className={`flex items-center gap-2 ${
 							router.pathname == "/vendor/orders" &&
@@ -124,7 +124,7 @@ const VendorMenu = () => {
 			</div>
 
 			<div className="link">
-				<Link href={"/vendor/withdraw"}>
+				<Link passHref href={"/vendor/withdraw"}>
 					<span
 						className={`flex items-center gap-2 ${
 							router.pathname == "/vendor/withdraw" &&
@@ -151,7 +151,7 @@ const VendorMenu = () => {
 			</div>
 
 			<div className="link">
-				<Link href={"/vendor/history"}>
+				<Link passHref href={"/vendor/history"}>
 					<span
 						className={`flex items-center gap-2 ${
 							router.pathname == "/vendor/history" &&
@@ -178,7 +178,7 @@ const VendorMenu = () => {
 			</div>
 
 			<div className="link">
-				<Link href={"/vendor/settings"}>
+				<Link passHref href={"/vendor/settings"}>
 					<span
 						className={`flex items-center gap-2 ${
 							router.pathname == "/vendor/settings" &&

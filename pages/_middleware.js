@@ -1,10 +1,9 @@
 import { NextResponse } from "next/server";
-import { verify } from "jsonwebtoken";
 
 const seceret = process.env.AUTH_SECRET;
 const domain = process.env.DOMAIN;
 
-export default function middleware(request) {
+export default async function middleware(request) {
 	const { cookies } = request;
 
 	const jwt = cookies.peculynCom;
@@ -12,8 +11,16 @@ export default function middleware(request) {
 	if (request.nextUrl.pathname.startsWith("/login")) {
 		if (jwt) {
 			try {
-				const user = verify(jwt, seceret);
-				if (user.account == "user") {
+				const req = await fetch(`${domain}/api/loggedin`, {
+					method: "POST",
+					"Content-Type": "application/json",
+					Accept: "application/json",
+					body: JSON.stringify({ jwt }),
+				});
+
+				const res = await req.json();
+
+				if (res.user.account == "user") {
 					return NextResponse.redirect(
 						new URL("/account", request.url)
 					);
@@ -23,6 +30,7 @@ export default function middleware(request) {
 					);
 				}
 			} catch (error) {
+				console.log(error);
 				return NextResponse.next();
 			}
 		}
@@ -34,7 +42,14 @@ export default function middleware(request) {
 		}
 
 		try {
-			verify(jwt, seceret);
+			const req = await fetch(`${domain}/api/loggedin`, {
+				method: "POST",
+				"Content-Type": "application/json",
+				Accept: "application/json",
+				body: JSON.stringify({ jwt }),
+			});
+
+			const res = await req.json();
 			return NextResponse.next();
 		} catch (error) {
 			return NextResponse.redirect(new URL("/login", request.url));
@@ -51,8 +66,15 @@ export default function middleware(request) {
 		}
 
 		try {
-			const user = verify(jwt, seceret);
-			if (user.account == "user") {
+			const req = await fetch(`${domain}/api/loggedin`, {
+				method: "POST",
+				"Content-Type": "application/json",
+				Accept: "application/json",
+				body: JSON.stringify({ jwt }),
+			});
+
+			const res = await req.json();
+			if (res.user.account == "user") {
 				return NextResponse.next();
 			} else {
 				return NextResponse.redirect(new URL("/vendor", request.url));
@@ -68,8 +90,15 @@ export default function middleware(request) {
 		}
 
 		try {
-			const user = verify(jwt, seceret);
-			if (user.account == "vendor") {
+			const req = await fetch(`${domain}/api/loggedin`, {
+				method: "POST",
+				"Content-Type": "application/json",
+				Accept: "application/json",
+				body: JSON.stringify({ jwt }),
+			});
+
+			const res = await req.json();
+			if (res.user.account == "vendor") {
 				return NextResponse.next();
 			} else {
 				return NextResponse.redirect(new URL("/account", request.url));

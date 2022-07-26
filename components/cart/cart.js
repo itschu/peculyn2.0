@@ -3,9 +3,9 @@ import { useRouter } from "next/router";
 import React, { useMemo, useState } from "react";
 import { useCart } from "../../context/cart";
 import { useSelectedProduct } from "../../context/selectedProduct";
-import { currencyFractionDigits, fileName } from "../../data";
+import { currencyFractionDigits, fileName, truncate } from "../../data";
 
-const cart = () => {
+const Cart = () => {
 	const {
 		cartState,
 		setCartState,
@@ -104,6 +104,7 @@ const cart = () => {
 													el?.category
 												}/${fileName(el?.img_1)}`}
 												layout="fill"
+												alt={el?.name}
 											/>
 										</div>
 										<div className="ml-3">
@@ -111,7 +112,7 @@ const cart = () => {
 												className="text-sm mb-2 font-semibold link"
 												onClick={() => navigate(el)}
 											>
-												{el.name}
+												{truncate(el.name, 21)}
 											</h5>
 											<div className="flex" id="counter">
 												<span
@@ -252,4 +253,4 @@ const cart = () => {
 	);
 };
 
-export default cart;
+export default Cart;

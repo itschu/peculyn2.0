@@ -124,7 +124,7 @@ const SignIn = ({ setLoading, setUploadStatus }) => {
 						</button>
 					</div>
 
-					<Link href={"/api/login"}>
+					<Link passHref href={"/api/login"}>
 						<span className="self-start">Forgot password?</span>
 					</Link>
 				</form>

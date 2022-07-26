@@ -20,11 +20,11 @@ const Shop = () => {
 	return (
 		<div className="section">
 			<span className="flex items-center">
-				<Link href="/">
+				<Link href="/" passHref>
 					<span className="link">Home</span>
 				</Link>
 				&nbsp;/&nbsp;
-				<Link href="/shop">
+				<Link href="/shop" passHref>
 					<span className="link"> Shop </span>
 				</Link>
 			</span>

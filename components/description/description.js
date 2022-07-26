@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 
-const description = () => {
+const Description = () => {
 	const [showDesc, setShowDesc] = useState(true);
 	const desc = useRef(null);
 	const rev = useRef(null);
@@ -216,4 +216,4 @@ const description = () => {
 	);
 };
 
-export default description;
+export default Description;

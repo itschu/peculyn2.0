@@ -4,15 +4,15 @@ const SearchAll = () => {
 	return (
 		<div className="section">
 			<span className="flex items-center">
-				<Link href="/">
+				<Link passHref href="/">
 					<span className="link">Home</span>
 				</Link>
 				&nbsp;/&nbsp;
-				<Link href="/shop">
+				<Link passHref href="/shop">
 					<span className="link"> Shop </span>
 				</Link>
 				&nbsp;/&nbsp;
-				<Link href="/shop">
+				<Link passHref href="/shop">
 					<span className="link"> ..... </span>
 				</Link>
 			</span>

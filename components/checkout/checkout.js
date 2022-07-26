@@ -4,6 +4,7 @@ import { useCart } from "../../context/cart";
 import {
 	currencyFractionDigits,
 	emptyBillingInfo,
+	truncate,
 	validateInput,
 } from "../../data";
 import NigStates from "../nig-states";
@@ -309,7 +310,7 @@ const Checkout = ({ user, states, setLoading, setUploadStatus }) => {
 							key={i}
 						>
 							<span>
-								{el.name} x {el.qty}
+								{truncate(el.name, 21)} x {el.qty}
 							</span>
 							<span>₦{el.total_price}</span>
 						</span>

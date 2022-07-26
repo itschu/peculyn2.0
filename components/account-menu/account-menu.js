@@ -15,7 +15,7 @@ const AccountMenu = () => {
 			style={{ fontSize: 16 }}
 		>
 			<div className="link">
-				<Link href={"/account/dashboard"}>
+				<Link href={"/account/dashboard"} passHref>
 					<span
 						className={`flex items-center gap-2 ${
 							(router.pathname == "/account" &&
@@ -44,7 +44,7 @@ const AccountMenu = () => {
 			</div>
 
 			<div className="link">
-				<Link href={"/account/orders"}>
+				<Link href={"/account/orders"} passHref>
 					<span
 						className={`flex items-center gap-2 ${
 							router.pathname == "/account/orders" &&
@@ -72,7 +72,7 @@ const AccountMenu = () => {
 			</div>
 
 			<div className="link">
-				<Link href={"/account/account-details"}>
+				<Link href={"/account/account-details"} passHref>
 					<span
 						className={`flex items-center gap-2 ${
 							router.pathname == "/account/account-details" &&
@@ -99,7 +99,7 @@ const AccountMenu = () => {
 			</div>
 
 			<div className="link">
-				<Link href={"/account/billing"}>
+				<Link href={"/account/billing"} passHref>
 					<span
 						className={`flex items-center gap-2 ${
 							router.pathname == "/account/billing" &&
@@ -126,7 +126,7 @@ const AccountMenu = () => {
 			</div>
 
 			<div className="link">
-				<Link href={"/account/wishlist"}>
+				<Link href={"/account/wishlist"} passHref>
 					<span
 						className={`flex items-center gap-2 ${
 							router.pathname == "/account/wishlist" &&

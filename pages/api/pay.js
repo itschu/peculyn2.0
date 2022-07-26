@@ -65,11 +65,11 @@ const pay_route = async (request, response) => {
 						pId: el.id,
 						pQty: el.qty,
 						price: parseFloat(el.price),
+						owner: el.owner,
 					};
 
-					const check = await fetch(
-						`https://peculyn.com/api/v1/pay/addOrder`,
-						{
+					try {
+						await fetch(`https://peculyn.com/api/v1/pay/addOrder`, {
 							method: type,
 							headers: {
 								Authorization: process.env.NEXT_PUBLIC_HOME_API,
@@ -77,9 +77,25 @@ const pay_route = async (request, response) => {
 								Accept: "application/json",
 							},
 							body: JSON.stringify(send),
-						}
-					);
+						});
+					} catch (error) {
+						console.log(
+							"attempts to add recored failed - ",
+							send,
+							error
+						);
+						await fetch(`https://peculyn.com/api/v1/pay/addOrder`, {
+							method: type,
+							headers: {
+								Authorization: process.env.NEXT_PUBLIC_HOME_API,
+								"Content-Type": "application/json",
+								Accept: "application/json",
+							},
+							body: JSON.stringify(send),
+						});
+					}
 				};
+
 				cartState.items.forEach((el) =>
 					manageOrder("PUT", userData, order_id, el)
 				);

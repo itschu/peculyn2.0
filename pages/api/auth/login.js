@@ -3,7 +3,7 @@ import { serialize } from "cookie";
 
 const seceret = process.env.AUTH_SECRET;
 
-export default async (req, res) => {
+const login_api = async (req, res) => {
 	const data = req.body;
 
 	try {
@@ -55,3 +55,5 @@ export default async (req, res) => {
 		});
 	}
 };
+
+export default login_api;

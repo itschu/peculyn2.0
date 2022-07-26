@@ -12,11 +12,11 @@ const HeroBottom = () => {
 				}}
 			>
 				<h3 className="text-2xl" style={{ maxWidth: "10ch" }}>
-					Trending <span className="font-extrabold">Women's</span>{" "}
-					wear
+					Trending{" "}
+					<span className="font-extrabold">Women&apos;s</span> wear
 				</h3>
 
-				<Link href={""}>
+				<Link passHref href={""}>
 					<span
 						className="text-base font-extrabold mt-4 cursor-pointer flex items-center"
 						style={{ color: "#792040" }}
@@ -46,11 +46,11 @@ const HeroBottom = () => {
 				}}
 			>
 				<h3 className="text-2xl" style={{ maxWidth: "10ch" }}>
-					Best Selling <span className="font-extrabold">Men's</span>{" "}
-					shoe
+					Best Selling{" "}
+					<span className="font-extrabold">Men&apos;s</span> shoe
 				</h3>
 
-				<Link href={""}>
+				<Link passHref href={""}>
 					<span
 						className="text-base font-extrabold mt-4 cursor-pointer flex items-center"
 						style={{ color: "#824428" }}
@@ -81,11 +81,11 @@ const HeroBottom = () => {
 				}}
 			>
 				<h3 className="text-2xl" style={{ maxWidth: "10ch" }}>
-					Trending <span className="font-extrabold">Men's</span>{" "}
+					Trending <span className="font-extrabold">Men&apos;s</span>{" "}
 					fashion
 				</h3>
 
-				<Link href={""}>
+				<Link passHref href={""}>
 					<span
 						className="text-base font-extrabold mt-4 cursor-pointer flex items-center"
 						style={{ color: "#252525" }}

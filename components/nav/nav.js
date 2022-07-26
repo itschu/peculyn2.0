@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useCart } from "../../context/cart";
 
-const nav = () => {
+const Nav = () => {
 	const router = useRouter();
 	const path = router.pathname.replace("/", "");
 
@@ -71,12 +71,14 @@ const nav = () => {
 							path === "home" && "active"
 						}`}
 					>
-						<Link href={"#"}>contact</Link>
+						<Link href={"#"} passHref>
+							contact
+						</Link>
 					</li>
 				</ul>
 
 				<div className="hidden md:flex items-center">
-					<Link href={"/shop/search/"}>
+					<Link href={"/shop/search/"} passHref>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							className="h-6 w-6 account"
@@ -93,7 +95,7 @@ const nav = () => {
 						</svg>
 					</Link>
 
-					<Link href={"/account"}>
+					<Link href={"/account"} passHref>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							className="h-6 w-6 account"
@@ -157,4 +159,4 @@ const nav = () => {
 	);
 };
 
-export default nav;
+export default Nav;

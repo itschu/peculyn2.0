@@ -5,7 +5,7 @@ import { fileName } from "../../data";
 import { useCart } from "../../context/cart";
 import Product from "../product";
 
-const productsRow = ({ title, max, showView = true }) => {
+const ProductsRow = ({ title, max, showView = true }) => {
 	const { allProducts } = useAllProducts();
 	const { cartState, setCartState, addToCart } = useCart();
 
@@ -77,4 +77,4 @@ const productsRow = ({ title, max, showView = true }) => {
 	);
 };
 
-export default productsRow;
+export default ProductsRow;

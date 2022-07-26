@@ -1,4 +1,4 @@
-const options = () => {
+const Options = () => {
 	return (
 		<div className="sm:col-span-1 " style={{ fontSize: 16 }}>
 			<div className="seach-option" id="search">
@@ -171,4 +171,4 @@ const options = () => {
 	);
 };
 
-export default options;
+export default Options;

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { categories } from "../../data";
 
-const hero = () => {
+const Hero = () => {
 	return (
 		<div className="grid lg:grid-cols-3 md:grid-cols-4 h-min w-full bg-neutral-100">
 			<div
@@ -33,7 +33,7 @@ const hero = () => {
 							<div className=" h-16 w-full md:h-full flex items-center justify-between mx-4 text-base sm:text-sm">
 								<h3>{el.title}</h3>
 
-								<Link href={el.link}>
+								<Link passHref href={el.link}>
 									<div className="flex items-center cursor-pointer hover:text-primary-800 font-normal transition duration-150 lowercase">
 										<span>shop now</span>
 										<svg
@@ -56,7 +56,7 @@ const hero = () => {
 				})}
 
 				<div className="flex pt-4 md:pt-4 mb-6">
-					<Link href={"/categories"}>
+					<Link passHref href={"/categories"}>
 						<button className="text-sm border hover:border-primary-600 border-slate-600 text-slate-600 m-auto p-2 rounded-full bg-transparent px-4 hover:bg-primary-600 hover:text-white transition duration-300 ease-linear hover:font-medium">
 							View all categories
 						</button>
@@ -67,4 +67,4 @@ const hero = () => {
 	);
 };
 
-export default hero;
+export default Hero;

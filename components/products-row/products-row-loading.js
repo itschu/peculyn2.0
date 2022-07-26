@@ -1,6 +1,6 @@
 import React from "react";
 
-const productLoading = ({ max, cols = 5 }) => {
+const LoadingProduct = ({ max, cols = 5 }) => {
 	const dummy = [];
 	for (let i = 0; i < max; i++) {
 		dummy.push("");
@@ -29,4 +29,4 @@ const productLoading = ({ max, cols = 5 }) => {
 	);
 };
 
-export default productLoading;
+export default LoadingProduct;

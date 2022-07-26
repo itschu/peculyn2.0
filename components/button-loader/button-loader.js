@@ -1,12 +1,12 @@
 import styles from "../../styles/Cart.module.css";
 
-const ButtonLoader = () => {
+const ButtonLoader = ({ color = "bg-gray-700", active = "bg-white" }) => {
 	return (
 		<div className={styles.ldsEllipsis}>
-			<div className="bg-gray-700 group-hover:bg-white"></div>
-			<div className="bg-gray-700 group-hover:bg-white"></div>
-			<div className="bg-gray-700 group-hover:bg-white"></div>
-			<div className="bg-gray-700 group-hover:bg-white"></div>
+			<div className={`${color} group-hover:${active}`}></div>
+			<div className={`${color} group-hover:${active}`}></div>
+			<div className={`${color} group-hover:${active}`}></div>
+			<div className={`${color} group-hover:${active}`}></div>
 		</div>
 	);
 };
