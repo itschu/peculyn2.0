@@ -38,7 +38,7 @@ export default AccountDetails;
 export async function getServerSideProps(context) {
 	const { email, account, status, domain } = getData(context);
 	const res = await fetch(
-		`https://peculyn.com/api/v1/users/?email=${email}`,
+		`https://peculyn.online/api/v1/users/?email=${email}`,
 		{
 			method: "Get",
 			headers: {

@@ -39,11 +39,11 @@ const ProductsRow = ({ title, max, showView = true }) => {
 						</span>
 					)}
 				</h2>
-				<div className="grid sm:grid-cols-5 gap-3 md:gap-6">
+				<div className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-6">
 					{allProducts.map((el, i) => {
 						if (i >= max) return;
 
-						const pic = `https://peculyn.com/assets/images/${
+						const pic = `https://peculyn.online/assets/images/${
 							el?.category
 						}/${fileName(el?.img_1)}`;
 

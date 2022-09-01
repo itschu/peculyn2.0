@@ -11,7 +11,7 @@ import NigStates from "../nig-states";
 import ButtonLoader from "../button-loader/";
 import ErrorMsg from "../errorMsg";
 
-const Checkout = ({ user, states, setLoading, setUploadStatus }) => {
+const Checkout = ({ user, states, setLoading, setUploadStatus, account }) => {
 	const [userDetails, setUserDetails] = useState(user);
 	const [load, setLoad] = useState(false);
 	const [error, setError] = useState({ show: false, message: "" });

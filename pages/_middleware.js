@@ -108,5 +108,24 @@ export default async function middleware(request) {
 		}
 	}
 
+	if (request.nextUrl.pathname.startsWith("/checkout")) {
+		if (jwt === undefined) {
+			return NextResponse.redirect(new URL("/login", request.url));
+		}
+
+		try {
+			const req = await fetch(`${domain}/api/loggedin`, {
+				method: "POST",
+				"Content-Type": "application/json",
+				Accept: "application/json",
+				body: JSON.stringify({ jwt }),
+			});
+
+			return NextResponse.next();
+		} catch (error) {
+			return NextResponse.redirect(new URL("/login", request.url));
+		}
+	}
+
 	return NextResponse.next();
 }

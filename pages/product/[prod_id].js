@@ -32,7 +32,7 @@ const Product = () => {
 export default Product;
 
 // export const getServerSideProps = async (context) => {
-// 	const info = await fetch(`https://peculyn.com/api/v1/products`, {
+// 	const info = await fetch(`https://peculyn.online/api/v1/products`, {
 // 		method: "Get",
 // 		headers: {
 // 			Accept: "application/json",

@@ -6,9 +6,22 @@ import Cart from "../components/cart";
 import HtmlHead from "../components/head";
 import Checkout from "../components/checkout/";
 import getData from "../components/get-data";
+import ErrorMsg from "../components/errorMsg";
+import { useEffect, useState } from "react";
 
-const CheckoutNow = ({ user, states }) => {
+const CheckoutNow = ({ user, states, account }) => {
 	const { cartState } = useCart();
+	const [error, setError] = useState({ show: false, message: "" });
+
+	useEffect(() => {
+		if (account === "vendor") {
+			setError({
+				show: true,
+				message:
+					"You cannot make purchases with this account please create a regular account to be able to access this resource",
+			});
+		}
+	}, [account]);
 
 	return (
 		<div
@@ -18,7 +31,21 @@ const CheckoutNow = ({ user, states }) => {
 		>
 			<HtmlHead currentPage={`Checkout`} />
 			<Nav />
-			<Checkout user={user} states={states} />
+
+			{account === undefined ? (
+				<Checkout user={user} states={states} />
+			) : account === "vendor" ? (
+				<div className="px-5 md:px-20 my-10">
+					<ErrorMsg
+						error={error}
+						setError={setError}
+						cancel={false}
+					/>
+				</div>
+			) : (
+				<Checkout user={user} states={states} />
+			)}
+
 			<Newsletter />
 			<Footer />
 			<Cart />
@@ -34,7 +61,7 @@ export async function getServerSideProps(context) {
 
 	if (email) {
 		const res = await fetch(
-			`https://peculyn.com/api/v1/users/?email=${email}`,
+			`https://peculyn.online/api/v1/users/?email=${email}`,
 			{
 				method: "Get",
 				headers: {
@@ -59,7 +86,7 @@ export async function getServerSideProps(context) {
 		};
 	}
 
-	const state_req = await fetch(`https://peculyn.com/api/v1/states/`, {
+	const state_req = await fetch(`https://peculyn.online/api/v1/states/`, {
 		method: "Get",
 		headers: {
 			Accept: "application/json",
@@ -70,6 +97,6 @@ export async function getServerSideProps(context) {
 	const states = await state_req.json();
 
 	return {
-		props: { user, states }, // Will be passed to the page component as props
+		props: { user, states, account }, // Will be passed to the page component as props
 	};
 }

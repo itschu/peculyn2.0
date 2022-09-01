@@ -3,10 +3,11 @@ import { useAllProducts } from "../../context/products";
 import Options from "../options";
 import { LoadingProduct } from "../products-row";
 import Pagination from "../pagination/pagination";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Shop = () => {
 	const { allProducts } = useAllProducts();
+	const [shopProducts, setShopProducts] = useState(allProducts);
 
 	let max = 12;
 
@@ -15,7 +16,13 @@ const Shop = () => {
 	let productPerPage = max;
 	let productSeen = pageNumber * productPerPage;
 
-	const pageCount = Math.ceil(allProducts.length / productPerPage);
+	const pageCount = Math.ceil(shopProducts.length / productPerPage);
+
+	useEffect(() => {
+		setShopProducts(allProducts);
+	}, [allProducts]);
+
+	const optionsProp = { shopProducts, setShopProducts };
 
 	return (
 		<div className="section">
@@ -30,15 +37,15 @@ const Shop = () => {
 			</span>
 
 			<div id="main-content" className="mt-11 grid sm:grid-cols-6 gap-1">
-				<Options />
+				<Options {...optionsProp} />
 				<div className="sm:col-span-5 sm:ml-10">
 					<div className="flex justify-between items-center">
 						<p>
 							Showing {productSeen + 1} -{" "}
-							{max + productSeen < allProducts.length
+							{max + productSeen < shopProducts.length
 								? max + productSeen
-								: allProducts.length}{" "}
-							of {allProducts.length || "0"} results
+								: shopProducts.length}{" "}
+							of {shopProducts.length || "0"} results
 						</p>
 
 						<div>
@@ -52,7 +59,7 @@ const Shop = () => {
 							</select>
 						</div>
 					</div>
-					{allProducts.length > 5 ? (
+					{allProducts.length > 1 ? (
 						<div className="grid sm:grid-cols-4 gap-3 md:gap-6 mt-5">
 							<Pagination
 								max={max}
@@ -61,6 +68,7 @@ const Shop = () => {
 								productSeen={productSeen}
 								pageCount={pageCount}
 								productPerPage={productPerPage}
+								shopProducts={shopProducts}
 							/>
 						</div>
 					) : (

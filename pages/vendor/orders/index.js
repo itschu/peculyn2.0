@@ -30,7 +30,7 @@ export async function getServerSideProps(context) {
 	const { email, account, status, domain } = getData(context);
 
 	const all = await fetch(
-		`https://peculyn.com/api/v1/orders/vendors/?email=${email}&type=all`,
+		`https://peculyn.online/api/v1/orders/vendors/?email=${email}&type=all`,
 		{
 			method: "Get",
 			headers: {

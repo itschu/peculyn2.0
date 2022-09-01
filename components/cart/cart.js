@@ -100,7 +100,7 @@ const Cart = () => {
 											onClick={() => navigate(el)}
 										>
 											<Image
-												src={`https://peculyn.com/assets/images/${
+												src={`https://peculyn.online/assets/images/${
 													el?.category
 												}/${fileName(el?.img_1)}`}
 												layout="fill"

@@ -8,7 +8,7 @@ const login_api = async (req, res) => {
 
 	try {
 		const user_req = await fetch(
-			`https://peculyn.com/api/v1/users/login/`,
+			`https://peculyn.online/api/v1/users/login/`,
 			{
 				method: "POST",
 				headers: {

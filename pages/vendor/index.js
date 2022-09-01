@@ -18,7 +18,7 @@ export async function getServerSideProps(context) {
 	const { email, account, status, domain } = getData(context);
 
 	const res = await fetch(
-		`https://peculyn.com/api/v1/products/?vendor=${email}`,
+		`https://peculyn.online/api/v1/products/?vendor=${email}`,
 		{
 			method: "Get",
 			headers: {
@@ -30,7 +30,7 @@ export async function getServerSideProps(context) {
 	);
 
 	const complete = await fetch(
-		`https://peculyn.com/api/v1/orders/vendors/?email=${email}&type=paid`,
+		`https://peculyn.online/api/v1/orders/vendors/?email=${email}&type=paid`,
 		{
 			method: "Get",
 			headers: {
@@ -42,7 +42,7 @@ export async function getServerSideProps(context) {
 	);
 
 	const pending = await fetch(
-		`https://peculyn.com/api/v1/orders/vendors/?email=${email}&type=pending`,
+		`https://peculyn.online/api/v1/orders/vendors/?email=${email}&type=pending`,
 		{
 			method: "Get",
 			headers: {

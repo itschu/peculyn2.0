@@ -5,6 +5,7 @@ import ButtonLoader from "../button-loader";
 import VendorMenu from "../vendor-menu";
 import SuccessMsg from "../successMsg";
 import ErrorMsg from "../errorMsg";
+import { data } from "autoprefixer";
 
 const SingleOrder = ({ order, account }) => {
 	const [load, setLoad] = useState(false);
@@ -24,6 +25,7 @@ const SingleOrder = ({ order, account }) => {
 			email: thisOrder.email,
 			seen: thisOrder.seen,
 			order_id: thisOrder.order_id,
+			only_confirm: true,
 		};
 
 		const verify_req = await fetch(`/api/verify`, {
@@ -36,13 +38,15 @@ const SingleOrder = ({ order, account }) => {
 		});
 
 		const {
-			data: { pay_stat, message },
+			data: { pay_stat, message, declined },
 		} = await verify_req.json();
 
 		if (pay_stat) {
 			setThisOrder({ ...order, payment_status: "paid" });
 			setSuccess({ show: true, message });
 		} else {
+			if (declined == true)
+				setThisOrder({ ...order, payment_status: "declined" });
 			setError({ show: true, message });
 		}
 

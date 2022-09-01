@@ -7,7 +7,7 @@ const Withdraw = ({ completeOrders }) => {
 	if (completeOrders.length > 0) {
 		for (let i = 0; i < completeOrders.length; i++) {
 			const el = completeOrders[i];
-			totalOrders += parseFloat(el.amount);
+			totalOrders += parseFloat(el.price);
 		}
 	}
 	return (

@@ -1,7 +1,5 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
 import { useCart } from "../../context/cart";
-import { useAllProducts } from "../../context/products";
 import { useSelectedProduct } from "../../context/selectedProduct";
 import { fileName } from "../../data";
 import Product from "../product";
@@ -12,8 +10,9 @@ const Pagination = ({
 	productSeen,
 	pageCount,
 	productPerPage,
+	shopProducts,
+	max,
 }) => {
-	const { allProducts } = useAllProducts();
 	const { addToCart } = useCart();
 
 	const router = useRouter();
@@ -29,10 +28,10 @@ const Pagination = ({
 		setPageNumber(selected);
 	};
 
-	const displayProducts = allProducts
+	const displayProducts = shopProducts
 		.slice(productSeen, productSeen + productPerPage)
 		.map((el, i) => {
-			const pic = `https://peculyn.com/assets/images/${
+			const pic = `https://peculyn.online/assets/images/${
 				el?.category
 			}/${fileName(el?.img_1)}`;
 
@@ -64,17 +63,19 @@ const Pagination = ({
 		<>
 			{displayProducts}
 
-			<ReactPaginate
-				previousLabel={"Previous"}
-				nextLabel={"Next"}
-				pageCount={pageCount}
-				onPageChange={changePage}
-				containerClassName={"pagination"}
-				previousLinkClassName={"prevBtn"}
-				nextLinkClassName={"nextBtn"}
-				disabledClassName={"paginationDisabled"}
-				activeClassName={"paginationActive"}
-			/>
+			{shopProducts.length >= max && (
+				<ReactPaginate
+					previousLabel={"Previous"}
+					nextLabel={"Next"}
+					pageCount={pageCount}
+					onPageChange={changePage}
+					containerClassName={"pagination"}
+					previousLinkClassName={"prevBtn"}
+					nextLinkClassName={"nextBtn"}
+					disabledClassName={"paginationDisabled"}
+					activeClassName={"paginationActive"}
+				/>
+			)}
 		</>
 	);
 };

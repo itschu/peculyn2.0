@@ -3,7 +3,7 @@ import Image from "next/image";
 const Product = ({ el, navigate, addToCart, discount, pic, showDiscount }) => {
 	return (
 		<div
-			className="group cursor-pointer col-span-1 bg-white overflow-hidden relative duration-75"
+			className="group cursor-pointer col-span-1 bg-white overflow-hidden relative duration-75 flex flex-col items-center"
 			onClick={() => navigate(el)}
 		>
 			{showDiscount && (
@@ -11,7 +11,7 @@ const Product = ({ el, navigate, addToCart, discount, pic, showDiscount }) => {
 					-{discount}%
 				</div>
 			)}
-			<div className="relative w-full h-60">
+			<div className="relative w-full h-60 ">
 				<Image
 					src={`${pic}`}
 					layout="fill"
@@ -47,7 +47,7 @@ const Product = ({ el, navigate, addToCart, discount, pic, showDiscount }) => {
 					e.stopPropagation();
 					addToCart(el);
 				}}
-				className="px-5 py-2 bg-primary-600 absolute top-44 left-32 md:left-16 opacity-0 group-hover:opacity-100 duration-500 transition-all hover:bg-slate-900 hover:text-white z-5"
+				className="px-5 py-2 bg-primary-600 absolute top-44 opacity-0 group-hover:opacity-100 duration-500 transition-all hover:bg-slate-900 hover:text-white z-5"
 			>
 				<span className="flex items-center text-sm">
 					<svg

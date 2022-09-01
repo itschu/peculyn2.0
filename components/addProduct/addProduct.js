@@ -141,7 +141,7 @@ const AddProduct = ({
 			);
 			if (newProduct?.mainPicture instanceof Blob) {
 				img_res = await fetch(
-					`https://peculyn.com/api/v1/products/upload/?category=${cate}`,
+					`https://peculyn.online/api/v1/products/upload/?category=${cate}`,
 					{
 						method: "POST",
 						headers: {
@@ -160,7 +160,7 @@ const AddProduct = ({
 			);
 			if (newProduct?.img_2 instanceof Blob) {
 				img_res2 = await fetch(
-					`https://peculyn.com/api/v1/products/upload/?category=${cate}`,
+					`https://peculyn.online/api/v1/products/upload/?category=${cate}`,
 					{
 						method: "POST",
 						headers: {
@@ -179,7 +179,7 @@ const AddProduct = ({
 			);
 			if (newProduct?.img_3 instanceof Blob) {
 				img_res3 = await fetch(
-					`https://peculyn.com/api/v1/products/upload/?category=${cate}`,
+					`https://peculyn.online/api/v1/products/upload/?category=${cate}`,
 					{
 						method: "POST",
 						headers: {
@@ -198,7 +198,7 @@ const AddProduct = ({
 			);
 			if (newProduct?.img_4 instanceof Blob) {
 				img_res4 = await fetch(
-					`https://peculyn.com/api/v1/products/upload/?category=${cate}`,
+					`https://peculyn.online/api/v1/products/upload/?category=${cate}`,
 					{
 						method: "POST",
 						headers: {
@@ -239,7 +239,7 @@ const AddProduct = ({
 				};
 
 				const res = await fetch(
-					`https://peculyn.com/api/v1/products/`,
+					`https://peculyn.online/api/v1/products/`,
 					{
 						method: edit ? "PUT" : "POST",
 						headers: {

@@ -43,7 +43,7 @@ const SingleProduct = ({ id }) => {
 
 	const getData = async () => {
 		const prod = await fetch(
-			`https://peculyn.com/api/v1/products/?id=${id}`,
+			`https://peculyn.online/api/v1/products/?id=${id}`,
 			{
 				method: "Get",
 				headers: {
@@ -60,7 +60,7 @@ const SingleProduct = ({ id }) => {
 		getData();
 	}
 
-	const mainPic = `https://peculyn.com/assets/images/${singleProd?.img_1.replace(
+	const mainPic = `https://peculyn.online/assets/images/${singleProd?.img_1.replace(
 		"../assets/images/",
 		""
 	)}`;
@@ -101,12 +101,7 @@ const SingleProduct = ({ id }) => {
 			<div className="grid sm:grid-cols-2 gap-10 mt-8 mb-10">
 				<div>
 					{!singleProd.stale ? (
-						<div
-							className="border bg-neutral-400 mb-5 relative"
-							style={{
-								height: 650,
-							}}
-						>
+						<div className="border bg-neutral-400 mb-5 relative product-img">
 							<Image
 								src={mainPic}
 								blurDataURL={
@@ -123,10 +118,7 @@ const SingleProduct = ({ id }) => {
 							)}
 						</div>
 					) : (
-						<span
-							className="bg-neutral-400 mb-5 relative h-full w-full skeleton-box"
-							style={{ height: 550 }}
-						></span>
+						<span className="bg-neutral-400 mb-5 relative w-full skeleton-box h-imgFUll"></span>
 					)}
 
 					<div className="w-full h-full flex gap-3">
@@ -134,7 +126,7 @@ const SingleProduct = ({ id }) => {
 							<>
 								<span className="w-20 h-20 bg-neutral-400 relative">
 									<Image
-										src={`https://peculyn.com/assets/images/${singleProd?.img_1.replace(
+										src={`https://peculyn.online/assets/images/${singleProd?.img_1.replace(
 											"../assets/images/",
 											""
 										)}`}
@@ -148,7 +140,7 @@ const SingleProduct = ({ id }) => {
 								</span>
 								<span className="w-20 h-20 bg-neutral-400 relative">
 									<Image
-										src={`https://peculyn.com/assets/images/${singleProd?.img_2.replace(
+										src={`https://peculyn.online/assets/images/${singleProd?.img_2.replace(
 											"../assets/images/",
 											""
 										)}`}
@@ -162,7 +154,7 @@ const SingleProduct = ({ id }) => {
 								</span>
 								<span className="w-20 h-20 bg-neutral-400 relative">
 									<Image
-										src={`https://peculyn.com/assets/images/${singleProd?.img_3.replace(
+										src={`https://peculyn.online/assets/images/${singleProd?.img_3.replace(
 											"../assets/images",
 											""
 										)}`}
@@ -176,7 +168,7 @@ const SingleProduct = ({ id }) => {
 								</span>
 								<span className="w-20 h-20 bg-neutral-400 relative">
 									<Image
-										src={`https://peculyn.com/assets/images/${singleProd?.img_4.replace(
+										src={`https://peculyn.online/assets/images/${singleProd?.img_4.replace(
 											"../assets/images/",
 											""
 										)}`}

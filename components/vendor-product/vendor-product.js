@@ -51,7 +51,7 @@ const VendorProduct = ({ allVendorProducts, setLoading, setUploadStatus }) => {
 
 		try {
 			const res = await fetch(
-				`https://peculyn.com/api/v1/products/?id=${id}`,
+				`https://peculyn.online/api/v1/products/?id=${id}`,
 				{
 					method: "Delete",
 					headers: {
@@ -157,7 +157,7 @@ const VendorProduct = ({ allVendorProducts, setLoading, setUploadStatus }) => {
 																<div className="flex items-center">
 																	<div className="flex-shrink-0 w-10 h-10 relative bg-neutral-200">
 																		<Image
-																			src={`https://peculyn.com/assets/images/${el?.img_1.replace(
+																			src={`https://peculyn.online/assets/images/${el?.img_1.replace(
 																				"../assets/images/",
 																				""
 																			)}`}

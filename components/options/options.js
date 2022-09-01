@@ -1,4 +1,46 @@
-const Options = () => {
+import { useEffect, useState } from "react";
+import { useAllProducts } from "../../context/products";
+import { currencyFractionDigits } from "../../data";
+
+const reset = {
+	cond1: false,
+	cond2: false,
+	cond3: false,
+	cond4: false,
+};
+
+const Options = ({ setShopProducts }) => {
+	const { allProducts } = useAllProducts();
+	const [disabled, setDisabled] = useState(false);
+	const [conditions, setConditions] = useState({ ...reset });
+
+	const min = 1000;
+	const max = 50000;
+	const [range, setRange] = useState(20000);
+
+	const filterPrice = () => {
+		const newList = allProducts.filter(
+			(el) => parseFloat(el.price) <= parseInt(range)
+		);
+		setShopProducts(newList);
+	};
+
+	useEffect(() => {
+		filterPrice();
+	}, [range]);
+
+	if (
+		conditions.cond1 == false &&
+		conditions.cond2 == false &&
+		conditions.cond3 == false &&
+		conditions.cond4 == false
+	) {
+		console.log(conditions);
+		disabled == true && setDisabled(false);
+	} else {
+		disabled == false && setDisabled(true);
+	}
+
 	return (
 		<div className="sm:col-span-1 " style={{ fontSize: 16 }}>
 			<div className="seach-option" id="search">
@@ -93,10 +135,92 @@ const Options = () => {
 					</svg>
 				</div>
 
-				<div>
-					<div className="flex items-center">
-						<input type={"checkbox"} className="mr-4 w-5 h-5" />
-						<span>₦1000 - ₦10000</span>
+				<div className="w-full">
+					<div className="flex flex-col w-full">
+						<div className="flex w-full justify-between ">
+							<input
+								type="range"
+								min={min}
+								max={max}
+								value={range}
+								onChange={(e) => {
+									e.target.value >= min &&
+										setRange(e.target.value);
+								}}
+								disabled={disabled}
+							/>
+
+							<span>
+								₦
+								{range.toLocaleString("en-US", {
+									maximumFractionDigits:
+										currencyFractionDigits,
+								})}
+							</span>
+						</div>
+						<span>
+							₦{min} - ₦{max}
+						</span>
+					</div>
+
+					<div className="flex items-center mt-8">
+						<input
+							type={"checkbox"}
+							className="mr-4 w-5 h-5"
+							value={conditions.cond1}
+							onChange={() =>
+								setConditions({
+									...reset,
+									cond1: !conditions.cond1,
+								})
+							}
+						/>
+						<span>₦50,000 - ₦99,999</span>
+					</div>
+
+					<div className="flex items-center mt-4">
+						<input
+							type={"checkbox"}
+							className="mr-4 w-5 h-5"
+							value={conditions.cond2}
+							onChange={() =>
+								setConditions({
+									...reset,
+									cond2: !conditions.cond2,
+								})
+							}
+						/>
+						<span>₦100,000 - ₦299,999</span>
+					</div>
+
+					<div className="flex items-center mt-4">
+						<input
+							type={"checkbox"}
+							className="mr-4 w-5 h-5"
+							value={conditions.cond3}
+							onChange={() =>
+								setConditions({
+									...reset,
+									cond3: !conditions.cond3,
+								})
+							}
+						/>
+						<span>₦300,000 - ₦1,000,000</span>
+					</div>
+
+					<div className="flex items-center mt-4">
+						<input
+							type={"checkbox"}
+							className="mr-4 w-5 h-5"
+							value={conditions.cond4}
+							onChange={() =>
+								setConditions({
+									...reset,
+									cond4: !conditions.cond4,
+								})
+							}
+						/>
+						<span>₦1,000,000 - Above</span>
 					</div>
 				</div>
 			</div>

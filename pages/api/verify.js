@@ -10,10 +10,11 @@ const verify_route = async (request, response) => {
 				let new_email = email;
 				let message = "";
 				let pay_stat = false;
+				let declined = false;
 
 				if (new_email === undefined) {
 					let all = await fetch(
-						`https://peculyn.com/api/v1/orders/?vendor=${reference}&type=all&for=tran_id`,
+						`https://peculyn.online/api/v1/orders/?vendor=${reference}&type=all&for=tran_id`,
 						{
 							method: "Get",
 							headers: {
@@ -36,7 +37,7 @@ const verify_route = async (request, response) => {
 
 					//update seen column in the dataase
 					const seen_req = await fetch(
-						`https://peculyn.com/api/v1/orders/`,
+						`https://peculyn.online/api/v1/orders/`,
 						{
 							method: "PUT",
 							headers: {
@@ -64,14 +65,14 @@ const verify_route = async (request, response) => {
 
 				const confirm_res = await confirm_req.json();
 
-				if (confirm_res.status) {
+				if (confirm_res.data.status == "success") {
 					pay_stat = true;
 					message =
 						"The payment for your order was received. You will receive a mail with more information about the transaction and delivery";
 					const ref = { reference, order_id: new_order_id };
 					//tick the transaction as paid on our database
 					const verify_req = await fetch(
-						`https://peculyn.com/api/v1/pay/verify`,
+						`https://peculyn.online/api/v1/pay/verify`,
 						{
 							method: "PUT",
 							headers: {
@@ -83,23 +84,53 @@ const verify_route = async (request, response) => {
 						}
 					);
 
-					const verify_res = await verify_req.json();
+					await verify_req.json();
 				} else {
-					message =
-						"Your payment has not been received yet, please make payment or contact support for any issue";
+					if (confirm_res.data.status == "abandoned") {
+						message = `This transaction was ${confirm_res.data.status}, therefore marked as declined. Please contact support for any issue`;
+						declined = true;
+
+						const declineRef = {
+							reference,
+							order_id: new_order_id,
+							declined,
+						};
+
+						//tick the transaction as declined on our database
+						const decline_req = await fetch(
+							`https://peculyn.online/api/v1/pay/verify`,
+							{
+								method: "PUT",
+								headers: {
+									Accept: "application/json",
+									"Content-Type": "application/json",
+									Authorization:
+										process.env.NEXT_PUBLIC_HOME_API,
+								},
+								body: JSON.stringify(declineRef),
+							}
+						);
+
+						await decline_req.json();
+					} else {
+						message =
+							"Your payment has not been received yet, please make payment or contact support for any issue";
+					}
+
 					if (only_confirm === true) {
 						return response.status(200).json({
 							success: true,
 							data: {
 								pay_stat,
 								message,
+								declined,
 							},
 						});
 					}
 				}
 
 				const all = await fetch(
-					`https://peculyn.com/api/v1/orders/?vendor=${new_email}&type=all&for=user`,
+					`https://peculyn.online/api/v1/orders/?vendor=${new_email}&type=all&for=user`,
 					{
 						method: "Get",
 						headers: {

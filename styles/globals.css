@@ -49,11 +49,11 @@ a {
 }
 
 .active {
-	@apply text-primary-650;
+	@apply text-primary-650 border-b-2 border-slate-700 px-1;
 }
 
 .hero-category {
-	@apply m-2 sm:m-4  rounded-lg border border-slate-200 shadow-md bg-white transition duration-200 transform hover:scale-105 flex items-center overflow-hidden;
+	@apply m-2 sm:m-4 md:my-5 rounded-lg border border-slate-200 shadow-md bg-white transition duration-200 transform hover:scale-105 flex items-center overflow-hidden;
 }
 
 .important {
@@ -165,7 +165,11 @@ a {
 	@apply px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-xs font-semibold text-gray-700 uppercase tracking-wider;
 }
 
-@media screen and (max-width: 300px) {
+.product-img {
+	@apply h-imgHalf md:h-imgFUll;
+}
+
+@media screen and (max-width: 400px) {
 	.table-overflow {
 		width: 90vw;
 		overflow-x: auto;
@@ -402,4 +406,96 @@ a {
 			transform: rotate(360deg);
 		}
 	}
+}
+
+.slider {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	position: relative;
+}
+.slider .wrapper {
+	height: 100%;
+	transition: 0.5s all linear;
+	will-change: transform;
+}
+.slider .arrows {
+	position: absolute;
+	top: 50%;
+	background: none;
+	height: 60px;
+	border: 0;
+	cursor: pointer;
+	transition: ease 0.3s all;
+	outline: none;
+}
+.slider .arrows.prev {
+	left: 0;
+}
+.slider .arrows.prev:hover {
+	opacity: 0.7;
+	left: -10px;
+}
+.slider .arrows.next {
+	right: 0;
+}
+.slider .arrows.next:hover {
+	right: -10px;
+	opacity: 0.7;
+}
+.slider .dots-container {
+	height: auto;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	width: auto;
+	text-align: center;
+	left: 50%;
+	bottom: 9px;
+	transform: translateX(-50%);
+	z-index: 10;
+	list-style-type: none;
+}
+.slider .dots-container li {
+	display: inline-block;
+	padding: 5px;
+}
+.slider .dots-container li.active button {
+	color: #00d8ff;
+}
+.slider .dots-container li button {
+	color: #fff;
+	background-color: transparent;
+	border: none;
+}
+.slider .dots-container li button:hover {
+	text-decoration: none;
+	opacity: 0.7;
+	cursor: pointer;
+}
+.slider .toggle-play {
+	background: transparent;
+	border: none;
+	height: auto;
+	position: absolute;
+	width: auto;
+	right: 5%;
+	bottom: 9px;
+	color: #3d3d3d;
+	z-index: 1000000;
+}
+.slider .toggle-play:hover {
+	text-decoration: none;
+	opacity: 0.7;
+	cursor: pointer;
+}
+.slider .each-slide {
+	@apply w-screen h-screen md:w-full md:h-full;
+	float: left;
+	line-height: 100vh;
+	font-size: 40vh;
+	text-align: center;
+	background-size: cover;
+	background-position: center center;
+	background-color: transparent;
 }

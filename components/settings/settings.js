@@ -48,7 +48,7 @@ const Settings = ({ user, states, setLoading, setUploadStatus }) => {
 				number: userDetails.number,
 			};
 
-			const res = await fetch(`https://peculyn.com/api/v1/users/`, {
+			const res = await fetch(`https://peculyn.online/api/v1/users/`, {
 				method: "PUT",
 				headers: {
 					Accept: "application/json",

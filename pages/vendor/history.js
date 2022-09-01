@@ -29,7 +29,7 @@ export default AllHistory;
 export async function getServerSideProps(context) {
 	const { email, account, status, domain } = getData(context);
 	const hist = await fetch(
-		`https://peculyn.com/api/v1/history/?email=${email}`,
+		`https://peculyn.online/api/v1/history/?email=${email}`,
 		{
 			method: "Get",
 			headers: {

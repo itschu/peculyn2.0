@@ -39,7 +39,7 @@ const UserDetails = ({ user, setLoading, setUploadStatus }) => {
 			};
 
 			const res = await fetch(
-				`https://peculyn.com/api/v1/users/?user=${userDetails.unique_id}`,
+				`https://peculyn.online/api/v1/users/?user=${userDetails.unique_id}`,
 				{
 					method: "PUT",
 					headers: {

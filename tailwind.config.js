@@ -45,6 +45,10 @@ module.exports = {
 					900: "#1c2b35",
 				},
 			},
+			height: {
+				imgHalf: 420,
+				imgFUll: 560,
+			},
 		},
 	},
 	plugins: [],

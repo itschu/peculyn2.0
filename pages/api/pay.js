@@ -58,6 +58,7 @@ const pay_route = async (request, response) => {
 
 				const { cartState } = body;
 
+				//add each item of the cart items to order table
 				const manageOrder = async (type, userData, order_id, el) => {
 					const send = {
 						uId: userData.unique_id,
@@ -66,33 +67,42 @@ const pay_route = async (request, response) => {
 						pQty: el.qty,
 						price: parseFloat(el.price),
 						owner: el.owner,
+						name: el.name,
 					};
 
 					try {
-						await fetch(`https://peculyn.com/api/v1/pay/addOrder`, {
-							method: type,
-							headers: {
-								Authorization: process.env.NEXT_PUBLIC_HOME_API,
-								"Content-Type": "application/json",
-								Accept: "application/json",
-							},
-							body: JSON.stringify(send),
-						});
+						await fetch(
+							`https://peculyn.online/api/v1/pay/addOrder`,
+							{
+								method: type,
+								headers: {
+									Authorization:
+										process.env.NEXT_PUBLIC_HOME_API,
+									"Content-Type": "application/json",
+									Accept: "application/json",
+								},
+								body: JSON.stringify(send),
+							}
+						);
 					} catch (error) {
 						console.log(
 							"attempts to add recored failed - ",
 							send,
 							error
 						);
-						await fetch(`https://peculyn.com/api/v1/pay/addOrder`, {
-							method: type,
-							headers: {
-								Authorization: process.env.NEXT_PUBLIC_HOME_API,
-								"Content-Type": "application/json",
-								Accept: "application/json",
-							},
-							body: JSON.stringify(send),
-						});
+						await fetch(
+							`https://peculyn.online/api/v1/pay/addOrder`,
+							{
+								method: type,
+								headers: {
+									Authorization:
+										process.env.NEXT_PUBLIC_HOME_API,
+									"Content-Type": "application/json",
+									Accept: "application/json",
+								},
+								body: JSON.stringify(send),
+							}
+						);
 					}
 				};
 
@@ -101,6 +111,7 @@ const pay_route = async (request, response) => {
 				);
 
 				const saveCart = cartState.items.map((el) => ({
+					itemId: el.id,
 					itemName: el.name,
 					itmPrice: el.price,
 					itemAmt: el.total_price,
@@ -124,7 +135,7 @@ const pay_route = async (request, response) => {
 				};
 
 				const initiateTransactionRequest = await fetch(
-					`https://peculyn.com/api/v1/pay/`,
+					`https://peculyn.online/api/v1/pay/`,
 					{
 						method: "Post",
 						headers: {

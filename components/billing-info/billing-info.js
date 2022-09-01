@@ -46,7 +46,7 @@ const BillingInfo = ({ user, states, setLoading, setUploadStatus }) => {
 			};
 
 			const res = await fetch(
-				`https://peculyn.com/api/v1/users/?user=${userDetails.unique_id}&billing=true`,
+				`https://peculyn.online/api/v1/users/?user=${userDetails.unique_id}&billing=true`,
 				{
 					method: "PUT",
 					headers: {

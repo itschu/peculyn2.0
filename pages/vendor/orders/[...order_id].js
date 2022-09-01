@@ -37,7 +37,7 @@ export async function getServerSideProps(context) {
 	// const account = order_id[1] || "";
 
 	const ord = await fetch(
-		`https://peculyn.com/api/v1/orders/?vendor=${email}&type=single&order_id=${order_id[0]}`,
+		`https://peculyn.online/api/v1/orders/?vendor=${email}&type=single&order_id=${order_id[0]}`,
 		{
 			method: "Get",
 			headers: {

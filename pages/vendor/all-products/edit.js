@@ -40,7 +40,7 @@ export default Edit;
 export async function getServerSideProps(context) {
 	const { email, account, status, domain } = getData(context);
 
-	const res = await fetch(`https://peculyn.com/api/v1/categories/`, {
+	const res = await fetch(`https://peculyn.online/api/v1/categories/`, {
 		method: "Get",
 		headers: {
 			Accept: "application/json",

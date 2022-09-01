@@ -1,4 +1,4 @@
-const ErrorMsg = ({ error, setError }) => {
+const ErrorMsg = ({ error, setError, cancel = true }) => {
 	return (
 		<div
 			className={`p-3 bg-red-400 transition-all duration-700 mb-10 md:mb-0 ${
@@ -24,23 +24,26 @@ const ErrorMsg = ({ error, setError }) => {
 					{error.message}
 				</span>
 
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					className="h-5 w-5 absolute right-0 cursor-pointer"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke="currentColor"
-					strokeWidth={2}
-					onClick={() =>
-						setError({ ...error, show: false, message: "" })
-					}
-				>
-					<path
-						strokeLinecap="round"
-						strokeLinejoin="round"
-						d="M6 18L18 6M6 6l12 12"
-					/>
-				</svg>
+				{cancel && (
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						className="h-5 w-5 absolute right-0 cursor-pointer"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+						strokeWidth={2}
+						onClick={() =>
+							cancel &&
+							setError({ ...error, show: false, message: "" })
+						}
+					>
+						<path
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							d="M6 18L18 6M6 6l12 12"
+						/>
+					</svg>
+				)}
 			</p>
 		</div>
 	);
