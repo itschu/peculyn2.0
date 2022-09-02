@@ -23,7 +23,7 @@ const AllProductsContext = ({ children }) => {
 		} catch (e) {
 			alert("please check your network connection");
 		}
-		setAllProducts(products);
+		// setAllProducts(products);
 	};
 
 	useEffect(() => {
