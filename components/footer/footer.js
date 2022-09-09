@@ -7,12 +7,12 @@ const Footer = ({ border = false }) => {
 	return (
 		<>
 			<div
-				className={`p-4 py-8 md:py-5 md:px-32 flex flex-col md:flex-row md:gap-40 border-b border-b-slate-300 ${
+				className={`p-8 md:py-5 md:px-12 flex flex-col lg:flex-row md:gap-5 lg:gap-40 border-b border-b-slate-300 lg:justify-center ${
 					border && "border-t"
 				}`}
 				style={{ fontSize: 15 }}
 			>
-				<div className="flex flex-col sm:flex-row sm:items-center sm:gap-10 mb-5">
+				<div className="flex flex-col sm:gap-10 mb-5">
 					<div id="logo" className="h-16 w-12 mb-3 relative mr-10">
 						<Image
 							src={`/images/design/logo.png`}
@@ -98,7 +98,7 @@ const Footer = ({ border = false }) => {
 									d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
 								/>
 							</svg>
-							www.peculyn.online
+							www.peculyn.com
 						</p>
 
 						<div className="flex gap-2 mt-5">
@@ -148,16 +148,16 @@ const Footer = ({ border = false }) => {
 
 				<div>
 					<h3 className=" footer-header">Information</h3>
-					<Link href={""} passHref>
+					<Link href={"#"} passHref>
 						<p className="link footer-link">About Us</p>
 					</Link>
-					<Link href={""} passHref>
+					<Link href={"/contact"} passHref>
 						<p className="link footer-link">Contact Us</p>
 					</Link>
-					<Link href={""} passHref>
+					<Link href={"/privacy"} passHref>
 						<p className="link footer-link">Privacy Policy</p>
 					</Link>
-					<Link href={""} passHref>
+					<Link href={"/terms"} passHref>
 						<p className="link footer-link">
 							Terms &amp; Conditions
 						</p>
@@ -166,21 +166,21 @@ const Footer = ({ border = false }) => {
 
 				<div>
 					<h3 className=" footer-header">Customer Service</h3>
-					<Link href={""} passHref>
+					<Link href={"/shop"} passHref>
 						<p className="link footer-link ">Shop</p>
 					</Link>
-					<Link href={""} passHref>
+					{/* <Link href={""} passHref>
 						<p className="link footer-link ">Help Center</p>
 					</Link>
 					<Link href={""} passHref>
 						<p className="link footer-link ">FAQ&apos;s</p>
-					</Link>
-					<Link href={""} passHref>
+					</Link> */}
+					<Link href={"/contact"} passHref>
 						<p className="link footer-link ">Submit a Dispute</p>
 					</Link>
-					<Link href={""} passHref>
+					{/* <Link href={""} passHref>
 						<p className="link footer-link ">Track Order</p>
-					</Link>
+					</Link> */}
 					<Image
 						src={`/images/design/payment.png`}
 						width={271}

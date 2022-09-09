@@ -410,7 +410,7 @@ a {
 
 .slider {
 	width: 100%;
-	height: 100%;
+	@apply h-96 md:h-full;
 	overflow: hidden;
 	position: relative;
 }
@@ -464,7 +464,7 @@ a {
 	color: #00d8ff;
 }
 .slider .dots-container li button {
-	color: #fff;
+	color: #dcdcdc;
 	background-color: transparent;
 	border: none;
 }
@@ -489,13 +489,63 @@ a {
 	opacity: 0.7;
 	cursor: pointer;
 }
+
 .slider .each-slide {
-	@apply w-screen h-screen md:w-full md:h-full;
-	float: left;
-	line-height: 100vh;
-	font-size: 40vh;
-	text-align: center;
-	background-size: cover;
-	background-position: center center;
-	background-color: transparent;
+	@apply w-screen h-screen md:w-full md:h-full flex items-center pl-7 md:pl-20 bg-slate-400;
+	background-image: url(/images/design/chair.jpg);
+	background-position: left;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-color: black;
+}
+
+.slider .each-slide h1 {
+	font-size: clamp(1.4rem, 2.4vw, 3rem);
+	max-width: 24ch;
+	position: relative;
+	@apply font-extrabold;
+}
+
+@media screen and (max-width: 380px) {
+	.slider .each-slide h1 {
+		max-width: 4ch;
+	}
+}
+
+@media screen and (max-width: 880px) {
+	.slider .each-slide h1 {
+		max-width: 20ch;
+	}
+}
+
+.contact-form h3 {
+	@apply font-bold text-lg;
+}
+
+.contact-form > div {
+	@apply flex flex-col items-center justify-center;
+}
+
+.contact-form p {
+	@apply text-center;
+}
+
+.contact-input {
+	margin-top: 17px;
+	background-color: #f4f4f4b3;
+	border: 1px solid #dbdbdbb3;
+	border-radius: 8px;
+	outline: none;
+}
+
+.-content {
+	@apply mb-10;
+}
+
+.-heading {
+	@apply text-xl font-bold mb-3;
+}
+
+.main-content h3 {
+	@apply text-xl font-bold mt-6 mb-2;
 }

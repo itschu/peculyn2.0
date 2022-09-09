@@ -11,7 +11,7 @@ const Search = () => {
 
 	return (
 		<div className="font-body text-gray-700">
-			<HtmlHead currentPage={`Search Products`} />
+			<HtmlHead currentPage={`Search Products`} order={"reverse"} />
 			<Nav />
 			<SearchAll />
 			<Newsletter />

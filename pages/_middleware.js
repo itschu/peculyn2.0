@@ -56,9 +56,9 @@ export default async function middleware(request) {
 		}
 	}
 
-	if (request.nextUrl.pathname.startsWith("/account/orders")) {
-		return NextResponse.next();
-	}
+	// if (request.nextUrl.pathname.startsWith("/account/orders")) {
+	// 	return NextResponse.next();
+	// }
 
 	if (request.nextUrl.pathname.startsWith("/account")) {
 		if (jwt === undefined) {

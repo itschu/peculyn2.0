@@ -14,7 +14,7 @@ const TopCategory = () => {
 			style={{ backgroundColor: "#f4f4f4" }}
 		>
 			<div className="">
-				<h2 className="text-3xl font-semibold mb-6">
+				<h2 className="text-3xl font-bold mb-6 capitalize">
 					Top trending categories
 				</h2>
 				<div className="grid sm:grid-cols-4 gap-3 md:gap-5 border-t pt-10 ">

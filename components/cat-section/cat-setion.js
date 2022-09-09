@@ -7,7 +7,7 @@ const CatSetion = () => {
 	const { allProducts } = useAllProducts();
 
 	return (
-		<div className="py-10 ">
+		<div className="py-10">
 			{allProducts.length > 5 ? (
 				<ProductsRow title="Best Selling products" max={5} />
 			) : (

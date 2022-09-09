@@ -60,11 +60,17 @@ const Hero = () => {
 				className="each-slide"
 				key={index}
 				style={{
-					backgroundImage: item.eachSlide,
-					backgroundPosition: "left",
-					backgroundSize: "cover",
+					background: item.eachSlide,
+
+					// backgroundPosition: "left",
+					// backgroundSize: "contain",
+					// backgroundRepeat: "no-repeat",
+					// backgroundColor: "#fff",
 				}}
-			></div>
+				url={item.eachSlide}
+			>
+				<h1>Welcome to Peculyn Super Stores</h1>
+			</div>
 		));
 
 	const renderDots = () =>
@@ -83,12 +89,12 @@ const Hero = () => {
 
 	const renderPlayStop = () =>
 		autoplay ? (
-			<svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24">
+			<svg fill="#0000005d" height="24" viewBox="0 0 24 24" width="24">
 				<path d="M0 0h24v24H0z" fill="none" />
 				<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" />
 			</svg>
 		) : (
-			<svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24">
+			<svg fill="#0000005d" height="24" viewBox="0 0 24 24" width="24">
 				<path d="M0 0h24v24H0z" fill="none" />
 				<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
 			</svg>
@@ -101,7 +107,12 @@ const Hero = () => {
 				className="arrows prev"
 				onClick={() => prevOne()}
 			>
-				<svg fill="#FFFFFF" width="50" height="50" viewBox="0 0 24 24">
+				<svg
+					fill="#0000005d"
+					width="50"
+					height="50"
+					viewBox="0 0 24 24"
+				>
 					<path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
 					<path d="M0 0h24v24H0z" fill="none" />
 				</svg>
@@ -111,7 +122,12 @@ const Hero = () => {
 				className="arrows next"
 				onClick={() => nextOne()}
 			>
-				<svg fill="#FFFFFF" height="50" viewBox="0 0 24 24" width="50">
+				<svg
+					fill="#0000005d"
+					height="50"
+					viewBox="0 0 24 24"
+					width="50"
+				>
 					<path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
 					<path d="M0 0h24v24H0z" fill="none" />
 				</svg>
@@ -120,15 +136,8 @@ const Hero = () => {
 	);
 	return (
 		<div className="grid lg:grid-cols-3 md:grid-cols-4 h-min w-full bg-neutral-100 relative">
-			<div
-				className="slider md:col-span-2 bg-gray-500"
-				// style={{
-				// 	backgroundImage: "url(/images/design/hero.png)",
-				// 	backgroundPosition: "center",
-				// 	backgroundSize: "cover",
-				// }}
-			>
-				<div className="wrapper" style={setSliderStyles()}>
+			<div className="slider md:col-span-2 bg-gray-500">
+				<div className="wrapper relative" style={setSliderStyles()}>
 					{renderSlides()}
 				</div>
 

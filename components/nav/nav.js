@@ -54,7 +54,7 @@ const Nav = () => {
 					</li>
 					<li
 						className={`nav-category ${
-							path === "home" && "active"
+							path === "categories" && "active"
 						}`}
 					>
 						<Link href={"/categories"}>categories</Link>
@@ -68,10 +68,10 @@ const Nav = () => {
 					</li>
 					<li
 						className={`nav-category ${
-							path === "home" && "active"
+							path === "contact" && "active"
 						}`}
 					>
-						<Link href={"#"} passHref>
+						<Link href={"/contact"} passHref>
 							contact
 						</Link>
 					</li>
