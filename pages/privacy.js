@@ -5,7 +5,7 @@ import Nav from "../components/nav";
 import Newsletter from "../components/newsletter";
 import HtmlHead from "../components/head";
 import Cart from "../components/cart";
-import Privacy from "../components/privacy/privacy";
+import Privacy from "../components/privacy";
 
 const PrivacyPage = () => {
 	const { cartState } = useCart();

@@ -20,15 +20,15 @@ const Privacy = () => {
 					Peculyn is thoroughly committed to protecting the privacy of
 					our site visitors and customers. We fully appreciate and
 					respect the importance of privacy on the Internet. We
-					respect each visitor's and customer's right to personal
-					privacy. To this end, we collect and use information
-					throughout our website only as disclosed in this Privacy
-					Policy.
+					respect each visitor&apos;s and customer&apos;s right to
+					personal privacy. To this end, we collect and use
+					information throughout our website only as disclosed in this
+					Privacy Policy.
 				</p>
 				<h3>What this Privacy Policy Covers</h3>
 				<ul>
 					<li>How we collect information from you </li>
-					<li>How we protect customers' information </li>
+					<li>How we protect customers&apos; information </li>
 					<li>
 						How we use the information, and share all personal
 						information which you provide when you use our websites
@@ -79,39 +79,40 @@ const Privacy = () => {
 					and as otherwise described to you at the time of collection.
 					In our efforts to continually improve our product and
 					service offerings, we collect and analyse demographic and
-					profile data about our users' activity on our website. We
-					identify and use your IP address to help diagnose problems
-					with our server, and to administer our website. Your IP
-					address is also used to help identify you and to gather
-					broad demographic information. We will occasionally ask you
-					to complete optional online surveys. These surveys may ask
-					you for contact information and demographic information
-					(like location, local government area, age, or income
-					level). We use this data to tailor your experience at our
-					site, providing you with content that we think you might be
-					interested in--and to display content according to your
+					profile data about our users&apos; activity on our website.
+					We identify and use your IP address to help diagnose
+					problems with our server, and to administer our website.
+					Your IP address is also used to help identify you and to
+					gather broad demographic information. We will occasionally
+					ask you to complete optional online surveys. These surveys
+					may ask you for contact information and demographic
+					information (like location, local government area, age, or
+					income level). We use this data to tailor your experience at
+					our site, providing you with content that we think you might
+					be interested in--and to display content according to your
 					preferences.
 				</p>
 				<h3>4. Cookies</h3>
 				<p>
-					We use cookies to collect information. A "cookie" is a small
-					piece of information stored by a Web server on a Web browser
-					so it can be later read back from that browser. Cookies are
-					useful for enabling the browser to remember information
-					specific to a given user. Peculyn places both permanent and
-					temporary cookies in your computer's hard drive.
-					Peculyn.com's cookies do not contain any of your personally
-					identifiable information or private data. We use technology
-					in the collecting the information in order to make our Sites
-					and other content or services which we make available to you
-					more interesting and useful to you. For instance, when you
-					come to one of our Sites via your computer or other media
-					device, we may combine your visitor session information or
-					other information collected through cookies, web beacons and
-					other technical methods with personally identifiable
-					information in order to understand and improve your online
-					experiences and to determine what products, promotions and
-					services you prefer or are likely to be of interest to you.
+					We use cookies to collect information. A &quot;cookie&quot;
+					is a small piece of information stored by a Web server on a
+					Web browser so it can be later read back from that browser.
+					Cookies are useful for enabling the browser to remember
+					information specific to a given user. Peculyn places both
+					permanent and temporary cookies in your computer&apos;s hard
+					drive. Peculyn.com&apos;s cookies do not contain any of your
+					personally identifiable information or private data. We use
+					technology in the collecting the information in order to
+					make our Sites and other content or services which we make
+					available to you more interesting and useful to you. For
+					instance, when you come to one of our Sites via your
+					computer or other media device, we may combine your visitor
+					session information or other information collected through
+					cookies, web beacons and other technical methods with
+					personally identifiable information in order to understand
+					and improve your online experiences and to determine what
+					products, promotions and services you prefer or are likely
+					to be of interest to you.
 				</p>
 				<h3>5. Governing Principles of Data Processing</h3>
 				<p>

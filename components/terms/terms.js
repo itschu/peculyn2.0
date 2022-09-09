@@ -9,15 +9,16 @@ const Terms = () => {
 				</h1>
 			</div>
 			<div className="py-10 mt-1 p-4 md:py-10 md:px-32 my-10">
-				<div className="row1 ">
+				<div className="row1">
 					<div className="-heading">1. Introduction</div>
 					<div className="-content">
-						Peculyn International Super Store (" Peculyn " or "we")
-						operates an ecommerce platform consisting of a website
-						and mobile application ("marketplace"), together with
-						supporting logistics and payment infrastructure, for the
-						sale and purchase of consumer products in Nigeria
-						("territory").
+						Peculyn International Super Store (&quot;Peculyn&quot;
+						or &quot;we&quot;) operates an ecommerce platform
+						consisting of a website and mobile application
+						(&quot;marketplace&quot;), together with supporting
+						logistics and payment infrastructure, for the sale and
+						purchase of consumer products in Nigeria
+						(&quot;territory&quot;).
 						<br />
 						These general terms and conditions shall apply to buyers
 						and sellers on the marketplace and shall govern your use
@@ -34,7 +35,7 @@ const Terms = () => {
 							<li>
 								confirm that you have obtained the necessary
 								authority to agree to these general terms and
-								conditions;{" "}
+								conditions;
 							</li>
 							<li>
 								bind both yourself and the person, company or
@@ -43,10 +44,11 @@ const Terms = () => {
 								terms and conditions; and
 							</li>
 							<li>
-								agree that "you" in these general terms and
-								conditions shall reference both the individual
-								user and the relevant person, company or legal
-								entity unless the context requires otherwise.
+								agree that&quot;you&quot; in these general terms
+								and conditions shall reference both the
+								individual user and the relevant person, company
+								or legal entity unless the context requires
+								otherwise.
 							</li>
 						</ul>
 					</div>
@@ -114,7 +116,7 @@ const Terms = () => {
 							</li>
 							<li>
 								You may cancel your account on our marketplace
-								by contacting us as provided at section 23.{" "}
+								by contacting us as provided at section 23.
 							</li>
 						</ol>
 					</div>
@@ -268,8 +270,8 @@ const Terms = () => {
 					<div className="-content">
 						<ol>
 							<li>
-								In these general terms and conditions, "your
-								content" means:
+								In these general terms and conditions,&quot;your
+								content&quot; means:
 								<ul>
 									<li>
 										all works and materials (including
@@ -329,7 +331,7 @@ const Terms = () => {
 							</li>
 							<li>
 								Your content must not be illegal or unlawful,
-								infringe any person's legal rights, or be
+								infringe any person&apos;s legal rights, or be
 								capable of giving rise to legal action against
 								any person (in each case in any jurisdiction and
 								under any applicable law). Your content must not
@@ -395,7 +397,7 @@ const Terms = () => {
 							<li>
 								We may periodically review your content and we
 								reserve the right to remove any content in our
-								discretion for any reason whatsoever.{" "}
+								discretion for any reason whatsoever.
 							</li>
 							<li>
 								If you learn of any unlawful material or
@@ -457,9 +459,10 @@ const Terms = () => {
 					<div className="-content">
 						<ol>
 							<li>
-								In this section 8 words "marketplace" and
-								"website" shall be used interchangeably to refer
-								to Peculyn ’s websites and mobile applications.
+								In this section 8 words&quot;marketplace&quot;
+								and &quot;website&quot; shall be used
+								interchangeably to refer to Peculyn&apos;s
+								websites and mobile applications.
 							</li>
 							<li>
 								You may:
@@ -665,7 +668,6 @@ const Terms = () => {
 								</ul>
 							</li>
 							<li>
-								{" "}
 								Peculyn ’s logos and our other registered and
 								unregistered trademarks are trademarks belonging
 								to us; we give no permission for the use of
@@ -694,7 +696,6 @@ const Terms = () => {
 								Privacy and Cookie Notice
 							</li>
 							<li>
-								{" "}
 								Peculyn shall process all personal data obtained
 								through the marketplace and related services in
 								accordance with the terms of our Privacy and
@@ -1145,7 +1146,7 @@ const Terms = () => {
 								by any third party
 							</li>
 							<li>
-								The exercise of the parties' rights under a
+								The exercise of the parties&apos; rights under a
 								contract under these general terms and
 								conditions is not subject to the consent of any
 								third party
