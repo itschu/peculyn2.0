@@ -2,7 +2,8 @@ import { serialize } from "cookie";
 
 const logout_api = async (req, res) => {
 	const { cookies } = req;
-	const jwt = cookies.get(process.env.COOKIE_TOKEN);
+	const val = process.env.COOKIE_TOKEN;
+	const jwt = cookies[val];
 
 	if (!jwt) {
 		return res.json({ message: "not signed in" });
