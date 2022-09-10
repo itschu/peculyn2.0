@@ -67,7 +67,7 @@ const UserDetails = ({ user, setLoading, setUploadStatus }) => {
 		} catch (e) {
 			setLoading(false);
 			alert("please check your network connection");
-			console.log(e);
+			// console.log(e);
 		}
 
 		window.scrollTo({

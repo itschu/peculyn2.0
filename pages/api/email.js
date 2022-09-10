@@ -25,7 +25,7 @@ const mail = async (request, response) => {
 					message: "Email sent",
 				});
 			} catch (error) {
-				console.log(error);
+				// console.log(error);
 				res.status(400).json({ success: false, data: [] });
 			}
 			break;

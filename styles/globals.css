@@ -253,16 +253,16 @@ a {
 		display: flex;
 		margin-top: 70px;
 		/* justify-content: center; */
+		flex-wrap: wrap;
 	}
 
 	.pagination a {
-		padding: 10px;
-		margin: 8px;
+		position: relative;
 		border-radius: 5px;
 		border: 1px solid #ffd700;
 		color: #3b4252;
 		cursor: pointer;
-		/* font-weight: 700; */
+		@apply p-2 md:p-3 mx-1 md:mx-2;
 		font-size: 13px;
 	}
 

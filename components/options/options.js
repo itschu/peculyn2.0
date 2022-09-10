@@ -35,7 +35,7 @@ const Options = ({ setShopProducts }) => {
 		conditions.cond3 == false &&
 		conditions.cond4 == false
 	) {
-		console.log(conditions);
+		// console.log(conditions);
 		disabled == true && setDisabled(false);
 	} else {
 		disabled == false && setDisabled(true);

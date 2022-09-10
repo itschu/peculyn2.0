@@ -61,7 +61,9 @@ const Pagination = ({
 
 	return (
 		<>
-			{displayProducts}
+			<div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 mt-5">
+				{displayProducts}
+			</div>
 
 			{shopProducts.length >= max && (
 				<ReactPaginate

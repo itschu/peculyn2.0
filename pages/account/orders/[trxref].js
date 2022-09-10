@@ -33,7 +33,7 @@ export async function getServerSideProps(context) {
 	);
 
 	const orders = await all.json();
-	console.log(email);
+	// console.log(email);
 
 	return {
 		props: { orders },

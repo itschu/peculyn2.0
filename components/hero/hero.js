@@ -162,7 +162,7 @@ const Hero = () => {
 						<div className="hero-category capitalize" key={el.id}>
 							<div className="w-52 h-16 relative hidden md:block">
 								<Image
-									src={`/images/p${i + 6}.jpeg`}
+									src={el.img1}
 									layout="fill"
 									className="object-left-top object-cover"
 									alt={`${el.title} category image`}

@@ -60,17 +60,15 @@ const Shop = () => {
 						</div>
 					</div>
 					{allProducts.length > 1 ? (
-						<div className="grid sm:grid-cols-4 gap-3 md:gap-6 mt-5">
-							<Pagination
-								max={max}
-								pageNumber={pageNumber}
-								setPageNumber={setPageNumber}
-								productSeen={productSeen}
-								pageCount={pageCount}
-								productPerPage={productPerPage}
-								shopProducts={shopProducts}
-							/>
-						</div>
+						<Pagination
+							max={max}
+							pageNumber={pageNumber}
+							setPageNumber={setPageNumber}
+							productSeen={productSeen}
+							pageCount={pageCount}
+							productPerPage={productPerPage}
+							shopProducts={shopProducts}
+						/>
 					) : (
 						<LoadingProduct cols={4} max={max} />
 					)}
