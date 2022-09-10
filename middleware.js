@@ -3,10 +3,9 @@ import { NextResponse } from "next/server";
 const seceret = process.env.AUTH_SECRET;
 const domain = process.env.DOMAIN;
 
-export default async function middleware(request) {
+export default async function middleware(request, response) {
 	const { cookies } = request;
-
-	const jwt = cookies.peculynCom;
+	const jwt = cookies.get(process.env.COOKIE_TOKEN);
 
 	if (request.nextUrl.pathname.startsWith("/login")) {
 		if (jwt) {
@@ -33,6 +32,8 @@ export default async function middleware(request) {
 				// console.log(error);
 				return NextResponse.next();
 			}
+		} else {
+			return NextResponse.next();
 		}
 	}
 

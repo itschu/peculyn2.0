@@ -2,13 +2,13 @@ import { serialize } from "cookie";
 
 const logout_api = async (req, res) => {
 	const { cookies } = req;
-	const jwt = cookies.peculynCom;
+	const jwt = cookies.get(process.env.COOKIE_TOKEN);
 
 	if (!jwt) {
 		return res.json({ message: "not signed in" });
 	}
 
-	const serialized = serialize("peculynCom", null, {
+	const serialized = serialize(process.env.COOKIE_TOKEN, null, {
 		httpOnly: true,
 		secure: process.env.NODE_ENV !== "development",
 		sameSite: "strict",

@@ -60,6 +60,7 @@ export async function getServerSideProps(context) {
 	});
 	const user = await res.json();
 	const states = await state_req.json();
+
 	return {
 		props: { user, states }, // Will be passed to the page component as props
 	};

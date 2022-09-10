@@ -1,7 +1,8 @@
 const users_api = async (req, res) => {
 	const { cookies } = req;
 
-	const jwt = cookies.peculynCom;
+	const val = process.env.COOKIE_TOKEN;
+	const jwt = cookies[val];
 
 	if (!jwt) {
 		return res.json({ message: "invalid token" });

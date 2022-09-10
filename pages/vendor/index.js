@@ -16,7 +16,6 @@ export default Index;
 
 export async function getServerSideProps(context) {
 	const { email, account, status, domain } = getData(context);
-
 	const res = await fetch(
 		`https://peculyn.online/api/v1/products/?vendor=${email}`,
 		{

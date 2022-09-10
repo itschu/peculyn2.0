@@ -5,8 +5,8 @@ const getData = (context) => {
 	const domain = process.env.DOMAIN;
 
 	const { cookies } = context.req;
-
-	const jwt = cookies.peculynCom;
+	const val = process.env.COOKIE_TOKEN;
+	const jwt = cookies[val];
 
 	try {
 		const user = verify(jwt, seceret);

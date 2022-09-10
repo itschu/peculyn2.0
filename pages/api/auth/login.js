@@ -32,7 +32,7 @@ const login_api = async (req, res) => {
 				seceret
 			);
 
-			const serialized = serialize("peculynCom", token, {
+			const serialized = serialize(process.env.COOKIE_TOKEN, token, {
 				httpOnly: true,
 				secure: process.env.NODE_ENV !== "development",
 				sameSite: "strict",
