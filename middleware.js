@@ -5,7 +5,7 @@ const domain = process.env.DOMAIN;
 
 export default async function middleware(request, response) {
 	const { cookies } = request;
-	const jwt = cookies.get(process.env.COOKIE_TOKEN);
+	// const jwt = cookies.get(process.env.COOKIE_TOKEN);
 
 	// if (request.nextUrl.pathname.startsWith("/login")) {
 	// 	if (jwt) {
