@@ -464,7 +464,7 @@ a {
 	color: #00d8ff;
 }
 .slider .dots-container li button {
-	color: #dcdcdc;
+	color: #fff;
 	background-color: transparent;
 	border: none;
 }
@@ -491,19 +491,20 @@ a {
 }
 
 .slider .each-slide {
-	@apply w-screen h-screen md:w-full md:h-full flex items-center pl-7 md:pl-20 bg-slate-400;
-	background-image: url(/images/design/chair.jpg);
+	@apply w-screen h-screen md:w-full md:h-full flex items-center;
+	/* background: linear-gradient(rgba(0, 0, 0, 0.6), rgb(0, 0, 0, 0.6)),
+		url(/images/design/chair.jpg); */
 	background-position: left;
-	background-size: contain;
 	background-repeat: no-repeat;
-	background-color: black;
+	@apply flex justify-center md:justify-start md:pl-52;
 }
 
 .slider .each-slide h1 {
 	font-size: clamp(1.4rem, 2.4vw, 3rem);
 	max-width: 24ch;
 	position: relative;
-	@apply font-extrabold;
+	text-align: center;
+	@apply font-extrabold text-white;
 }
 
 @media screen and (max-width: 380px) {

@@ -4,19 +4,22 @@ import { CartProvider } from "../context/cart";
 import NextNProgress from "nextjs-progressbar";
 import "../styles/globals.css";
 import { UserContext } from "../context/user";
+import { MenuContext } from "../context/menu";
 
 function MyApp({ Component, pageProps: { ...pageProps } }) {
 	return (
-		<UserContext>
-			<SelectedProductContext>
-				<AllProductsContext>
-					<CartProvider>
-						<NextNProgress />
-						<Component {...pageProps} />
-					</CartProvider>
-				</AllProductsContext>
-			</SelectedProductContext>
-		</UserContext>
+		<MenuContext>
+			<UserContext>
+				<SelectedProductContext>
+					<AllProductsContext>
+						<CartProvider>
+							<NextNProgress />
+							<Component {...pageProps} />
+						</CartProvider>
+					</AllProductsContext>
+				</SelectedProductContext>
+			</UserContext>
+		</MenuContext>
 	);
 }
 

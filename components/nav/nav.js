@@ -1,10 +1,13 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useCart } from "../../context/cart";
+import { useMenu } from "../../context/menu";
+import SmallMenu from "../small-menu";
 
 const Nav = () => {
 	const router = useRouter();
 	const path = router.pathname.replace("/", "");
+	const { showMenu, setShowMenu } = useMenu();
 
 	const { cartState, setCartState } = useCart();
 	let total = 0;
@@ -14,7 +17,10 @@ const Nav = () => {
 
 	return (
 		<>
-			<div id="top-nav" className="py-2 bg-slate-900 text-white text-sm">
+			<div
+				id="top-nav"
+				className="py-2 bg-slate-900 text-white text-sm z-30 relative"
+			>
 				<p className="text-center p-1 flex justify-center ">
 					Free shipping &nbsp;
 					<svg
@@ -33,7 +39,7 @@ const Nav = () => {
 			<div
 				id="bottom-nav"
 				className="flex justify-between p-4 px-6 md:p-4 bg-white sticky top-0 border-t-2 border-slate-900 shadow"
-				style={{ zIndex: 11 }}
+				style={{ zIndex: 30 }}
 			>
 				<div>
 					<h1 className="font-bold font-mono text-xl">
@@ -140,21 +146,73 @@ const Nav = () => {
 					</div>
 				</div>
 
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					className="h-6 w-6 md:hidden"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke="currentColor"
-					strokeWidth={2}
-				>
-					<path
-						strokeLinecap="round"
-						strokeLinejoin="round"
-						d="M4 6h16M4 12h8m-8 6h16"
-					/>
-				</svg>
+				<div className="flex gap-4 md:hidden">
+					<div
+						className="inline-block relative"
+						onClick={() =>
+							setCartState({ ...cartState, visible: true })
+						}
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							className="h-6 w-6 account relative"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+							strokeWidth={2}
+						>
+							<path
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+							/>
+						</svg>
+						<div className="bg-primary-600 w-5 h-5 absolute left-5 z-0 bottom-3 rounded-full overflow-hidden text-white inline-flex justify-center items-center cursor-pointer">
+							<span className="font-semibold text-xs">
+								{total || cartState.items.length}
+							</span>
+						</div>
+					</div>
+
+					{showMenu || (
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							className="h-6 w-6"
+							onClick={() => setShowMenu(true)}
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+							strokeWidth={2}
+						>
+							<path
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								d="M4 6h16M4 12h8m-8 6h16"
+							/>
+						</svg>
+					)}
+
+					{showMenu && (
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							fill="none"
+							onClick={() => setShowMenu(false)}
+							viewBox="0 0 24 24"
+							strokeWidth={2.1}
+							stroke="currentColor"
+							className="w-6 h-6"
+						>
+							<path
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								d="M6 18L18 6M6 6l12 12"
+							/>
+						</svg>
+					)}
+				</div>
 			</div>
+
+			<SmallMenu />
 		</>
 	);
 };

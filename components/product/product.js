@@ -47,7 +47,7 @@ const Product = ({ el, navigate, addToCart, discount, pic, showDiscount }) => {
 					e.stopPropagation();
 					addToCart(el);
 				}}
-				className="px-5 py-2 bg-primary-600 absolute top-44 opacity-0 group-hover:opacity-100 duration-500 transition-all hover:bg-slate-900 hover:text-white z-5"
+				className="px-5 py-2 bg-primary-600 absolute top-44 md:opacity-0 group-hover:opacity-100 duration-500 transition-all hover:bg-slate-900 hover:text-white z-5"
 			>
 				<span className="flex items-center text-sm">
 					<svg

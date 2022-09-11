@@ -6,25 +6,29 @@ import Newsletter from "../components/newsletter";
 import Footer from "../components/footer";
 import Cart from "../components/cart";
 import { useCart } from "../context/cart";
+import { MenuContext } from "../context/menu";
 import HtmlHead from "../components/head";
+import SmallMenu from "../components/small-menu";
 
 export default function Home() {
 	const { cartState } = useCart();
 
 	return (
-		<div
-			className={`font-body text-gray-700 ${
-				cartState.visible === true && "overflow-hidden "
-			}`}
-		>
-			<HtmlHead currentPage={`Home`} />
-			<Nav />
-			<Hero />
-			<HeroBottom />
-			<Cateogries />
-			<Newsletter />
-			<Footer />
-			<Cart />
-		</div>
+		<MenuContext>
+			<div
+				className={`font-body text-gray-700 ${
+					cartState.visible === true && "overflow-hidden "
+				}`}
+			>
+				<HtmlHead currentPage={`Home`} />
+				<Nav />
+				<Hero />
+				<HeroBottom />
+				<Cateogries />
+				<Newsletter />
+				<Footer />
+				<Cart />
+			</div>
+		</MenuContext>
 	);
 }

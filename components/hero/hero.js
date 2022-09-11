@@ -5,22 +5,22 @@ import { categories } from "../../data";
 
 const slides = [
 	{
-		eachSlide: "url(/images/design/main1.png)",
+		eachSlide: `url(${process.env.NEXT_PUBLIC_DOMAIN}/assets/images/accessories.jpg)`,
 	},
 	{
-		eachSlide: "url(/images/design/main2.png)",
+		eachSlide: `url(${process.env.NEXT_PUBLIC_DOMAIN}/assets/images/design/main2.png)`,
 	},
 	{
-		eachSlide: "url(/images/design/main3.png)",
+		eachSlide: `url(${process.env.NEXT_PUBLIC_DOMAIN}/assets/images/design/main3.png)`,
 	},
 	{
-		eachSlide: "url(/images/design/main1.png)",
+		eachSlide: `url(${process.env.NEXT_PUBLIC_DOMAIN}/assets/images/design/main1.png)`,
 	},
 	{
-		eachSlide: "url(/images/design/main2.png)",
+		eachSlide: `url(${process.env.NEXT_PUBLIC_DOMAIN}/assets/images/design/main2.png)`,
 	},
 	{
-		eachSlide: "url(/images/design/main3.png)",
+		eachSlide: `url(${process.env.NEXT_PUBLIC_DOMAIN}/assets/images/design/main3.png)`,
 	},
 ];
 
@@ -60,11 +60,10 @@ const Hero = () => {
 				className="each-slide"
 				key={index}
 				style={{
-					background: item.eachSlide,
-
-					// backgroundPosition: "left",
-					// backgroundSize: "contain",
-					// backgroundRepeat: "no-repeat",
+					background: `linear-gradient(rgba(0, 0, 0, 0.67), rgb(0, 0, 0, 0.67)), ${item.eachSlide}`,
+					backgroundPosition: "top",
+					// backgroundSize: "cover",
+					backgroundRepeat: "repeat",
 					// backgroundColor: "#fff",
 				}}
 				url={item.eachSlide}
@@ -107,12 +106,7 @@ const Hero = () => {
 				className="arrows prev"
 				onClick={() => prevOne()}
 			>
-				<svg
-					fill="#0000005d"
-					width="50"
-					height="50"
-					viewBox="0 0 24 24"
-				>
+				<svg fill="#fff" width="50" height="50" viewBox="0 0 24 24">
 					<path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
 					<path d="M0 0h24v24H0z" fill="none" />
 				</svg>
@@ -122,12 +116,7 @@ const Hero = () => {
 				className="arrows next"
 				onClick={() => nextOne()}
 			>
-				<svg
-					fill="#0000005d"
-					height="50"
-					viewBox="0 0 24 24"
-					width="50"
-				>
+				<svg fill="#fff" height="50" viewBox="0 0 24 24" width="50">
 					<path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
 					<path d="M0 0h24v24H0z" fill="none" />
 				</svg>
