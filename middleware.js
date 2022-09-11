@@ -32,8 +32,6 @@ export default async function middleware(request, response) {
 				// console.log(error);
 				return NextResponse.next();
 			}
-		} else {
-			return NextResponse.next();
 		}
 	}
 
