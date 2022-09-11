@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 // const domain = process.env.DOMAIN;
 
 export default async function middleware(request) {
-	const { cookies } = request;
+	// const { cookies } = request;
 	// const jwt = cookies.get(process.env.COOKIE_TOKEN);
 
 	// if (request.nextUrl.pathname.startsWith("/login")) {
