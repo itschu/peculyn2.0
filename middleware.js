@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
 
-export default async function middleware(request) {
+export async function middleware(request) {
 	return NextResponse.next();
 }
