@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 // const seceret = process.env.AUTH_SECRET;
 // const domain = process.env.DOMAIN;
 
-export const middleware = async (request) => {
+export function middleware(request) {
 	// const { cookies } = request;
 	// const jwt = cookies.get(process.env.COOKIE_TOKEN);
 
@@ -127,4 +127,4 @@ export const middleware = async (request) => {
 	// }
 
 	return NextResponse.next();
-};
+}
