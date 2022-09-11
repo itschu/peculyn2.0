@@ -1,9 +1,9 @@
-// import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 // const seceret = process.env.AUTH_SECRET;
 // const domain = process.env.DOMAIN;
 
-export default async function middleware(request) {
+export const middleware = async (request) => {
 	// const { cookies } = request;
 	// const jwt = cookies.get(process.env.COOKIE_TOKEN);
 
@@ -127,4 +127,4 @@ export default async function middleware(request) {
 	// }
 
 	return NextResponse.next();
-}
+};
