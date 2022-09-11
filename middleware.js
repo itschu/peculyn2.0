@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+// import { NextResponse } from "next/server";
 
 // const seceret = process.env.AUTH_SECRET;
 // const domain = process.env.DOMAIN;
