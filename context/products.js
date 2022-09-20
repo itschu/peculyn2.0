@@ -10,7 +10,7 @@ const AllProductsContext = ({ children }) => {
 
 		try {
 			const res = await fetch(
-				`https://peculyn.online/api/v1/products/?amount=100`,
+				`https://peculyn.online/api/v1/products/?amount=150`,
 				{
 					method: "Get",
 					headers: {
@@ -23,7 +23,10 @@ const AllProductsContext = ({ children }) => {
 		} catch (e) {
 			alert("please check your network connection");
 		}
-		setAllProducts(products);
+
+		// const verified = products.filter((el) => el?.approved == "yes");
+		const verified = products;
+		setAllProducts(verified);
 	};
 
 	useEffect(() => {

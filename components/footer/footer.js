@@ -148,7 +148,7 @@ const Footer = ({ border = false }) => {
 
 				<div>
 					<h3 className=" footer-header">Information</h3>
-					<Link href={"#"} passHref>
+					<Link href={"/about"} passHref>
 						<p className="link footer-link">About Us</p>
 					</Link>
 					<Link href={"/contact"} passHref>

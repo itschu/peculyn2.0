@@ -72,7 +72,7 @@ export async function getServerSideProps(context) {
 		const {
 			data: { orders, seen, message },
 		} = await verify_req.json();
-
+		// console.log(orders, seen, message);
 		return {
 			props: { orders, seen, message },
 		};

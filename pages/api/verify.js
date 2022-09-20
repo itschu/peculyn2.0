@@ -84,7 +84,8 @@ const verify_route = async (request, response) => {
 						}
 					);
 
-					await verify_req.json();
+					const cc = await verify_req.json();
+					// console.log(cc);
 				} else {
 					if (confirm_res.data.status == "abandoned") {
 						message = `This transaction was ${confirm_res.data.status}, therefore marked as declined. Please contact support for any issue`;

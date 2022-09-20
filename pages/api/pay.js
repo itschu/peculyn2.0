@@ -126,7 +126,7 @@ const pay_route = async (request, response) => {
 					email: userData.email,
 					order_id,
 					number: userData.number,
-					address2: userData.address2,
+					address2: `${userData.address2}, ${userData.state} state`,
 					address: userData.address,
 					unique_id: userData.unique_id,
 					reference,
@@ -171,7 +171,13 @@ const pay_route = async (request, response) => {
 				}
 			} catch (error) {
 				console.log(error, "failed initialized transaction");
-				response.status(400).json({ success: false, data: [] });
+				response.status(400).json({
+					success: false,
+					data: {
+						message:
+							"Failed to initialize transaction please try again later",
+					},
+				});
 			}
 			break;
 		default:

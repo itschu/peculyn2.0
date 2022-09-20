@@ -12,6 +12,25 @@ import ButtonLoader from "../button-loader/";
 import ErrorMsg from "../errorMsg";
 
 const Checkout = ({ user, states, setLoading, setUploadStatus, account }) => {
+	const Pay = () => (
+		<button
+			id="buy-now"
+			onClick={() => {
+				if (load === true) return;
+				paynow();
+			}}
+			className={`group py-3 cursor-pointer w-full flex font-bold justify-center bg-primary-600 duration-500 transition-all hover:bg-slate-900 hover:text-white mt-2 ${
+				load && "opacity-60 cursor-auto"
+			}`}
+		>
+			<div
+				className={`flex items-center text-base w-full justify-center gap-16 `}
+			>
+				{load && <ButtonLoader />}
+				<span>{load ? "Processing" : "Pay Now"}</span>
+			</div>
+		</button>
+	);
 	const [userDetails, setUserDetails] = useState(user);
 	const [load, setLoad] = useState(false);
 	const [error, setError] = useState({ show: false, message: "" });
@@ -295,6 +314,12 @@ const Checkout = ({ user, states, setLoading, setUploadStatus, account }) => {
 							readOnly
 							disabled
 						/>
+
+						<div className="hidden md:block w-full">
+							<br />
+							<br />
+							<Pay />
+						</div>
 					</div>
 				</form>
 
@@ -326,23 +351,7 @@ const Checkout = ({ user, states, setLoading, setUploadStatus, account }) => {
 						</span>
 					</p>
 
-					<button
-						id="buy-now"
-						onClick={() => {
-							if (load === true) return;
-							paynow();
-						}}
-						className={`group py-3 cursor-pointer flex font-bold justify-center bg-primary-600 duration-500 transition-all hover:bg-slate-900 hover:text-white mt-2 ${
-							load && "opacity-60 cursor-auto"
-						}`}
-					>
-						<div
-							className={`flex items-center text-base w-full justify-center gap-16 `}
-						>
-							{load && <ButtonLoader />}
-							<span>{load ? "Processing" : "Pay Now"}</span>
-						</div>
-					</button>
+					<Pay />
 				</div>
 			</div>
 		</div>
