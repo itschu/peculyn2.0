@@ -14,16 +14,16 @@ const About = () => {
 						Welcome to Peculyn Superstores
 					</h2>
 					<p>
-						Duis varius dapibus diam nec porttitor. Suspendisse nec
-						justo euismod, laoreet est in, vehicula dui. Curabitur
-						sit amet congue dui, sed semper metus. Integer tincidunt
-						eu mi nec iaculis. Donec nulla nisi, mattis quis justo,
-						mattis posuere velit. Sed posuere posuere consectetur.
-						Pendisse laoreet dui justo, eu venenatis nunc ornare.
-						Etiam id neque nec nisl vehicula tincidunt. Maecenas
-						vestibulum ligula leo, eu accumsan urna hendrerit at.
-						Cras sit amet tempor mauris. Nullam purus augue,
-						fermentum sed urna id tempor.
+						About 81% of consumers shop online from the aftermath of
+						the COVID-19 pandemic. 64% percent complain of speed in
+						products delivery, less quality of what&apos;s been
+						ordered and insecure transactions. Peculyn Superstores
+						offers a fast, convenient and secure platform for
+						consumers with quality products like clothings,
+						accessories and electronics at affordable prices. <br />
+						<b>We have very reliable and excellent </b>
+						delivery services At peculyn Superstores you get exactly
+						what you ordered for.
 					</p>
 				</div>
 			</div>
