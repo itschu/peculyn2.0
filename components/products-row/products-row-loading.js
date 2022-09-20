@@ -1,13 +1,13 @@
 import React from "react";
 
-const LoadingProduct = ({ max, cols = 5 }) => {
+const LoadingProduct = ({ max, cols = 5, noPadd = false }) => {
 	const dummy = [];
 	for (let i = 0; i < max; i++) {
 		dummy.push("");
 	}
 	return (
 		<div className={`${cols !== 4 ? "px-4 md:px-10" : ""} mt-5`}>
-			<div className={`${cols !== 4 ? "md:px-20" : ""}`}>
+			<div className={`${cols !== 4 ? (noPadd ? "" : "md:px-20") : ""}`}>
 				{cols !== 4 && (
 					<span className="w-56 h-4 bg-neutral-300 skeleton-box mb-4"></span>
 				)}

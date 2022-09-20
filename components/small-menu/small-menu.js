@@ -48,7 +48,7 @@ const SmallMenu = () => {
 							path === "home" && "active"
 						}`}
 					>
-						<Link href={"#"}>about us</Link>
+						<Link href={"/about"}>about us</Link>
 					</li>
 					<li
 						className={`nav-category ${

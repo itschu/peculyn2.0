@@ -5,6 +5,7 @@ import { useCart } from "../../context/cart";
 import HtmlHead from "../../components/head";
 import Cart from "../../components/cart";
 import SearchAll from "../../components/search-all";
+import Shop from "../../components/shop";
 
 const Search = () => {
 	const { cartState } = useCart();
@@ -14,6 +15,7 @@ const Search = () => {
 			<HtmlHead currentPage={`Search Products`} order={"reverse"} />
 			<Nav />
 			<SearchAll />
+			<Shop noOptions={true} search={true} />
 			<Newsletter />
 			<Footer />
 			{cartState.visible && <Cart />}

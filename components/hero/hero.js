@@ -7,21 +7,21 @@ const slides = [
 	{
 		eachSlide: `url(${process.env.NEXT_PUBLIC_DOMAIN}/assets/images/accessories.jpg)`,
 	},
-	{
-		eachSlide: `url(${process.env.NEXT_PUBLIC_DOMAIN}/assets/images/design/main2.png)`,
-	},
-	{
-		eachSlide: `url(${process.env.NEXT_PUBLIC_DOMAIN}/assets/images/design/main3.png)`,
-	},
-	{
-		eachSlide: `url(${process.env.NEXT_PUBLIC_DOMAIN}/assets/images/design/main1.png)`,
-	},
-	{
-		eachSlide: `url(${process.env.NEXT_PUBLIC_DOMAIN}/assets/images/design/main2.png)`,
-	},
-	{
-		eachSlide: `url(${process.env.NEXT_PUBLIC_DOMAIN}/assets/images/design/main3.png)`,
-	},
+	// {
+	// 	eachSlide: `url(${process.env.NEXT_PUBLIC_DOMAIN}/assets/images/design/main2.png)`,
+	// },
+	// {
+	// 	eachSlide: `url(${process.env.NEXT_PUBLIC_DOMAIN}/assets/images/design/main3.png)`,
+	// },
+	// {
+	// 	eachSlide: `url(${process.env.NEXT_PUBLIC_DOMAIN}/assets/images/design/main1.png)`,
+	// },
+	// {
+	// 	eachSlide: `url(${process.env.NEXT_PUBLIC_DOMAIN}/assets/images/design/main2.png)`,
+	// },
+	// {
+	// 	eachSlide: `url(${process.env.NEXT_PUBLIC_DOMAIN}/assets/images/design/main3.png)`,
+	// },
 ];
 
 const Hero = () => {

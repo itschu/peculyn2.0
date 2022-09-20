@@ -4,12 +4,19 @@ import Options from "../options";
 import { LoadingProduct } from "../products-row";
 import Pagination from "../pagination/pagination";
 import { useEffect, useState } from "react";
+import { useSearchProduct } from "../../context/search";
 
-const Shop = () => {
+const Shop = ({ noOptions = false, search = false, category }) => {
 	const { allProducts } = useAllProducts();
-	const [shopProducts, setShopProducts] = useState(allProducts);
+	const { searchProduct } = useSearchProduct();
+
+	const [shopProducts, setShopProducts] = useState(
+		search ? searchProduct : allProducts
+	);
 
 	let max = 12;
+
+	const cols = noOptions ? 5 : 4;
 
 	const [pageNumber, setPageNumber] = useState(0);
 
@@ -19,25 +26,46 @@ const Shop = () => {
 	const pageCount = Math.ceil(shopProducts.length / productPerPage);
 
 	useEffect(() => {
-		setShopProducts(allProducts);
-	}, [allProducts]);
+		if (category) {
+			const newList = allProducts.filter(
+				(el) => el.category.toLowerCase() === category
+			);
+			setShopProducts(newList);
+			return;
+		}
+		setShopProducts(search ? searchProduct : allProducts);
+	}, [allProducts, searchProduct]);
 
-	const optionsProp = { shopProducts, setShopProducts };
+	const optionsProp = { shopProducts, setShopProducts, category };
 
 	return (
 		<div className="section">
-			<span className="flex items-center">
-				<Link href="/" passHref>
-					<span className="link">Home</span>
-				</Link>
-				&nbsp;/&nbsp;
-				<Link href="/shop" passHref>
-					<span className="link"> Shop </span>
-				</Link>
-			</span>
-
-			<div id="main-content" className="mt-11 grid sm:grid-cols-6 gap-1">
-				<Options {...optionsProp} />
+			{noOptions || (
+				<span className="flex items-center">
+					<Link href="/" passHref>
+						<span className="link">Home</span>
+					</Link>
+					&nbsp;/&nbsp;
+					<Link href="/shop" passHref>
+						<span className="link"> Shop </span>
+					</Link>
+					{category && (
+						<>
+							&nbsp;/&nbsp;
+							<Link href="/shop" passHref>
+								<span className="link capitalize">
+									{category}
+								</span>
+							</Link>
+						</>
+					)}
+				</span>
+			)}
+			<div
+				id="main-content"
+				className={`mt-11 grid ${noOptions || "sm:grid-cols-6"} gap-1`}
+			>
+				{noOptions || <Options {...optionsProp} />}
 				<div className="sm:col-span-5 sm:ml-10">
 					<div className="flex justify-between items-center">
 						<p>
@@ -70,7 +98,7 @@ const Shop = () => {
 							shopProducts={shopProducts}
 						/>
 					) : (
-						<LoadingProduct cols={4} max={max} />
+						<LoadingProduct max={max} noPadd={true} />
 					)}
 				</div>
 			</div>

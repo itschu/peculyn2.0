@@ -9,7 +9,7 @@ const reset = {
 	cond4: false,
 };
 
-const Options = ({ setShopProducts }) => {
+const Options = ({ setShopProducts, shopProducts, category }) => {
 	const { allProducts } = useAllProducts();
 	const [disabled, setDisabled] = useState(false);
 	const [conditions, setConditions] = useState({ ...reset });
@@ -19,9 +19,16 @@ const Options = ({ setShopProducts }) => {
 	const [range, setRange] = useState(20000);
 
 	const filterPrice = () => {
-		const newList = allProducts.filter(
-			(el) => parseFloat(el.price) <= parseInt(range)
-		);
+		let newList = [];
+		if (category) {
+			newList = allProducts
+				.filter((el) => el.category.toLowerCase() === category)
+				.filter((el) => parseFloat(el.price) <= parseInt(range));
+		} else {
+			newList = allProducts.filter(
+				(el) => parseFloat(el.price) <= parseInt(range)
+			);
+		}
 		setShopProducts(newList);
 	};
 
@@ -43,7 +50,7 @@ const Options = ({ setShopProducts }) => {
 
 	return (
 		<div className="sm:col-span-1 " style={{ fontSize: 16 }}>
-			<div className="seach-option" id="search">
+			{/* <div className="seach-option" id="search">
 				<div className="flex justify-between mb-2">
 					<h2 className="option-heading ">Search </h2>
 					<svg
@@ -66,9 +73,9 @@ const Options = ({ setShopProducts }) => {
 					className="option-input"
 					placeholder="Search Products..."
 				/>
-			</div>
+			</div> */}
 
-			<div className="seach-option" id="category">
+			{/* <div className="seach-option" id="category">
 				<div className="flex justify-between mb-2">
 					<h2 className="option-heading">Select Category</h2>
 					<svg
@@ -86,7 +93,7 @@ const Options = ({ setShopProducts }) => {
 						/>
 					</svg>
 				</div>
-			</div>
+			</div> */}
 
 			<div className="seach-option" id="sort">
 				<div className="flex justify-between mb-2">

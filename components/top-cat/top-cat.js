@@ -30,19 +30,19 @@ const TopCategory = () => {
 							Interior &amp; Furniture
 						</h3>
 
-						<Link href={""} passHref>
+						<Link href={"/categories/home theater"} passHref>
 							<p className="linkText">Home Theater</p>
 						</Link>
-						<Link href={""} passHref>
+						<Link href={"/categories/chairs"} passHref>
 							<p className="linkText">Chairs</p>
 						</Link>
-						<Link href={""} passHref>
+						<Link href={"/categories/television"} passHref>
 							<p className="linkText">Television</p>
 						</Link>
-						<Link href={""} passHref>
+						<Link href={"/categories/speakers"} passHref>
 							<p className="linkText">Speakers</p>
 						</Link>
-						<Link href={""} passHref>
+						<Link href={"/categories/tablets"} passHref>
 							<p className="linkText">Tables</p>
 						</Link>
 					</div>
@@ -59,19 +59,19 @@ const TopCategory = () => {
 							Fashion &amp; Clothing
 						</h3>
 
-						<Link href={""} passHref>
+						<Link href={"/categories/men"} passHref>
 							<p className="linkText">Men&apos;s Wear</p>
 						</Link>
-						<Link href={""} passHref>
+						<Link href={"/categories/women"} passHref>
 							<p className="linkText">Women&apos;s Wear</p>
 						</Link>
-						<Link href={""} passHref>
+						<Link href={"/categories/bags"} passHref>
 							<p className="linkText">Bags</p>
 						</Link>
-						<Link href={""} passHref>
+						<Link href={"/categories/children"} passHref>
 							<p className="linkText">Childrens Wear</p>
 						</Link>
-						<Link href={""} passHref>
+						<Link href={"/categories/shoes"} passHref>
 							<p className="linkText">Shoes</p>
 						</Link>
 					</div>
@@ -86,19 +86,19 @@ const TopCategory = () => {
 					>
 						<h3 className="trend-heading">Jewelry &amp; Watch</h3>
 
-						<Link href={""} passHref>
+						<Link href={"/categories/accessories"} passHref>
 							<p className="linkText">Accessories</p>
 						</Link>
-						<Link href={""} passHref>
+						<Link href={"/categories/designer watch"} passHref>
 							<p className="linkText">Designer Watch</p>
 						</Link>
-						<Link href={""} passHref>
+						<Link href={"/categories/smart watch"} passHref>
 							<p className="linkText">Smart Watch</p>
 						</Link>
-						<Link href={""} passHref>
+						<Link href={"/categories/jewelry"} passHref>
 							<p className="linkText">Jewelry</p>
 						</Link>
-						<Link href={""} passHref>
+						<Link href={"/categories/belts"} passHref>
 							<p className="linkText">Belts</p>
 						</Link>
 					</div>
@@ -113,19 +113,19 @@ const TopCategory = () => {
 					>
 						<h3 className="trend-heading">Tech &amp; Gadgets</h3>
 
-						<Link href={""} passHref>
+						<Link href={"/categories/phones"} passHref>
 							<p className="linkText">Phones</p>
 						</Link>
-						<Link href={""} passHref>
+						<Link href={"/categories/laptops"} passHref>
 							<p className="linkText">Laptops</p>
 						</Link>
-						<Link href={""} passHref>
+						<Link href={"/categories/gadget accessories"} passHref>
 							<p className="linkText">Accessories</p>
 						</Link>
-						<Link href={""} passHref>
+						<Link href={"/categories/tablets"} passHref>
 							<p className="linkText">Tablets</p>
 						</Link>
-						<Link href={""} passHref>
+						<Link href={"/categories/desktop"} passHref>
 							<p className="linkText">Desktop</p>
 						</Link>
 					</div>

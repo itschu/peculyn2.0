@@ -16,7 +16,7 @@ const HeroBottom = () => {
 					<span className="font-extrabold">Women&apos;s</span> wear
 				</h3>
 
-				<Link passHref href={""}>
+				<Link passHref href={"/categories/women"}>
 					<span
 						className="text-base font-extrabold mt-4 cursor-pointer flex items-center"
 						style={{ color: "#792040" }}
@@ -50,7 +50,7 @@ const HeroBottom = () => {
 					<span className="font-extrabold">Men&apos;s</span> shoe
 				</h3>
 
-				<Link passHref href={""}>
+				<Link passHref href={"/categories/shoes"}>
 					<span
 						className="text-base font-extrabold mt-4 cursor-pointer flex items-center"
 						style={{ color: "#824428" }}
@@ -85,7 +85,7 @@ const HeroBottom = () => {
 					fashion
 				</h3>
 
-				<Link passHref href={""}>
+				<Link passHref href={"/categories/men"}>
 					<span
 						className="text-base font-extrabold mt-4 cursor-pointer flex items-center"
 						style={{ color: "#252525" }}

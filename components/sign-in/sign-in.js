@@ -124,9 +124,19 @@ const SignIn = ({ setLoading, setUploadStatus }) => {
 						</button>
 					</div>
 
-					<Link passHref href={"/api/login"}>
-						<span className="self-start">Forgot password?</span>
-					</Link>
+					<div className="flex justify-between w-full">
+						<Link passHref href={"#"}>
+							<span className="self-start cursor-pointer">
+								Forgot password?
+							</span>
+						</Link>
+
+						<Link passHref href={"#"}>
+							<span className="self-start cursor-pointer">
+								Don&apos;t have an account?
+							</span>
+						</Link>
+					</div>
 				</form>
 			</div>
 		</div>

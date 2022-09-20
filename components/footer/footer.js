@@ -5,7 +5,7 @@ const date = new Date();
 
 const Footer = ({ border = false }) => {
 	return (
-		<>
+		<div className="bg-white">
 			<div
 				className={`p-8 md:py-5 md:px-12 flex flex-col lg:flex-row md:gap-5 lg:gap-40 border-b border-b-slate-300 lg:justify-center ${
 					border && "border-t"
@@ -192,10 +192,11 @@ const Footer = ({ border = false }) => {
 
 			<div className="p-4 py-8 md:py-5 md:px-32 text-sm">
 				<p className="text-center">
-					&copy; {date.getFullYear()} Peculyn. All Rights Reserved.
+					&copy; {date.getFullYear()} Peculyn.com. All Rights
+					Reserved.
 				</p>
 			</div>
-		</>
+		</div>
 	);
 };
 

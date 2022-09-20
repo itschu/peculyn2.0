@@ -24,6 +24,7 @@ const HtmlHead = ({ currentPage, order = "normal" }) => {
 				name="keyword"
 				content="peculyn, peculyn super stores, peculyn superstores, peculyn international super stores, 'super store', online shopping, peculyn international superstores, peculyn stores, international super stores, 'international store', 'Shop online', 'Nigeria shopping', 'sell products',buy online, 'top online store', 'buy on peculyn'"
 			/>
+			<meta name="color-scheme" content="light dark" />
 		</Head>
 	);
 };

@@ -41,11 +41,11 @@ const Nav = () => {
 				className="flex justify-between p-4 px-6 md:p-4 bg-white sticky top-0 border-t-2 border-slate-900 shadow"
 				style={{ zIndex: 30 }}
 			>
-				<div>
-					<h1 className="font-bold font-mono text-xl">
+				<Link href={"/"}>
+					<h1 className="font-bold font-mono text-xl cursor-pointer">
 						Peculyn Store
 					</h1>
-				</div>
+				</Link>
 
 				<ul className="hidden md:flex items-center text-black font-medium">
 					<li className={`nav-category ${path === "" && "active"}`}>
@@ -70,7 +70,7 @@ const Nav = () => {
 							path === "home" && "active"
 						}`}
 					>
-						<Link href={"#"}>about us</Link>
+						<Link href={"/about"}>about us</Link>
 					</li>
 					<li
 						className={`nav-category ${

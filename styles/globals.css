@@ -25,7 +25,7 @@ a {
 }
 
 .section {
-	@apply p-4 py-8 md:py-5 md:px-32 mt-5 mb-10;
+	@apply p-4 py-8 md:py-5 md:px-32 mt-5 mb-10 bg-white;
 }
 
 .seach-option {
