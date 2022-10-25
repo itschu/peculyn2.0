@@ -31,6 +31,7 @@ const Checkout = ({ user, states, setLoading, setUploadStatus, account }) => {
 			</div>
 		</button>
 	);
+
 	const [userDetails, setUserDetails] = useState(user);
 	const [load, setLoad] = useState(false);
 	const [error, setError] = useState({ show: false, message: "" });

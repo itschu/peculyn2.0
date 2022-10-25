@@ -74,6 +74,13 @@ const Nav = () => {
 					</li>
 					<li
 						className={`nav-category ${
+							path === "our-vendors" && "active"
+						}`}
+					>
+						<Link href={"/our-vendors"}>vendors</Link>
+					</li>
+					<li
+						className={`nav-category ${
 							path === "contact" && "active"
 						}`}
 					>

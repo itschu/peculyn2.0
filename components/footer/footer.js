@@ -157,6 +157,9 @@ const Footer = ({ border = false }) => {
 					<Link href={"/privacy"} passHref>
 						<p className="link footer-link">Privacy Policy</p>
 					</Link>
+					<Link href={"/register"} passHref>
+						<p className="link footer-link">Sign Up</p>
+					</Link>
 					<Link href={"/terms"} passHref>
 						<p className="link footer-link">
 							Terms &amp; Conditions

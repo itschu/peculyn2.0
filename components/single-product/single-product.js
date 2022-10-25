@@ -83,8 +83,15 @@ const SingleProduct = ({ id }) => {
 					<span className="link">Home</span>
 				</Link>
 				&nbsp;/&nbsp;
+				<Link href="/shop" passHref>
+					<span className="link">Shop</span>
+				</Link>
+				&nbsp;/&nbsp;
 				{!singleProd.stale ? (
-					<Link href="/" passHref>
+					<Link
+						href={`/categories/${singleProd.category?.toLowerCase()}`}
+						passHref
+					>
 						<span className="link"> {singleProd.category} </span>
 					</Link>
 				) : (
@@ -223,7 +230,7 @@ const SingleProduct = ({ id }) => {
 					</h3>
 					<p className="my-8" style={{ maxWidth: "60ch" }}>
 						{!singleProd.stale ? (
-							singleProd.short_desc
+							decodeHtml(singleProd.short_desc)
 						) : (
 							<>
 								<span className="h-3 w-full bg-slate-300 inline-block skeleton-box"></span>

@@ -131,7 +131,7 @@ const SignIn = ({ setLoading, setUploadStatus }) => {
 							</span>
 						</Link>
 
-						<Link passHref href={"#"}>
+						<Link passHref href={"/register"}>
 							<span className="self-start cursor-pointer">
 								Don&apos;t have an account?
 							</span>
