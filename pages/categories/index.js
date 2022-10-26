@@ -13,7 +13,7 @@ const Categories = () => {
 
 	return (
 		<div
-			className={`font-body text-gray-700 ${
+			className={`font-body bg-white text-gray-700 ${
 				cartState.visible === true && "overflow-hidden "
 			}`}
 		>

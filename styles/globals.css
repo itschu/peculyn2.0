@@ -37,11 +37,11 @@ a {
 }
 
 .option-input {
-	@apply border border-neutral-400 p-2 px-3 rounded-sm w-full text-sm;
+	@apply border border-neutral-400 p-2 px-3 rounded-sm w-full text-sm bg-white;
 }
 
 .input {
-	@apply border border-neutral-300 p-2 px-3 rounded-sm w-full md:w-96 block text-sm mt-2 h-12;
+	@apply border border-neutral-300 p-2 px-3 rounded-sm w-full md:w-96 block text-sm mt-2 h-12 bg-white;
 }
 
 .nav-category {
